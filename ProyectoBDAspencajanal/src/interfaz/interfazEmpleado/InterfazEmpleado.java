@@ -1,5 +1,6 @@
 package interfaz.interfazEmpleado;
 
+import interfaz.VentanaAgregarPen;
 import interfaz.VentanaConsultaCumpleanos;
 import interfaz.interfazAdministrador.VentanaConsultaAdmi;
 
@@ -99,7 +100,8 @@ public class InterfazEmpleado extends JDialog implements ActionListener {
 			break;
 			
 		case AGREGAR:
-			//TODO pendiente
+			VentanaAgregarPen vAP= new VentanaAgregarPen();
+			vAP.setVisible(true);
 			break;
 			
 		case SALIR:

@@ -1,5 +1,6 @@
 package interfaz.interfazAdministrador;
 
+import interfaz.VentanaAgregarPen;
 import interfaz.VentanaConsultaCumpleanos;
 
 import java.awt.Color;
@@ -92,8 +93,8 @@ public class InterfazAdministrador extends JDialog implements ActionListener {
 				VentanaConsultaAdmi vCA = new VentanaConsultaAdmi();
 				vCA.setVisible(true);
 			} else
-				JOptionPane.showMessageDialog(this,
-						"El cliente que ingresó no existe !!");
+				JOptionPane.showMessageDialog(this,"El cliente que ingresó no existe !!");
+						
 			break;
 			
 		case CONSULTARPER:
@@ -113,8 +114,16 @@ public class InterfazAdministrador extends JDialog implements ActionListener {
 			break;
 			
 		case MODIFICAR:
-			VentanaModificarPen vMP= new VentanaModificarPen();
-			vMP.setVisible(true);
+			String buscar1 = JOptionPane.showInputDialog(this,
+					"Ingrese la cedula del pensionado",
+					"Modificar Pensionado ",
+					JOptionPane.INFORMATION_MESSAGE);
+			if (Integer.parseInt(buscar1) == 1) {
+				VentanaModificarPen vMP= new VentanaModificarPen();
+				vMP.setVisible(true);
+			} else
+				JOptionPane.showMessageDialog(this,"El cliente que ingresó no existe !!");
+			
 			break;
 			
 		case AGREGAR:

@@ -1,4 +1,4 @@
-package interfaz.interfazAdministrador;
+package interfaz;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -10,7 +10,6 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 
-import interfaz.PanelDatosMod;
 
 public class VentanaAgregarPen extends JDialog implements ActionListener {
 
@@ -46,7 +45,7 @@ public class VentanaAgregarPen extends JDialog implements ActionListener {
 		PanelDatosMod panelDatosMod = new PanelDatosMod();
 		
 		add(AgregarHVJB);
-		AgregarHVJB.setBounds(350,470,150,30);	
+		AgregarHVJB.setBounds(350,460,150,30);	
 		
 		add(panelDatosMod);
 		panelDatosMod.setBounds(20,20,500,350);
@@ -61,7 +60,7 @@ public class VentanaAgregarPen extends JDialog implements ActionListener {
 		observacionesJA.setBounds(20,440,300,120);
 		
 		add(salirJB);
-		salirJB.setBounds(350,520,150,30);
+		salirJB.setBounds(350,510,150,30);
 		
 	}
 	

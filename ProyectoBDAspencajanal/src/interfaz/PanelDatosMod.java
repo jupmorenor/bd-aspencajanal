@@ -61,7 +61,7 @@ public class PanelDatosMod extends JPanel implements ActionListener{
 
 	public PanelDatosMod() {
 		setBorder(BorderFactory.createTitledBorder("Datos Personales"));
-		setLayout(new GridLayout(10, 4));
+		setLayout(new GridLayout(10, 4,15,5));
 		setBackground( Color.white);
 		
 		
@@ -162,15 +162,11 @@ public class PanelDatosMod extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
 		case PRODUZCAMOS:
-			if(produzcamosJCh.isSelected()) {
-				ayudemonosJCh.setSelected(false);
-			}
+			
 			break;
 			
 		case AYUDEMONOS:
-			if(ayudemonosJCh.isSelected()) {
-				produzcamosJCh.setSelected(false);
-			}
+			
 		}	
 	}	
 }
