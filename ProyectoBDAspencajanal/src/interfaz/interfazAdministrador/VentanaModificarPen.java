@@ -46,15 +46,15 @@ public class VentanaModificarPen extends JDialog implements ActionListener{
 		panelDatosMod = new PanelDatosMod();
 		
 		add(panelDatosMod);
-		panelDatosMod.setBounds(20,20,500,400);
+		panelDatosMod.setBounds(20,20,500,350);
 		
 		add(observacionesJL);
-		observacionesJL.setBounds(50,420,200,30);
+		observacionesJL.setBounds(50,400,200,30);
 		
 		add(observacionesJA);
 		observacionesJA.setBorder(new LineBorder( Color.BLACK ));
 		observacionesJA.setEditable(false);
-		observacionesJA.setBounds(20,460,300,100);
+		observacionesJA.setBounds(20,440,300,120);
 		
 		add(salirJB);
 		salirJB.setBounds(350,530,150,30);
