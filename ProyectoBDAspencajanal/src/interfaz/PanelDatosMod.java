@@ -9,10 +9,13 @@ import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 
-public class PanelDatosMod extends JPanel implements ActionListener{
+public class PanelDatosMod extends JPanel implements ChangeListener{
 
 	private JLabel idJL;
 	private JLabel direccionJL;	
@@ -54,8 +57,8 @@ public class PanelDatosMod extends JPanel implements ActionListener{
 	private JTextField fechaRetiroJT;
 	private JTextField fechaIngresoJT;
 	
-	private JCheckBox produzcamosJCh;
-	private JCheckBox ayudemonosJCh;
+	private JRadioButton produzcamosJCh;
+	private JRadioButton ayudemonosJCh;
 
 	public PanelDatosMod() {
 		setBorder(BorderFactory.createTitledBorder("Datos Personales"));
@@ -89,6 +92,7 @@ public class PanelDatosMod extends JPanel implements ActionListener{
 		codigoJT= new JTextField();
 		cedulaJT= new JTextField();
 		barrioJT= new JTextField();
+		ciudadJT= new JTextField();
 		departamentoJT= new JTextField();
 		zonaPostalJT= new JTextField();
 		estadoJT= new JTextField();
@@ -100,8 +104,13 @@ public class PanelDatosMod extends JPanel implements ActionListener{
 		fechaRetiroJT= new JTextField();
 		fechaIngresoJT= new JTextField();
 
-		produzcamosJCh= new JCheckBox("Produzcamos");
-		ayudemonosJCh= new JCheckBox("Ayudemonos");
+		produzcamosJCh= new JRadioButton("Produzcamos");
+		produzcamosJCh.setBackground(Color.white);
+		produzcamosJCh.addChangeListener(this);
+		ayudemonosJCh= new JRadioButton("Ayudemonos");
+		ayudemonosJCh.setBackground(Color.white);
+		ayudemonosJCh.addChangeListener(this);
+		
 		
 		add(idJL);
 		add(idJLT);
@@ -146,17 +155,17 @@ public class PanelDatosMod extends JPanel implements ActionListener{
 	}
 	
 	
-	
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		
-		if(produzcamosJCh.isSelected()){
+	public void stateChanged(ChangeEvent evento) {
+		if(produzcamosJCh.isSelected()== true) { 
 			
 		}
-		if (ayudemonosJCh.isSelected()){
+		
+		if (ayudemonosJCh.isSelected()== true){
 			
 		}
 		
 	}
-	
-}
+		
+	}
+

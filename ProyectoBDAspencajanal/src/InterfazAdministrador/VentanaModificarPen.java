@@ -49,7 +49,7 @@ public class VentanaModificarPen extends JDialog implements ActionListener{
 		add(observacionesJA);
 		observacionesJA.setBorder(new LineBorder( Color.BLACK ));
 		observacionesJA.setEditable(false);
-		observacionesJA.setBounds(20,460,250,100);
+		observacionesJA.setBounds(20,460,300,100);
 		add(salirJB);
 		salirJB.setBounds(350,530,150,30);
 		

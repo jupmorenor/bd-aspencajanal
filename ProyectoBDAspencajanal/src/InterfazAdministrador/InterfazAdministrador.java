@@ -106,7 +106,8 @@ public class InterfazAdministrador extends JDialog implements ActionListener {
 			vMP.setVisible(true);
 		}
 		if (e.getActionCommand().equals(AGREGAR)) {
-
+			VentanaAgregarPen vAP= new VentanaAgregarPen();
+			vAP.setVisible(true);
 		}
 		if (e.getActionCommand().equals(SALIR)) {
 			// Cierra Sesión de la secretaria

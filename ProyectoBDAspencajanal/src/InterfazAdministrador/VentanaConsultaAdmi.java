@@ -53,7 +53,7 @@ public class VentanaConsultaAdmi extends JDialog implements ActionListener{
 	observacionesJA.setBorder(new LineBorder( Color.BLACK ));
 	observacionesJA.setText("Ingresar de la base de datos las observaciones");
 	observacionesJA.setEditable(false);
-	observacionesJA.setBounds(20,460,250,100);
+	observacionesJA.setBounds(20,460,300,100);
 	add(hojaVidaJB);
 	hojaVidaJB.setBounds(350,470,150,30);
 	add(salirJB);

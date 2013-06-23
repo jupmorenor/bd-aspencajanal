@@ -50,7 +50,7 @@ public class VentanaConsultaEmp extends JDialog implements ActionListener{
 		observacionesJA.setBorder(new LineBorder( Color.BLACK ));
 		observacionesJA.setWrapStyleWord(true);
 		observacionesJA.setLineWrap(true); 
-		observacionesJA.setBounds(20,460,250,100);
+		observacionesJA.setBounds(20,460,300,100);
 		add(salirJB);
 		salirJB.setBounds(350,530,150,30);
 		
