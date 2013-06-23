@@ -109,8 +109,11 @@ public class InterfazAdministrador extends JDialog implements ActionListener {
 							"Febrero", "Marzo", "Abrir", "Mayo", "Junio",
 							"Julio", "Agosto", "Septiembre", "Octubre",
 							"Nobiembre", "Diciembre" }, "Seleccione mes");
-			VentanaConsultaCumpleanos vCC = new VentanaConsultaCumpleanos(seleccionMes);
-			vCC.setVisible(true);
+			if(seleccionMes != null){
+				VentanaConsultaCumpleanos vCC = new VentanaConsultaCumpleanos(
+						seleccionMes);
+				vCC.setVisible(true);
+				}
 			break;
 			
 		case MODIFICAR:
