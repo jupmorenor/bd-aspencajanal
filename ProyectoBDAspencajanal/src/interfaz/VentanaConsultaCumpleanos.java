@@ -23,7 +23,7 @@ public class VentanaConsultaCumpleanos extends JDialog implements ActionListener
 	public VentanaConsultaCumpleanos(String mes){
 		
 		setLayout(null);
-		setTitle("CUNSULTA CUMPLEANOS");
+		setTitle("CONSULTA CUMPLEANOS");
 		getContentPane().setBackground(Color.white);
 		setSize(400,500);
 		setResizable(false);
@@ -46,9 +46,6 @@ public class VentanaConsultaCumpleanos extends JDialog implements ActionListener
 		cerrarJB.setBounds(280, 430,100,30);
 	}
 	
-	
-	
-	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals(SALIR)) {
@@ -56,6 +53,4 @@ public class VentanaConsultaCumpleanos extends JDialog implements ActionListener
             dispose( );
 		}		
 	}
-	
-	
 }
