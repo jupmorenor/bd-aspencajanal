@@ -1,10 +1,11 @@
 package interfaz;
 
-import java.awt.BorderLayout;
+import interfaz.interfazAdministrador.InterfazAdministrador;
+import interfaz.interfazEmpleado.InterfazEmpleado;
+
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -12,10 +13,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
-
-import InterfazAdministrador.InterfazAdministrador;
-import InterfazEmpleado.InterfazEmpleado;
 
 public class InterfazInicio extends JFrame implements ActionListener {
 
@@ -30,27 +27,31 @@ public class InterfazInicio extends JFrame implements ActionListener {
 	
 	private ImageIcon icono;
 	
-	public static final String INGRESAR = "Ingresar";
+	private static final String INGRESAR = "INGRESAR";
 	
 	public InterfazInicio() {
+		
 		icono = new ImageIcon("data/aspen.png");
-		this.setIconImage(icono.getImage());
+		setIconImage(icono.getImage());
 		setLayout(null);
 		setTitle("Inicio");
 		getContentPane().setBackground(Color.white);
 		setSize(500, 260);
 		setResizable(false);
-		this.setLocationRelativeTo(null);
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
 		usuarioJL = new JLabel(" Usuario");
 		passwordJL = new JLabel(" Contraseña");		
 		usuarioJT = new JTextField();
 		passwordJT = new JPasswordField();
 		icono = new ImageIcon("data/aspen.png");
-		ingresarJB = new JButton("INGRESAR");
+		
+		ingresarJB = new JButton(INGRESAR);
 		ingresarJB.addActionListener(this);
 		ingresarJB.setActionCommand(INGRESAR);
-		imagen = new JLabel("");
+		
+		imagen = new JLabel();
 		imagen.setBounds(280, 20, 200, 180);
 		imagen.setIcon(icono);
 		add(imagen);
@@ -77,7 +78,7 @@ public class InterfazInicio extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals(INGRESAR)) {
-			
+			//TODO consultar los usuarios de la BD y validar que tipo de usuario es
 			switch (usuarioJT.getText()) {
 			case "1":
 				// Ventana para el Administrador
@@ -92,6 +93,6 @@ public class InterfazInicio extends JFrame implements ActionListener {
 				break;
 			}
 		}
-		}
 	}
+}
 

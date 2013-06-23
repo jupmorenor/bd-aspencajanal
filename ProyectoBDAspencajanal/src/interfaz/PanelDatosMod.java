@@ -6,16 +6,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
-
-public class PanelDatosMod extends JPanel implements ChangeListener{
+public class PanelDatosMod extends JPanel implements ActionListener{
 
 	private JLabel idJL;
 	private JLabel direccionJL;	
@@ -59,11 +55,16 @@ public class PanelDatosMod extends JPanel implements ChangeListener{
 	
 	private JRadioButton produzcamosJCh;
 	private JRadioButton ayudemonosJCh;
+	
+	private static final String PRODUZCAMOS = "Produzcamos";
+	private static final String AYUDEMONOS = "Ayudemonos";
 
 	public PanelDatosMod() {
 		setBorder(BorderFactory.createTitledBorder("Datos Personales"));
 		setLayout(new GridLayout(10, 4));
 		setBackground( Color.white);
+		
+		
 		idJL = new JLabel("IDD:  ");
 		nombreJL = new JLabel("Nombre(s):  ");
 		apellidoJL = new JLabel("Apellidos:  ");
@@ -85,31 +86,34 @@ public class PanelDatosMod extends JPanel implements ChangeListener{
 		perteneceJL = new JLabel("Pertenece A:  ");
 		blancoJL = new JLabel(); 
 		
-		idJLT= new JTextField();
-		direccionJT= new JTextField();
-		nombreJT= new JTextField();
-		apellidoJT= new JTextField();
-		codigoJT= new JTextField();
-		cedulaJT= new JTextField();
-		barrioJT= new JTextField();
-		ciudadJT= new JTextField();
-		departamentoJT= new JTextField();
-		zonaPostalJT= new JTextField();
-		estadoJT= new JTextField();
-		fechaNacJT= new JTextField();
-		telefonoJT= new JTextField();
-		telefonoAltJT= new JTextField();
-		emailJT= new JTextField();
-		seleccionalJT= new JTextField();
-		fechaRetiroJT= new JTextField();
-		fechaIngresoJT= new JTextField();
+		idJLT = new JTextField();
+		direccionJT = new JTextField();
+		nombreJT = new JTextField();
+		apellidoJT = new JTextField();
+		codigoJT = new JTextField();
+		cedulaJT = new JTextField();
+		barrioJT = new JTextField();
+		ciudadJT = new JTextField();
+		departamentoJT = new JTextField();
+		zonaPostalJT = new JTextField();
+		estadoJT = new JTextField();
+		fechaNacJT = new JTextField();
+		telefonoJT = new JTextField();
+		telefonoAltJT = new JTextField();
+		emailJT = new JTextField();
+		seleccionalJT = new JTextField();
+		fechaRetiroJT = new JTextField();
+		fechaIngresoJT = new JTextField();
 
-		produzcamosJCh= new JRadioButton("Produzcamos");
+		produzcamosJCh = new JRadioButton(PRODUZCAMOS);
 		produzcamosJCh.setBackground(Color.white);
-		produzcamosJCh.addChangeListener(this);
-		ayudemonosJCh= new JRadioButton("Ayudemonos");
+		produzcamosJCh.addActionListener(this);
+		produzcamosJCh.setActionCommand(PRODUZCAMOS);
+		
+		ayudemonosJCh = new JRadioButton(AYUDEMONOS);
 		ayudemonosJCh.setBackground(Color.white);
-		ayudemonosJCh.addChangeListener(this);
+		ayudemonosJCh.addActionListener(this);
+		ayudemonosJCh.setActionCommand(AYUDEMONOS);
 		
 		
 		add(idJL);
@@ -153,19 +157,20 @@ public class PanelDatosMod extends JPanel implements ChangeListener{
 		add(blancoJL);	
 		add(ayudemonosJCh);
 	}
-	
-	
-	@Override
-	public void stateChanged(ChangeEvent evento) {
-		if(produzcamosJCh.isSelected()== true) { 
-			
-		}
-		
-		if (ayudemonosJCh.isSelected()== true){
-			
-		}
-		
-	}
-		
-	}
 
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		switch (e.getActionCommand()) {
+		case PRODUZCAMOS:
+			if(produzcamosJCh.isSelected()) {
+				ayudemonosJCh.setSelected(false);
+			}
+			break;
+			
+		case AYUDEMONOS:
+			if(ayudemonosJCh.isSelected()) {
+				produzcamosJCh.setSelected(false);
+			}
+		}	
+	}	
+}

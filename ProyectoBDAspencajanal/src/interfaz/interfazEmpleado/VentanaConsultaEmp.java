@@ -1,6 +1,7 @@
-package InterfazEmpleado;
+package interfaz.interfazEmpleado;
 
 import interfaz.PanelDatos;
+import interfaz.interfazAdministrador.InterfazAdministrador;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -12,7 +13,6 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 
-import InterfazAdministrador.InterfazAdministrador;
 
 public class VentanaConsultaEmp extends JDialog implements ActionListener{
 
@@ -24,6 +24,8 @@ public class VentanaConsultaEmp extends JDialog implements ActionListener{
 	
 	private PanelDatos panelDatos;
 	
+	private static final String CERRAR = "CERRAR";
+	
 	
 	public VentanaConsultaEmp(){
 		setLayout(null);
@@ -31,15 +33,15 @@ public class VentanaConsultaEmp extends JDialog implements ActionListener{
 		getContentPane().setBackground(Color.white);
 		setSize(545, 600);
 		setResizable(false);
-		this.setLocationRelativeTo(null);
+		setLocationRelativeTo(null);
 		setModalityType(DEFAULT_MODALITY_TYPE);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
-		observacionesJL= new JLabel ("OBSERVACIONES: ");
+		observacionesJL= new JLabel("OBSERVACIONES: ");
 		observacionesJA= new JTextArea();
-		salirJB = new JButton("CERRAR");
+		salirJB = new JButton(CERRAR);
 		salirJB.addActionListener(this);
-		salirJB.setActionCommand("cerrar");
+		salirJB.setActionCommand(CERRAR);
 		panelDatos= new PanelDatos();
 		
 		add(panelDatos);
@@ -58,9 +60,9 @@ public class VentanaConsultaEmp extends JDialog implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand().equals("cerrar")) {
-			setVisible( false );
-            dispose( );			
+		if (e.getActionCommand().equals(CERRAR)) {
+			setVisible(false);
+            dispose();			
 		}		
 	}
 

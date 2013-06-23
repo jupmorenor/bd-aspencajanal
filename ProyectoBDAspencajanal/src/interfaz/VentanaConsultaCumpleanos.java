@@ -8,7 +8,6 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 
 public class VentanaConsultaCumpleanos extends JDialog implements ActionListener{
@@ -19,23 +18,25 @@ public class VentanaConsultaCumpleanos extends JDialog implements ActionListener
 	
 	private JButton cerrarJB;
 	
+	private static final String SALIR = "SALIR";
+	
 	public VentanaConsultaCumpleanos(String mes){
-		mes= mes;
+		
 		setLayout(null);
 		setTitle("CUNSULTA CUMPLEANOS");
 		getContentPane().setBackground(Color.white);
 		setSize(400,500);
 		setResizable(false);
-		this.setLocationRelativeTo(null);
+		setLocationRelativeTo(null);
         setModalityType(DEFAULT_MODALITY_TYPE);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
 		cumpleanosJL = new JLabel("Cumpleaños de "+ mes);
 		listadoCumJA = new JTable();
 		listadoCumJA.setBorder(new LineBorder( Color.BLACK ));
-		cerrarJB = new JButton("SALIR");
+		cerrarJB = new JButton(SALIR);
 		cerrarJB.addActionListener(this);
-		cerrarJB.setActionCommand("salir");
+		cerrarJB.setActionCommand(SALIR);
 		
 		add(cumpleanosJL);
 		cumpleanosJL.setBounds(30, 30, 200, 30);
@@ -50,7 +51,7 @@ public class VentanaConsultaCumpleanos extends JDialog implements ActionListener
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand().equals("salir")) {
+		if (e.getActionCommand().equals(SALIR)) {
 			setVisible( false );
             dispose( );
 		}		

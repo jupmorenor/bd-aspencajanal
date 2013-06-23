@@ -1,10 +1,9 @@
-package InterfazAdministrador;
+package interfaz.interfazAdministrador;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import interfaz.PanelDatos;
 import interfaz.PanelDatosMod;
 
 import javax.swing.JButton;
@@ -23,6 +22,8 @@ public class VentanaModificarPen extends JDialog implements ActionListener{
 	
 	private PanelDatosMod panelDatosMod;
 	
+	private static final String CERRAR = "GUARDAR Y CERRAR";
+	
 	
 	public VentanaModificarPen(){
 		
@@ -31,25 +32,30 @@ public class VentanaModificarPen extends JDialog implements ActionListener{
 		getContentPane().setBackground(Color.white);
 		setSize(545, 600);
 		setResizable(false);
-		this.setLocationRelativeTo(null);
+		setLocationRelativeTo(null);
 		setModalityType(DEFAULT_MODALITY_TYPE);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
 		observacionesJL= new JLabel ("OBSERVACIONES: ");
 		observacionesJA= new JTextArea();
-		salirJB = new JButton("GUARDAR Y CERRAR");
+		
+		salirJB = new JButton(CERRAR);
 		salirJB.addActionListener(this);
-		salirJB.setActionCommand("cerrar");
-		panelDatosMod= new PanelDatosMod();
+		salirJB.setActionCommand(CERRAR);
+		
+		panelDatosMod = new PanelDatosMod();
 		
 		add(panelDatosMod);
 		panelDatosMod.setBounds(20,20,500,400);
+		
 		add(observacionesJL);
 		observacionesJL.setBounds(50,420,200,30);
+		
 		add(observacionesJA);
 		observacionesJA.setBorder(new LineBorder( Color.BLACK ));
 		observacionesJA.setEditable(false);
 		observacionesJA.setBounds(20,460,300,100);
+		
 		add(salirJB);
 		salirJB.setBounds(350,530,150,30);
 		
@@ -57,7 +63,8 @@ public class VentanaModificarPen extends JDialog implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand().equals("cerrar")) {
+		if (e.getActionCommand().equals(CERRAR)) {
+			//TODO guardar los datos modificados en la BD
 			setVisible( false );
             dispose( );			
 		}

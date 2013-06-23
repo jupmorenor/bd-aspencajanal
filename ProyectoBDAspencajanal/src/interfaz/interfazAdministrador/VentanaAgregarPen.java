@@ -1,6 +1,4 @@
-package InterfazAdministrador;
-
-import interfaz.PanelDatosMod;
+package interfaz.interfazAdministrador;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -12,12 +10,16 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 
+import interfaz.PanelDatosMod;
+
 public class VentanaAgregarPen extends JDialog implements ActionListener {
 
 	private JLabel observacionesJL;
 	private JTextArea observacionesJA;
 	private JButton salirJB;
 	private JButton AgregarHVJB;
+	private static final String GUARDAR = "GUARDAR Y CERRAR";
+	private static final String HOJA_VIDA = "HOJA DE VIDA";
 	
 	public VentanaAgregarPen(){
 		
@@ -32,25 +34,31 @@ public class VentanaAgregarPen extends JDialog implements ActionListener {
 		
 		observacionesJL= new JLabel ("OBSERVACIONES: ");
 		observacionesJA= new JTextArea();
-		salirJB = new JButton("GUARDAR Y CERRAR");
+		
+		salirJB = new JButton(GUARDAR);
 		salirJB.addActionListener(this);
-		salirJB.setActionCommand("cerrar");
-		AgregarHVJB = new JButton("HOJA DE VIDA");
+		salirJB.setActionCommand(GUARDAR);
+		
+		AgregarHVJB = new JButton(HOJA_VIDA);
 		AgregarHVJB.addActionListener(this);
-		AgregarHVJB.setActionCommand("hojaVida");
+		AgregarHVJB.setActionCommand(HOJA_VIDA);
 		
 		PanelDatosMod panelDatosMod = new PanelDatosMod();
 		
 		add(AgregarHVJB);
-		AgregarHVJB.setBounds(350,470,150,30);		
+		AgregarHVJB.setBounds(350,470,150,30);	
+		
 		add(panelDatosMod);
 		panelDatosMod.setBounds(20,20,500,400);
+		
 		add(observacionesJL);
 		observacionesJL.setBounds(50,420,200,30);
+		
 		add(observacionesJA);
-		observacionesJA.setBorder(new LineBorder( Color.BLACK ));
+		observacionesJA.setBorder(new LineBorder(Color.BLACK));
 		observacionesJA.setEditable(false);
 		observacionesJA.setBounds(20,460,300,100);
+		
 		add(salirJB);
 		salirJB.setBounds(350,520,150,30);
 		
@@ -58,12 +66,20 @@ public class VentanaAgregarPen extends JDialog implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand().equals("cerrar")) {
-			setVisible( false );
-            dispose( );			
-		}
 		
+		switch (e.getActionCommand()) {
+		
+		case GUARDAR:
+			//TODO agregar el nuevo pensionado a la BD
+			setVisible(false);
+            dispose();
+            break;
+            
+		case HOJA_VIDA:
+			//TODO agregar la imagen a la carpeta de imagenes
+			//XXX validad la necesidad de ingresar las imagenes por aca
+			break;
+			
+		}	
 	}
-
 }
-

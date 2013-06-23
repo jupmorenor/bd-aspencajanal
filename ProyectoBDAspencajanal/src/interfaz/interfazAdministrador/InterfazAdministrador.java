@@ -1,4 +1,4 @@
-package InterfazAdministrador;
+package interfaz.interfazAdministrador;
 
 import interfaz.VentanaConsultaCumpleanos;
 
@@ -19,12 +19,12 @@ public class InterfazAdministrador extends JDialog implements ActionListener {
 	private JButton agregarPJB;
 	private JButton cerrarJB;
 	
-	private static final String CONSULTAR = "consultar por c.c";
-	private static final String CONSULTARPER = "consulta personalizada";
-	private static final String CUMPLEANOS = "cumpleanos";
-	private static final String MODIFICAR = "modificar pensionado";
-	private static final String SALIR = "cerrar sesion";	
-	private static final String	AGREGAR = "agregar pensionado";
+	private static final String CONSULTAR = "CONSULTA POR C.C.";
+	private static final String CONSULTARPER = "CONSULTA PERSONALIZADA";
+	private static final String CUMPLEANOS = "CUMPLEANOS";
+	private static final String MODIFICAR = "MODIFICAR PENSIONADO";
+	private static final String SALIR = "CERRAR SESION";	
+	private static final String	AGREGAR = "AGREGAR PENSIONADO";
 
 	private ImageIcon icono;
 	
@@ -39,22 +39,27 @@ public class InterfazAdministrador extends JDialog implements ActionListener {
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
 		icono = new ImageIcon("data/pastel.png");
-		consultaJB = new JButton("CONSULTA POR C.C.");
+		consultaJB = new JButton(CONSULTAR);
 		consultaJB.addActionListener(this);
 		consultaJB.setActionCommand(CONSULTAR);
-		consultaPerJB = new JButton("CONSULTA PERSONALIZADA");
+		
+		consultaPerJB = new JButton(CONSULTARPER);
 		consultaPerJB.addActionListener(this);
 		consultaPerJB.setActionCommand(CONSULTARPER);
-		birthdayJB = new JButton("CUMPLEANOS");
+		
+		birthdayJB = new JButton(CUMPLEANOS);
 		birthdayJB.addActionListener(this);
 		birthdayJB.setActionCommand(CUMPLEANOS);
-		modificarPJB = new JButton("MODIFICAR PENSIONADO");
+		
+		modificarPJB = new JButton(MODIFICAR);
 		modificarPJB.addActionListener(this);
 		modificarPJB.setActionCommand(MODIFICAR);
-		agregarPJB = new JButton("AGREGAR PENSIONADO");
+		
+		agregarPJB = new JButton(AGREGAR);
 		agregarPJB.addActionListener(this);
 		agregarPJB.setActionCommand(AGREGAR);
-		cerrarJB = new JButton("CERRAR SESIÓN");
+		
+		cerrarJB = new JButton(SALIR);
 		cerrarJB.addActionListener(this);
 		cerrarJB.setActionCommand(SALIR);
 
@@ -75,7 +80,10 @@ public class InterfazAdministrador extends JDialog implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand().equals(CONSULTAR)) {
+		
+		switch (e.getActionCommand()) {
+		
+		case CONSULTAR:
 			String buscar = JOptionPane.showInputDialog(this,
 					"Ingrese la cedula del pensionado",
 					"Buscar Pensionado por C.C",
@@ -86,12 +94,14 @@ public class InterfazAdministrador extends JDialog implements ActionListener {
 			} else
 				JOptionPane.showMessageDialog(this,
 						"El cliente que ingresó no existe !!");
-
-		}
-		if (e.getActionCommand().equals(CONSULTARPER)) {
-
-		}
-		if (e.getActionCommand().equals(CUMPLEANOS)) {
+			break;
+			
+		case CONSULTARPER:
+			VentanaConsultaPersonalizada vCP = new VentanaConsultaPersonalizada();
+			vCP.setVisible(true);
+			break;
+			
+		case CUMPLEANOS:
 			String seleccionMes = (String) JOptionPane.showInputDialog(null,
 					"SELECIONE EL MES", "Consulta Cumpleaños por mes",
 					JOptionPane.QUESTION_MESSAGE, icono, new Object[] { "Enero",
@@ -100,21 +110,25 @@ public class InterfazAdministrador extends JDialog implements ActionListener {
 							"Nobiembre", "Diciembre" }, "Seleccione mes");
 			VentanaConsultaCumpleanos vCC = new VentanaConsultaCumpleanos(seleccionMes);
 			vCC.setVisible(true);
-		}
-		if (e.getActionCommand().equals(MODIFICAR)) {
+			break;
+			
+		case MODIFICAR:
 			VentanaModificarPen vMP= new VentanaModificarPen();
 			vMP.setVisible(true);
-		}
-		if (e.getActionCommand().equals(AGREGAR)) {
+			break;
+			
+		case AGREGAR:
 			VentanaAgregarPen vAP= new VentanaAgregarPen();
 			vAP.setVisible(true);
-		}
-		if (e.getActionCommand().equals(SALIR)) {
+			break;
+			
+		case SALIR:
 			// Cierra Sesión de la secretaria
 			setVisible(false);
 			dispose();
-		}
+			break;
 
+		}
 	}
 
 }
