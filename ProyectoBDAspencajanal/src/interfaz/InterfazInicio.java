@@ -6,13 +6,23 @@ import interfaz.interfazEmpleado.InterfazEmpleado;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
+import autenticacion.Usuario;
+
+import conexion.Conector;
 
 public class InterfazInicio extends JFrame implements ActionListener {
 
@@ -74,23 +84,60 @@ public class InterfazInicio extends JFrame implements ActionListener {
 		v.setVisible(true);
 	}
 
-
+	/**
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals(INGRESAR)) {
-			//TODO consultar los usuarios de la BD y validar que tipo de usuario es
-			switch (usuarioJT.getText()) {
-			case "1":
-				// Ventana para el Administrador
-				InterfazAdministrador iA = new InterfazAdministrador();
-				iA.setVisible(true);
-				break;
-			case "2":
-				// Ventana para el trabajador					
-				InterfazEmpleado iE = new InterfazEmpleado();
-				iE.setVisible(true);
-				
-				break;
+			BufferedReader acceso;
+			ArrayList<String> datos;
+			String tipoUsuario = "";
+			try {
+				acceso = new BufferedReader(new FileReader("./data/datos.jaa"));
+			}catch (Exception ex) {
+				acceso = null;
+			}
+			if (acceso!=null) {
+				try {
+					String linea;
+					datos = new ArrayList<String>();
+					
+					while((linea = acceso.readLine())!=null) {
+						datos.add(linea);
+					}
+					acceso.close();
+					Conector conector = new Conector(datos.get(0), datos.get(1), datos.get(2), datos.get(3));
+					Usuario usuario = new Usuario();
+					usuario.setIdUsuario(usuarioJT.getText());
+					conector.SetCadena(usuario.consultarUsuario());
+					ResultSet tabla = conector.Consultar();
+					if(tabla.next()) {
+						String pass = tabla.getString("password");
+						if (pass.equals(passwordJT.getText())) {
+							tipoUsuario = tabla.getString("idcargo");
+						}
+						switch (tipoUsuario) {
+						case "1":
+							// Ventana para el Administrador
+							InterfazAdministrador iA = new InterfazAdministrador();
+							iA.setVisible(true);
+							break;
+							
+						case "2":
+							// Ventana para el trabajador					
+							InterfazEmpleado iE = new InterfazEmpleado();
+							iE.setVisible(true);
+							break;
+							
+						}
+					} else {
+						JOptionPane.showMessageDialog(this, "Usuario '" + usuario.getIdUsuario() + "' no encontrado", "No encontrado", JOptionPane.ERROR_MESSAGE);
+					}
+					conector.CerrarBase();
+				}catch (Exception ioex) {
+					JOptionPane.showMessageDialog(this, "No se encuentran los datos de conexion", "Error de conexion", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		}
 	}
