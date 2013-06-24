@@ -214,7 +214,29 @@ public class Pensionado implements AccesoaDatos {
 
 	@Override
 	public String guardarRegistro() {
-		String cadena = "INSERT INTO Pensionado VALUES";
+		String cadena = "INSERT INTO Pensionado VALUES(" +
+				"'"+getIdPensionado()+"', " +
+				"'"+getIdEstado()+"', " +
+				"'"+getIdDepartamento()+"', " +
+				"'"+getNombres()+"', " +
+				"'"+getApellidos()+"', " +
+				"'"+getCedula()+"', " +
+				"'"+getCodigo()+"', " +
+				"'"+getDireccion()+"', " +
+				"'"+getBarrio()+"', " +
+				"'"+getZonaPostal()+"', " +
+				"'"+getFechaNacimiento()+"', " +
+				"'"+getTelefono()+"', " +
+				"'"+getTelefonoAlternativo()+"', " +
+				"'"+getObservaciones()+"', " +
+				"'"+isProduzcamos()+"', " +
+				"'"+isAyudemonos()+"', " +
+				"'"+getEmail()+"', " +
+				"'"+getFechaIngreso()+"', " +
+				"'"+getFechaRetiro()+"', " +
+				"'"+getCiudad()+"', " +
+				"'"+getSeccional()+"');";
+		
 		return cadena;//TODO sentencia SQL
 	}
 
