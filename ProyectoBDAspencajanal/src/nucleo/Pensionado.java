@@ -7,6 +7,7 @@ import java.util.Date;
 public class Pensionado implements AccesoaDatos {
 	
 	private String idPensionado;
+	private String idEstado;
 	private String idDepartamento;
 	private String nombres;
 	private String apellidos;
@@ -37,6 +38,14 @@ public class Pensionado implements AccesoaDatos {
 
 	public void setIdPensionado(String idPensionado) {
 		this.idPensionado = idPensionado;
+	}
+
+	public String getIdEstado() {
+		return idEstado;
+	}
+
+	public void setIdEstado(String idEstado) {
+		this.idEstado = idEstado;
 	}
 
 	public String getIdDepartamento() {
@@ -223,7 +232,7 @@ public class Pensionado implements AccesoaDatos {
 
 	@Override
 	public String consultarRegistro() {
-		String cadena = "SELECT * FROM Pensionado WHERE cedula='" + this.getCedula() + "';";
+		String cadena = "SELECT * FROM pensionado WHERE cedula='" + this.getCedula() + "';";
 		return cadena;
 	}
 
