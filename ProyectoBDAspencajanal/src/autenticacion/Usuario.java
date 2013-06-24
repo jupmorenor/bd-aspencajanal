@@ -16,7 +16,7 @@ public class Usuario {
 	}
 	
 	public String consultarUsuario(){
-		String cadena = "SELECT idcargo, password FROM usuario WHERE idusario='" + getIdUsuario() + "';";
+		String cadena = "SELECT idcargo, password FROM usuario WHERE idusuario='" + getIdUsuario() + "';";
 		return cadena;
 	}
 

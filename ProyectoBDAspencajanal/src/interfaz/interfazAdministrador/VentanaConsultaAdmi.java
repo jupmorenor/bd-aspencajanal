@@ -12,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 
+import nucleo.Pensionado;
+
 public class VentanaConsultaAdmi extends JDialog implements ActionListener{
 
 	private JLabel observacionesJL;
@@ -27,7 +29,7 @@ public class VentanaConsultaAdmi extends JDialog implements ActionListener{
 	private static final String HOJA_VIDA = "HOJA DE VIDA";
 	
 	
-	public VentanaConsultaAdmi(){
+	public VentanaConsultaAdmi(Pensionado pensionado){
 		
 		setLayout(null);
 		setTitle("CONSULTA DEL EMPLEADO");
@@ -49,7 +51,7 @@ public class VentanaConsultaAdmi extends JDialog implements ActionListener{
 		hojaVidaJB.addActionListener(this);
 		hojaVidaJB.setActionCommand(HOJA_VIDA);
 		
-		panelDatos= new PanelDatos();
+		panelDatos= new PanelDatos(pensionado);
 		
 		add(panelDatos);
 		panelDatos.setBounds(20,20,500,400);
@@ -59,7 +61,7 @@ public class VentanaConsultaAdmi extends JDialog implements ActionListener{
 		
 		add(observacionesJA);
 		observacionesJA.setBorder(new LineBorder( Color.BLACK ));
-		observacionesJA.setText("Ingresar de la base de datos las observaciones");
+		observacionesJA.setText(pensionado.getObservaciones());
 		observacionesJA.setEditable(false);
 		observacionesJA.setBounds(20,460,300,100);
 		

@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 
+import nucleo.Pensionado;
+
 
 public class VentanaConsultaEmp extends JDialog implements ActionListener{
 
@@ -27,7 +29,7 @@ public class VentanaConsultaEmp extends JDialog implements ActionListener{
 	private static final String CERRAR = "CERRAR";
 	
 	
-	public VentanaConsultaEmp(){
+	public VentanaConsultaEmp(Pensionado pensionado){
 		setLayout(null);
 		setTitle("CONSULTA DEL EMPLEADO");
 		getContentPane().setBackground(Color.white);
@@ -42,7 +44,7 @@ public class VentanaConsultaEmp extends JDialog implements ActionListener{
 		salirJB = new JButton(CERRAR);
 		salirJB.addActionListener(this);
 		salirJB.setActionCommand(CERRAR);
-		panelDatos= new PanelDatos();
+		panelDatos= new PanelDatos(pensionado);
 		
 		add(panelDatos);
 		panelDatos.setBounds(20,20,500,400);

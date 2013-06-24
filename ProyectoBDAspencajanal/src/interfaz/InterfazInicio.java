@@ -116,20 +116,23 @@ public class InterfazInicio extends JFrame implements ActionListener {
 						String pass = tabla.getString("password");
 						if (pass.equals(passwordJT.getText())) {
 							tipoUsuario = tabla.getString("idcargo");
-						}
-						switch (tipoUsuario) {
-						case "1":
-							// Ventana para el Administrador
-							InterfazAdministrador iA = new InterfazAdministrador();
-							iA.setVisible(true);
-							break;
-							
-						case "2":
-							// Ventana para el trabajador					
-							InterfazEmpleado iE = new InterfazEmpleado();
-							iE.setVisible(true);
-							break;
-							
+						
+							switch (tipoUsuario) {
+							case "1":
+								// Ventana para el Administrador
+								InterfazAdministrador iA = new InterfazAdministrador();
+								iA.setVisible(true);
+								break;
+								
+							case "2":
+								// Ventana para el trabajador					
+								InterfazEmpleado iE = new InterfazEmpleado();
+								iE.setVisible(true);
+								break;
+								
+							}
+						} else {
+							JOptionPane.showMessageDialog(this, "Contraseña incorrecta", "Error de acceso", JOptionPane.ERROR_MESSAGE);
 						}
 					} else {
 						JOptionPane.showMessageDialog(this, "Usuario '" + usuario.getIdUsuario() + "' no encontrado", "No encontrado", JOptionPane.ERROR_MESSAGE);
@@ -138,6 +141,8 @@ public class InterfazInicio extends JFrame implements ActionListener {
 				}catch (Exception ioex) {
 					JOptionPane.showMessageDialog(this, "No se encuentran los datos de conexion", "Error de conexion", JOptionPane.ERROR_MESSAGE);
 				}
+			} else {
+				JOptionPane.showMessageDialog(this, "No se encuentran los datos de conexion", "Error de conexion", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}

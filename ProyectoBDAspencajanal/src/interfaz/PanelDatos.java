@@ -7,6 +7,8 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import nucleo.Pensionado;
+
 public class PanelDatos extends JPanel {
 
 	private JLabel idJL;
@@ -29,29 +31,30 @@ public class PanelDatos extends JPanel {
 	private JLabel fechaRetiroJL;
 	private JLabel perteneceJL;
 
-	public PanelDatos() {
+	public PanelDatos(Pensionado pensionado) {
 		setBorder(BorderFactory.createTitledBorder("Datos Personales"));
 		setLayout(new GridLayout(10, 2));
 		setBackground( Color.white);
-		idJL = new JLabel("IDD:  ");
-		nombreJL = new JLabel("Nombre(s):  ");
-		apellidoJL = new JLabel("Apellidos:  ");
-		cedulaJL = new JLabel("Cedula:  ");
-		codigoJL = new JLabel("Codigo:  ");
-		direccionJL = new JLabel("Direccion:  ");
-		barrioJL = new JLabel("Barrio:  ");
-		ciudadJL = new JLabel("Ciudad:  ");
-		departamentoJL = new JLabel("Departamento:  ");
-		zonaPostalJL = new JLabel("Zona Postal:  ");
-		estadoJL = new JLabel("Estado:  ");
-		fechaNacJL = new JLabel("Fecha Nacimiento:  ");
-		telefonoJL = new JLabel("Telefono:  ");
-		telefonoAltJL = new JLabel("Telefono Alternativo:  ");
-		emailJL = new JLabel("Email:  ");
-		seleccionalJL = new JLabel("Selecional:  ");
-		fechaIngresoJL = new JLabel("Fecha Ingreso:  ");
-		fechaRetiroJL = new JLabel("Fecha Retiro:  ");
-		perteneceJL = new JLabel("Pertenece A:  ");
+		idJL = new JLabel("IDD: " + pensionado.getIdPensionado());
+		nombreJL = new JLabel("Nombre(s): " + pensionado.getNombres());
+		apellidoJL = new JLabel("Apellidos: " + pensionado.getApellidos());
+		cedulaJL = new JLabel("Cedula: " + pensionado.getCedula());
+		codigoJL = new JLabel("Codigo: " + pensionado.getCodigo());
+		direccionJL = new JLabel("Direccion: " + pensionado.getDireccion());
+		barrioJL = new JLabel("Barrio: " + pensionado.getBarrio());
+		ciudadJL = new JLabel("Ciudad: " + pensionado.getCiudad());
+		departamentoJL = new JLabel("Departamento: " + pensionado.getIdDepartamento());
+		zonaPostalJL = new JLabel("Zona Postal: " + pensionado.getZonaPostal());
+		estadoJL = new JLabel("Estado: " + pensionado.getIdEstado());
+		fechaNacJL = new JLabel("Fecha Nacimiento: " + pensionado.getFechaNacimiento());
+		telefonoJL = new JLabel("Telefono: " + pensionado.getTelefono());
+		telefonoAltJL = new JLabel("Telefono Alternativo: " + pensionado.getTelefonoAlternativo());
+		emailJL = new JLabel("Email: " + pensionado.getEmail());
+		seleccionalJL = new JLabel("Selecional: " + pensionado.getSeccional());
+		fechaIngresoJL = new JLabel("Fecha Ingreso: " + pensionado.getFechaIngreso());
+		fechaRetiroJL = new JLabel("Fecha Retiro: " + pensionado.getFechaRetiro());
+		perteneceJL = new JLabel("Pertenece A: " + ((pensionado.isProduzcamos())?"Produzcamos\n":"")
+				+ ((pensionado.isAyudemonos())?"Ayudemonos":""));
 
 		add(idJL);
 		add(estadoJL);

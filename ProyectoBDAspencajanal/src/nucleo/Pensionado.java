@@ -27,7 +27,7 @@ public class Pensionado implements AccesoaDatos {
 	private String seccional;
 	private Date fechaIngreso;
 	private Date fechaRetiro;
-	private SimpleDateFormat formato = new SimpleDateFormat("dd-mm-yyyy");
+	private SimpleDateFormat formato = new SimpleDateFormat("yyyy-mm-dd");
 	
 	public Pensionado() {
 	}
@@ -121,13 +121,17 @@ public class Pensionado implements AccesoaDatos {
 	}
 
 	public String getFechaNacimiento() {
-		return this.formato.format(fechaNacimiento);
+		String fecha = "";
+		if (fechaNacimiento!=null) {
+			fecha = this.formato.format(fechaNacimiento);
+		}
+		return fecha;
 	}
 
 	public void setFechaNacimiento(String fechaNacimiento) {
 		try {
 			this.fechaNacimiento = this.formato.parse(fechaNacimiento);
-		}catch(ParseException pE) {
+		}catch(Exception pE) {
 			this.fechaNacimiento = null;
 		}
 	}
@@ -189,25 +193,33 @@ public class Pensionado implements AccesoaDatos {
 	}
 
 	public String getFechaIngreso() {
-		return this.formato.format(fechaIngreso);
+		String fecha="";
+		if (fechaIngreso!=null) {
+			fecha = this.formato.format(fechaIngreso);
+		}
+		return fecha;
 	}
 
 	public void setFechaIngreso(String fechaIngreso) {
 		try {
 			this.fechaIngreso = this.formato.parse(fechaIngreso);
-		}catch(ParseException pE) {
+		}catch(Exception pE) {
 			this.fechaIngreso = null;
 		}
 	}
 
 	public String getFechaRetiro() {
-		return this.formato.format(fechaRetiro);
+		String fecha="";
+		if (fechaRetiro!=null) {
+			fecha = this.formato.format(fechaRetiro);
+		}
+		return fecha;
 	}
 
 	public void setFechaRetiro(String fechaRetiro) {
 		try {
 			this.fechaRetiro = this.formato.parse(fechaRetiro);
-		}catch(ParseException pE) {
+		}catch(Exception pE) {
 			this.fechaRetiro = null;
 		}
 	}
@@ -236,8 +248,7 @@ public class Pensionado implements AccesoaDatos {
 				"'"+getFechaRetiro()+"', " +
 				"'"+getCiudad()+"', " +
 				"'"+getSeccional()+"');";
-		
-		return cadena;//TODO sentencia SQL
+		return cadena;
 	}
 
 	@Override

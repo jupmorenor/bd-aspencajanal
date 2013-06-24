@@ -13,6 +13,8 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
+import nucleo.Pensionado;
+
 
 public class InterfazEmpleado extends JDialog implements ActionListener {
 
@@ -79,7 +81,7 @@ public class InterfazEmpleado extends JDialog implements ActionListener {
 					JOptionPane.INFORMATION_MESSAGE);
 			if (Integer.parseInt(buscar) == 1) {
 				//TODO consulta SQL del registro en la BD
-				VentanaConsultaEmp vCE = new VentanaConsultaEmp();
+				VentanaConsultaEmp vCE = new VentanaConsultaEmp(new Pensionado());
 				vCE.setVisible(true);
 			} else
 				JOptionPane.showMessageDialog(this,
