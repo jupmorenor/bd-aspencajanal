@@ -119,11 +119,9 @@ public class InterfazEmpleado extends JDialog implements ActionListener {
 					tabla = conector.Consultar();
 
 					if (tabla.next()) {
-						pensionado.setIdPensionado(tabla
-								.getString("idpensionado"));
+						pensionado.setIdPensionado(tabla.getString("idpensionado"));
 						pensionado.setIdEstado(tabla.getString("descestado"));
-						pensionado.setIdDepartamento(tabla
-								.getString("descdepartamento"));
+						pensionado.setIdDepartamento(tabla.getString("descdepartamento"));
 						pensionado.setNombres(tabla.getString("nombres"));
 						pensionado.setApellidos(tabla.getString("apellidos"));
 						pensionado.setCedula(tabla.getString("cedula"));
@@ -131,21 +129,15 @@ public class InterfazEmpleado extends JDialog implements ActionListener {
 						pensionado.setDireccion(tabla.getString("direccion"));
 						pensionado.setBarrio(tabla.getString("barrio"));
 						pensionado.setZonaPostal(tabla.getString("zonapostal"));
-						pensionado.setFechaNacimiento(tabla
-								.getString("fechanacimiento"));
+						pensionado.setFechaNacimiento(tabla.getString("fechanacimiento"));
 						pensionado.setTelefono(tabla.getString("telefono"));
-						pensionado.setTelefonoAlternativo(tabla
-								.getString("telefonoalternativo"));
-						pensionado.setObservaciones(tabla
-								.getString("observaciones"));
-						pensionado.setProduzcamos(tabla
-								.getBoolean("produzcamos"));
+						pensionado.setTelefonoAlternativo(tabla.getString("telefonoalternativo"));
+						pensionado.setObservaciones(tabla.getString("observaciones"));
+						pensionado.setProduzcamos(tabla.getBoolean("produzcamos"));
 						pensionado.setAyudemonos(tabla.getBoolean("ayudemos"));
 						pensionado.setEmail(tabla.getString("e_mail"));
-						pensionado.setFechaIngreso(tabla
-								.getString("fechaingreso"));
-						pensionado.setFechaRetiro(tabla
-								.getString("fecharetiro"));
+						pensionado.setFechaIngreso(tabla.getString("fechaingreso"));
+						pensionado.setFechaRetiro(tabla.getString("fecharetiro"));
 						pensionado.setCiudad(tabla.getString("ciudad"));
 						pensionado.setSeccional(tabla.getString("seccional"));
 

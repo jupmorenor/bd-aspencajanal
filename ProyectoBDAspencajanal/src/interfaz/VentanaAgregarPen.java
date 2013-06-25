@@ -25,7 +25,7 @@ public class VentanaAgregarPen extends JDialog implements ActionListener {
 		setLayout(null);
 		setTitle("AGREGAR PENSIONADO");
 		getContentPane().setBackground(Color.white);
-		setSize(545, 600);
+		setSize(645, 600);
 		setResizable(false);
 		this.setLocationRelativeTo(null);
 		setModalityType(DEFAULT_MODALITY_TYPE);
@@ -42,25 +42,23 @@ public class VentanaAgregarPen extends JDialog implements ActionListener {
 		AgregarHVJB.addActionListener(this);
 		AgregarHVJB.setActionCommand(HOJA_VIDA);
 		
-		PanelDatosMod panelDatosMod = new PanelDatosMod();
+		PanelDatosAgregar panelDatosAgregar = new PanelDatosAgregar();
 		
-		add(AgregarHVJB);
-		AgregarHVJB.setBounds(350,460,150,30);	
-		
-		add(panelDatosMod);
-		panelDatosMod.setBounds(20,20,500,350);
-		
+
+		add(panelDatosAgregar);
+		panelDatosAgregar.setBounds(20,20,600,350);		
 		add(observacionesJL);
-		observacionesJL.setBounds(50,400,200,30);
-		
+		observacionesJL.setBounds(50,400,300,30);
 		add(observacionesJA);
 		observacionesJA.setBorder(new LineBorder(Color.BLACK));
 		observacionesJA.setWrapStyleWord(true);
 		observacionesJA.setLineWrap(true); 
 		observacionesJA.setBounds(20,440,300,120);
-		
+		add(AgregarHVJB);
+		AgregarHVJB.setBounds(450,460,150,30);	
 		add(salirJB);
-		salirJB.setBounds(350,510,150,30);
+		salirJB.setBounds(450,510,150,30);
+		
 		
 	}
 	

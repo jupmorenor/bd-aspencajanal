@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 
 import nucleo.Pensionado;
 
-public class PanelDatosMod extends JPanel implements ActionListener{
+public class PanelDatosAgregar extends JPanel implements ActionListener{
 
 	private JLabel idJL;
 	private JLabel direccionJL;	
@@ -35,8 +35,8 @@ public class PanelDatosMod extends JPanel implements ActionListener{
 	private JLabel fechaRetiroJL;
 	private JLabel perteneceJL;
 	private JLabel blancoJL;
-	private JLabel idDatosJL;
-	
+
+	private JTextField idJLT;
 	private JTextField direccionJT;
 	private JTextField nombreJT;
 	private JTextField apellidoJT;
@@ -61,7 +61,7 @@ public class PanelDatosMod extends JPanel implements ActionListener{
 	private static final String PRODUZCAMOS = "Produzcamos";
 	private static final String AYUDEMONOS = "Ayudemonos";
 
-	public PanelDatosMod(Pensionado pensionado) {
+	public PanelDatosAgregar() {
 		setBorder(BorderFactory.createTitledBorder("Datos Personales"));
 		setLayout(new GridLayout(10, 4,15,5));
 		setBackground( Color.white);
@@ -87,25 +87,25 @@ public class PanelDatosMod extends JPanel implements ActionListener{
 		fechaRetiroJL = new JLabel("Fecha Retiro:  ");
 		perteneceJL = new JLabel("Pertenece A:  ");
 		blancoJL = new JLabel(); 
-		idDatosJL = new JLabel(pensionado.getIdPensionado());
 		
-		direccionJT = new JTextField(pensionado.getDireccion());
-		nombreJT = new JTextField(pensionado.getNombres());
-		apellidoJT = new JTextField(pensionado.getApellidos());
-		codigoJT = new JTextField(pensionado.getCodigo());
-		cedulaJT = new JTextField(pensionado.getCedula());
-		barrioJT = new JTextField(pensionado.getBarrio());
-		ciudadJT = new JTextField(pensionado.getCiudad());
-		departamentoJT = new JTextField(pensionado.getIdDepartamento());
-		zonaPostalJT = new JTextField(pensionado.getZonaPostal());
-		estadoJT = new JTextField(pensionado.getIdEstado());
-		fechaNacJT = new JTextField(pensionado.getFechaNacimiento());
-		telefonoJT = new JTextField(pensionado.getTelefono());
-		telefonoAltJT = new JTextField(pensionado.getTelefonoAlternativo());
-		emailJT = new JTextField(pensionado.getEmail());
-		seleccionalJT = new JTextField(pensionado.getSeccional());
-		fechaRetiroJT = new JTextField(pensionado.getFechaRetiro());
-		fechaIngresoJT = new JTextField(pensionado.getFechaIngreso());
+		idJLT = new JTextField();
+		direccionJT = new JTextField();
+		nombreJT = new JTextField();
+		apellidoJT = new JTextField();
+		codigoJT = new JTextField();
+		cedulaJT = new JTextField();
+		barrioJT = new JTextField();
+		ciudadJT = new JTextField();
+		departamentoJT = new JTextField();
+		zonaPostalJT = new JTextField();
+		estadoJT = new JTextField();
+		fechaNacJT = new JTextField();
+		telefonoJT = new JTextField();
+		telefonoAltJT = new JTextField();
+		emailJT = new JTextField();
+		seleccionalJT = new JTextField();
+		fechaRetiroJT = new JTextField();
+		fechaIngresoJT = new JTextField();
 
 		produzcamosJCh = new JRadioButton(PRODUZCAMOS);
 		produzcamosJCh.setBackground(Color.white);
@@ -119,7 +119,7 @@ public class PanelDatosMod extends JPanel implements ActionListener{
 		
 		
 		add(idJL);
-		add(idDatosJL);
+		add(idJLT);
 		add(estadoJL);
 		add(estadoJT);
 		add(nombreJL);

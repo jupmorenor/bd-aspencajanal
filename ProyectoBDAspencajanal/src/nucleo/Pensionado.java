@@ -283,4 +283,10 @@ public class Pensionado implements AccesoaDatos {
 		return cadena; 
 		
 	}
+	
+	public String actualizarPensionado(){
+		String cadena="";		
+		return cadena; 
+	}
 }
+

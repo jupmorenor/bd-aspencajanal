@@ -12,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 
+import nucleo.Pensionado;
+
 public class VentanaModificarPen extends JDialog implements ActionListener{
 
 	private JLabel observacionesJL;
@@ -25,12 +27,12 @@ public class VentanaModificarPen extends JDialog implements ActionListener{
 	private static final String CERRAR = "GUARDAR Y CERRAR";
 	
 	
-	public VentanaModificarPen(){
+	public VentanaModificarPen(Pensionado pensionado){
 		
 		setLayout(null);
 		setTitle("MODIFICAR PENSIONADO");
 		getContentPane().setBackground(Color.white);
-		setSize(545, 600);
+		setSize(645, 600);
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setModalityType(DEFAULT_MODALITY_TYPE);
@@ -43,10 +45,10 @@ public class VentanaModificarPen extends JDialog implements ActionListener{
 		salirJB.addActionListener(this);
 		salirJB.setActionCommand(CERRAR);
 		
-		panelDatosMod = new PanelDatosMod();
+		panelDatosMod = new PanelDatosMod(pensionado);
 		
 		add(panelDatosMod);
-		panelDatosMod.setBounds(20,20,500,350);
+		panelDatosMod.setBounds(20,20,600,350);
 		
 		add(observacionesJL);
 		observacionesJL.setBounds(50,400,200,30);
@@ -54,10 +56,10 @@ public class VentanaModificarPen extends JDialog implements ActionListener{
 		add(observacionesJA);
 		observacionesJA.setBorder(new LineBorder( Color.BLACK ));
 		observacionesJA.setEditable(false);
-		observacionesJA.setBounds(20,440,300,120);
+		observacionesJA.setBounds(20,440,400,120);
 		
 		add(salirJB);
-		salirJB.setBounds(350,530,150,30);
+		salirJB.setBounds(450,530,150,30);
 		
 	}
 	

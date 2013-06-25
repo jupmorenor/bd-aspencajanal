@@ -56,7 +56,6 @@ public class InterfazAdministrador extends JDialog implements ActionListener {
 		consultaJB = new JButton(CONSULTAR);
 		consultaJB.addActionListener(this);
 		consultaJB.setActionCommand(CONSULTAR);
-
 		consultaPerJB = new JButton(CONSULTARPER);
 		consultaPerJB.addActionListener(this);
 		consultaPerJB.setActionCommand(CONSULTARPER);
@@ -196,13 +195,40 @@ public class InterfazAdministrador extends JDialog implements ActionListener {
 							"Ingrese la cedula del pensionado",
 							"Modificar Pensionado ",
 							JOptionPane.INFORMATION_MESSAGE);
-					if (Integer.parseInt(buscar1) == 1) {
-						VentanaModificarPen vMP = new VentanaModificarPen();
+					Pensionado pensionado2 = new Pensionado();
+					pensionado2.setCedula(buscar1);
+					conector.SetCadena(pensionado2.consultarRegistro());
+					tabla = conector.Consultar();
+
+					if (tabla.next()) {
+						pensionado2.setIdPensionado(tabla.getString("idpensionado"));
+						pensionado2.setIdEstado(tabla.getString("descestado"));
+						pensionado2.setIdDepartamento(tabla.getString("descdepartamento"));
+						pensionado2.setNombres(tabla.getString("nombres"));
+						pensionado2.setApellidos(tabla.getString("apellidos"));
+						pensionado2.setCedula(tabla.getString("cedula"));
+						pensionado2.setCodigo(tabla.getString("codigo"));
+						pensionado2.setDireccion(tabla.getString("direccion"));
+						pensionado2.setBarrio(tabla.getString("barrio"));
+						pensionado2.setZonaPostal(tabla.getString("zonapostal"));
+						pensionado2.setFechaNacimiento(tabla.getString("fechanacimiento"));
+						pensionado2.setTelefono(tabla.getString("telefono"));
+						pensionado2.setTelefonoAlternativo(tabla.getString("telefonoalternativo"));
+						pensionado2.setObservaciones(tabla.getString("observaciones"));
+						pensionado2.setProduzcamos(tabla.getBoolean("produzcamos"));
+						pensionado2.setAyudemonos(tabla.getBoolean("ayudemos"));
+						pensionado2.setEmail(tabla.getString("e_mail"));
+						pensionado2.setFechaIngreso(tabla.getString("fechaingreso"));
+						pensionado2.setFechaRetiro(tabla.getString("fecharetiro"));
+						pensionado2.setCiudad(tabla.getString("ciudad"));
+						pensionado2.setSeccional(tabla.getString("seccional"));
+
+						VentanaModificarPen vMP = new VentanaModificarPen(
+								pensionado2);
 						vMP.setVisible(true);
 					} else
 						JOptionPane.showMessageDialog(this,
 								"El cliente que ingresó no existe !!");
-
 					break;
 
 				case AGREGAR:
