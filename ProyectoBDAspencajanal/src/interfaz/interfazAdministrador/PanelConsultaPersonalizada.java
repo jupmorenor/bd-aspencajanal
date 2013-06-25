@@ -19,9 +19,13 @@ public class PanelConsultaPersonalizada extends JPanel implements
 	private JCheckBox cajaJCh;
 	private JButton consultarJB;
 	
-	private static String CONSULTAR = "Consultar";
-	private static String NOMBRES_ETIQUETAS[] = {"Cedula ", "Fecha de nacimiento ", "Codigo ", "Direccion ", "Barrio ", "Ciudad ", 
+	private static final String CONSULTAR = "Consultar";
+	private static final String NOMBRES_ETIQUETAS[] = {"Cedula ", "Fecha de nacimiento ", "Codigo ", "Direccion ", "Barrio ", "Ciudad ", 
 		"Departamento ", "Telefono ", "Email ", "Seccional ", "Fecha ingreso ", "Fecha retiro", "Produzcamos", "Ayudemonos", "Observaciones "};
+	
+	private static final String NOMBRES_COLUMNAS[] = {"cedula", "fechanacimiento", "codigo", "direccion", "barrio", "ciudad", 
+		"(SELECT d.descdepartamento FROM departamento d, pensionado p WHERE d.iddepartamento=p.iddepartamento)", "telefono",
+		"e_mail", "seccional", "fechaingreso", "fecharetiro", "produzcamos", "ayudemos", "observaciones"};
 	
 	public PanelConsultaPersonalizada(VentanaConsultaPersonalizada ven) {
 		setLayout(new GridLayout(4, 4));
@@ -29,7 +33,9 @@ public class PanelConsultaPersonalizada extends JPanel implements
 		
 		for (int i=0; i<NOMBRES_ETIQUETAS.length; i++) {
 			cajaJCh = new JCheckBox(NOMBRES_ETIQUETAS[i]);
+			cajaJCh.setName(NOMBRES_COLUMNAS[i]);
 			seleccionJCh.add(cajaJCh);
+			cajaJCh.setBackground(Color.white);
 		}
 		
 		for (int j=0; j<seleccionJCh.size(); j++) {
@@ -48,7 +54,12 @@ public class PanelConsultaPersonalizada extends JPanel implements
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		if(event.getActionCommand().equals(CONSULTAR)) {
-			ventana.consultarBaseDatos();
+			String cadena = "SELECT idpensionado, nombres, apellidos, cedula, fechanacimiento, produzcamos, telefono";
+			/*for (int i=0; i<=seleccionJCh.size(); i++) {
+				
+			}*/
+			cadena += " FROM pensionado;";
+			ventana.consultarBaseDatos(cadena);
 		}
 	}
 }

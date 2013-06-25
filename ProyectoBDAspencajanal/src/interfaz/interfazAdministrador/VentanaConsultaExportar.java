@@ -30,7 +30,7 @@ public class VentanaConsultaExportar extends JDialog implements ActionListener{
 	private static String EXPORTAR = "Exportar";
 	
 	public VentanaConsultaExportar(ResultSet consultaPrevia) {
-		setSize(800, 400);
+		setSize(800, 485);
 		setLayout(new BorderLayout());
 		setTitle("Consulta Personalizada");
 		getContentPane().setBackground(Color.white);
@@ -68,7 +68,7 @@ public class VentanaConsultaExportar extends JDialog implements ActionListener{
 			while(consulta.next()) {
 				Object[] fila = new Object[cantidad];
 				for(int j=1; j<=cantidad; j++) {
-					fila[j] = consulta.getObject(j);
+					fila[j-1] = consulta.getObject(j);
 				}
 				modelo.addRow(fila);
 			}
