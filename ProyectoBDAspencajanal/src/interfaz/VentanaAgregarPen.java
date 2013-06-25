@@ -42,7 +42,7 @@ public class VentanaAgregarPen extends JDialog implements ActionListener {
 		AgregarHVJB.addActionListener(this);
 		AgregarHVJB.setActionCommand(HOJA_VIDA);
 		
-		PanelDatosAgregar panelDatosAgregar = new PanelDatosAgregar();
+		PanelDatosMod panelDatosAgregar = new PanelDatosMod();
 		
 
 		add(panelDatosAgregar);
