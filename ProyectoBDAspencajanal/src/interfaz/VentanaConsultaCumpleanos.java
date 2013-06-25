@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.AbstractButton;
 import javax.swing.JButton;
@@ -22,10 +23,12 @@ public class VentanaConsultaCumpleanos extends JDialog implements ActionListener
 	
 	private JButton cerrarJB;
 
+	private DefaultTableModel modelo;
+	
 	private static final String SALIR = "SALIR";
 	
 	
-	public VentanaConsultaCumpleanos(ResultSet tabla,String mes){
+	public VentanaConsultaCumpleanos(ResultSet tabla,String mes) throws SQLException{
 		
 		setLayout(null);
 		setTitle("CONSULTA CUMPLEANOS");
@@ -36,9 +39,20 @@ public class VentanaConsultaCumpleanos extends JDialog implements ActionListener
         setModalityType(DEFAULT_MODALITY_TYPE);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
-		cumpleanosJL = new JLabel("Cumpleaños de "+ mes);
-		listadoCumJA.addColumn(aColumn)
-		listadoCumJA = new JTable();
+		cumpleanosJL = new JLabel("Cumpleaños de "+ mes);			
+		modelo = new DefaultTableModel();
+		modelo.addColumn("Nombre");
+		modelo.addColumn("Apellido");
+		modelo.addColumn("Dia");
+		
+		 while (tabla.next()) {
+			  Object[] fila = new Object[3];
+			  for (int i = 0; i < 3; i++) {
+			    fila[i]=tabla.getObject(i+1);
+			  }
+			  modelo.addRow(fila);
+			 }
+		listadoCumJA = new JTable(modelo);
 		
 		listadoCumJA.setBorder(new LineBorder( Color.BLACK ));
 		cerrarJB = new JButton(SALIR);
