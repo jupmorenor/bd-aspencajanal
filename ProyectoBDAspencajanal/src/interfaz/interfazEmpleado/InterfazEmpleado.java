@@ -97,9 +97,8 @@ public class InterfazEmpleado extends JDialog implements ActionListener {
 							"Octubre", "Nobiembre", "Diciembre" },
 					"Seleccione mes");
 			if(seleccionMes != null){
-			VentanaConsultaCumpleanos vCC = new VentanaConsultaCumpleanos(
-					seleccionMes);
-			vCC.setVisible(true);
+		//	VentanaConsultaCumpleanos vCC = new VentanaConsultaCumpleanos();
+		//	vCC.setVisible(true);
 			}
 			
 				
