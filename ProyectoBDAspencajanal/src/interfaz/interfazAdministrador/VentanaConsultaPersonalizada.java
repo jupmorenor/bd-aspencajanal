@@ -1,6 +1,5 @@
 package interfaz.interfazAdministrador;
 
-import java.awt.Color;
 import java.awt.GridLayout;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -20,14 +19,13 @@ public class VentanaConsultaPersonalizada extends JDialog {
 	public VentanaConsultaPersonalizada() {
 		
 		setLayout(new GridLayout(1,1));
-		setSize(800, 200);
+		setSize(300, 400);
 		setTitle("Consulta por seleccion");
 		setLocationRelativeTo(null);
 		setModalityType(DEFAULT_MODALITY_TYPE);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
 		panelConsultaPersonalizada = new PanelConsultaPersonalizada(this);
-		//panelConsultaPersonalizada.setBackground(Color.white);
 		add(panelConsultaPersonalizada);
 		
 		setResizable(false);
@@ -58,7 +56,6 @@ public class VentanaConsultaPersonalizada extends JDialog {
 				vCE.setVisible(true);
 				
 			}catch (Exception ioex) {
-				ioex.printStackTrace();
 				JOptionPane.showMessageDialog(this, "No se encuentran los datos de conexion", "Error de conexion", JOptionPane.ERROR_MESSAGE);
 			}
 		} else {

@@ -86,7 +86,7 @@ public class VentanaConsultaExportar extends JDialog implements ActionListener{
 		ExportarAExcel exportar = null;
 		lista.add(tabla);
 		try {
-			exportar = new ExportarAExcel(lista, new File("consulta.xls"));
+			exportar = new ExportarAExcel(lista, new File("C:\\Users\\" + System.getProperty("user.name") + "\\desktop\\consulta.xls"));
 			if (exportar.export()) {
 				JOptionPane.showMessageDialog(this, "Datos exportados con exito", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 			}
