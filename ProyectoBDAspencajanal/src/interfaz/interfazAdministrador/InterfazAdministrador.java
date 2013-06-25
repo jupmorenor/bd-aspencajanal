@@ -38,7 +38,7 @@ public class InterfazAdministrador extends JDialog implements ActionListener {
 	private static final String MESES[] = { "Enero", "Febrero", "Marzo",
 			"Abrir", "Mayo", "Junio", "Julio", "Agosto", "Septiembre",
 			"Octubre", "Nobiembre", "Diciembre" };
-	private int mesSelecionado;
+	private String mesSelecionado;
 
 	private ImageIcon icono;
 
@@ -178,10 +178,10 @@ public class InterfazAdministrador extends JDialog implements ActionListener {
 
 					for (int i = 0; i < MESES.length; i++)
 						if (MESES[i].equals(seleccionMes))
-							mesSelecionado = i+1;
+							mesSelecionado =Integer.toString(i+1);
 
 					Pensionado pensionado1 = new Pensionado();
-					conector.SetCadena(pensionado1.consultaCumplanos(seleccionMes));
+					conector.SetCadena(pensionado1.consultaCumplanos(mesSelecionado));
 					tabla = conector.Consultar();
 
 					if (seleccionMes != null) {
