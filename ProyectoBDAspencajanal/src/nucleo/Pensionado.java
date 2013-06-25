@@ -265,7 +265,13 @@ public class Pensionado implements AccesoaDatos {
 
 	@Override
 	public String consultarRegistro() {
-		String cadena = "SELECT * FROM pensionado WHERE cedula='" + this.getCedula() + "';";
+		String cadena ="SELECT p.idpensionado, d.descdepartamento, e.descestado, p.nombres," +
+					   " p.apellidos, p.cedula, p.codigo, p.direccion, p,barrio, p.zonapostal," +
+					   " p.fechanacimiento, p.telefono, p.telefonoalternativo, p.observaciones," +
+					   " p.produzcamos, p.ayudemos, p.e_mail, p.fechaingreso, p.fecharetiro," +
+					   " p.ciudad, p.seccional FROM pensionado p, departamento d, estado e WHERE" +
+					   " d.iddepartamento=p.iddepartamento AND e.idestado=p.idestado AND  p.cedula='"
+					   + this.getCedula() + "';";
 		return cadena;
 	}
 
