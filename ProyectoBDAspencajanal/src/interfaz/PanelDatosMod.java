@@ -69,6 +69,7 @@ public class PanelDatosMod extends JPanel implements ActionListener{
 			"Boyaca", "Caldas","Caqueta","Casanare","Cauca","Cesar","Choco","Cordoba","Cundinamarca","Guainia"
 			,"Guaviare","Huila","La Guajira","Magdalena","Meta","Nariño","Norte de Santander","Putumayo","Quindio",
 			"Risaralda","San Andrés y Providencia","Santander","Sucre","Tolima","Valle Del Cauca","Vaupes", "Vichada",};
+	
 	private String estado[]={"Activo","Retirado","Fallecido","Desconocido"};
 	
 	private Pensionado pensionado;
@@ -167,9 +168,7 @@ public class PanelDatosMod extends JPanel implements ActionListener{
 		cedulaJT = new JTextField(pensionado.getCedula());
 		barrioJT = new JTextField(pensionado.getBarrio());
 		ciudadJT = new JTextField(pensionado.getCiudad());
-		departamentoJT = new JComboBox(departamentos);
 		zonaPostalJT = new JTextField(pensionado.getZonaPostal());
-		estadoJT = new JComboBox(estado);
 		fechaNacJT = new JTextField(pensionado.getFechaNacimiento());
 		telefonoJT = new JTextField(pensionado.getTelefono());
 		telefonoAltJT = new JTextField(pensionado.getTelefonoAlternativo());
@@ -177,7 +176,11 @@ public class PanelDatosMod extends JPanel implements ActionListener{
 		seleccionalJT = new JTextField(pensionado.getSeccional());
 		fechaRetiroJT = new JTextField(pensionado.getFechaRetiro());
 		fechaIngresoJT = new JTextField(pensionado.getFechaIngreso());
-
+		
+		estadoJT = new JComboBox(estado);
+		estadoJT.setSelectedItem(estado[Integer.parseInt(pensionado.getIdEstado())-1]);
+		departamentoJT = new JComboBox(departamentos);
+		departamentoJT.setSelectedItem(departamentos[Integer.parseInt(pensionado.getIdDepartamento())-1]);
 		produzcamosJCh = new JRadioButton(PRODUZCAMOS);
 		produzcamosJCh.setBackground(Color.white);
 		produzcamosJCh.addActionListener(this);

@@ -262,7 +262,13 @@ public class Pensionado implements AccesoaDatos {
 		String cadena = "";//TODO sentencia SQL
 		return cadena;
 	}
-
+	
+	public String modificarConsulta(){
+			String cadena ="SELECT  * FROM pensionado WHERE cedula='"+ this.getCedula() + "';";
+			return cadena;
+		
+	}
+	
 	@Override
 	public String consultarRegistro() {
 		String cadena ="SELECT p.idpensionado, d.descdepartamento, e.descestado, p.nombres," +

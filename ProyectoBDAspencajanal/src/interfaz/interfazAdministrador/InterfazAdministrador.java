@@ -197,13 +197,13 @@ public class InterfazAdministrador extends JDialog implements ActionListener {
 							JOptionPane.INFORMATION_MESSAGE);
 					Pensionado pensionado2 = new Pensionado();
 					pensionado2.setCedula(buscar1);
-					conector.SetCadena(pensionado2.consultarRegistro());
+					conector.SetCadena(pensionado2.modificarConsulta());
 					tabla = conector.Consultar();
 
 					if (tabla.next()) {
 						pensionado2.setIdPensionado(tabla.getString("idpensionado"));
-						pensionado2.setIdEstado(tabla.getString("descestado"));
-						pensionado2.setIdDepartamento(tabla.getString("descdepartamento"));
+						pensionado2.setIdEstado(tabla.getString("idestado"));
+						pensionado2.setIdDepartamento(tabla.getString("iddepartamento"));
 						pensionado2.setNombres(tabla.getString("nombres"));
 						pensionado2.setApellidos(tabla.getString("apellidos"));
 						pensionado2.setCedula(tabla.getString("cedula"));
