@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
@@ -20,7 +21,7 @@ public class VentanaConsultaCumpleanos extends JDialog implements ActionListener
 	private JLabel cumpleanosJL;
 	
 	private JTable listadoCumJA;
-	
+	public JScrollPane tablero;
 	private JButton cerrarJB;
 
 	private DefaultTableModel modelo;
@@ -53,7 +54,8 @@ public class VentanaConsultaCumpleanos extends JDialog implements ActionListener
 			  modelo.addRow(fila);
 			 }
 		listadoCumJA = new JTable(modelo);
-		
+		tablero = new JScrollPane();
+		tablero.setViewportView(listadoCumJA);
 		listadoCumJA.setBorder(new LineBorder( Color.BLACK ));
 		cerrarJB = new JButton(SALIR);
 		cerrarJB.addActionListener(this);
@@ -61,8 +63,8 @@ public class VentanaConsultaCumpleanos extends JDialog implements ActionListener
 		
 		add(cumpleanosJL);
 		cumpleanosJL.setBounds(30, 30, 200, 30);
-		add(listadoCumJA);
-		listadoCumJA.setBounds(22, 70, 346, 350);
+		add(tablero);
+		tablero.setBounds(22, 70, 346, 350);
 		add(cerrarJB);
 		cerrarJB.setBounds(280, 430,100,30);
 		
