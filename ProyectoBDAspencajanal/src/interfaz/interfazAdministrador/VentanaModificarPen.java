@@ -66,8 +66,10 @@ public class VentanaModificarPen extends JDialog implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals(CERRAR)) {
-			//TODO guardar los datos modificados en la BD
-			setVisible( false );
+			Pensionado pensionado = new Pensionado();
+			
+			pensionado.actualizarPensionado(panelDatosMod.modificarPensionado());
+			setVisible(false);
             dispose( );			
 		}
 		

@@ -60,12 +60,15 @@ public class PanelDatosMod extends JPanel implements ActionListener{
 	
 	private static final String PRODUZCAMOS = "Produzcamos";
 	private static final String AYUDEMONOS = "Ayudemonos";
+	
+	private Pensionado pensionado;
 
 	public PanelDatosMod(Pensionado pensionado) {
+		pensionado= pensionado;
+		
 		setBorder(BorderFactory.createTitledBorder("Datos Personales"));
 		setLayout(new GridLayout(10, 4,15,5));
 		setBackground( Color.white);
-		
 		
 		idJL = new JLabel("IDD:  ");
 		nombreJL = new JLabel("Nombre(s):  ");
@@ -82,7 +85,7 @@ public class PanelDatosMod extends JPanel implements ActionListener{
 		telefonoJL = new JLabel("Telefono:  ");
 		telefonoAltJL = new JLabel("Telefono Alternativo:  ");
 		emailJL = new JLabel("Email:  ");
-		seleccionalJL = new JLabel("Selecional:  ");
+		seleccionalJL = new JLabel("Seccional:  ");
 		fechaIngresoJL = new JLabel("Fecha Ingreso:  ");
 		fechaRetiroJL = new JLabel("Fecha Retiro:  ");
 		perteneceJL = new JLabel("Pertenece A:  ");
@@ -171,4 +174,26 @@ public class PanelDatosMod extends JPanel implements ActionListener{
 			
 		}	
 	}	
+	
+	public  Pensionado modificarPensionado(){
+		pensionado.setNombres(nombreJT.getText());
+		pensionado.setApellidos(apellidoJT.getText());
+		pensionado.setCedula(cedulaJT.getText());
+		pensionado.setCodigo(codigoJT.getText());
+		pensionado.setDireccion(direccionJT.getText());
+		pensionado.setBarrio(barrioJT.getText());
+		pensionado.setCiudad(ciudadJT.getText());
+		pensionado.setIdDepartamento(departamentoJT.getText());
+		pensionado.setZonaPostal(zonaPostalJT.getText());
+		pensionado.setIdEstado(estadoJT.getText());
+		pensionado.setFechaNacimiento(fechaNacJT.getText());
+		pensionado.setTelefono(telefonoJT.getText());
+		pensionado.setTelefonoAlternativo(telefonoAltJT.getText());
+		pensionado.setEmail(emailJT.getText());
+		pensionado.setSeccional(seleccionalJT.getText());
+		pensionado.setFechaIngreso(fechaIngresoJT.getText());
+		pensionado.setFechaRetiro(fechaRetiroJT.getText());
+	
+		return pensionado;
+	}
 }

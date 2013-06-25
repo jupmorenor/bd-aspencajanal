@@ -284,7 +284,7 @@ public class Pensionado implements AccesoaDatos {
 		
 	}
 	
-	public String actualizarPensionado(){
+	public String actualizarPensionado(Pensionado pensionado){
 		String cadena="";		
 		return cadena; 
 	}
