@@ -277,8 +277,9 @@ public class Pensionado implements AccesoaDatos {
 	
 	public String consultaCumplanos(String mes){
 		
-		String cadena = "SELECT nombres, apellidos, extract(day from fechanacimiento) FROM pensionado " +
-				"WHERE extract(month from fechanacimiento)='"+ mes + "';";				
+		String cadena = "SELECT nombres, apellidos,  to_char(fechanacimiento, 'dd') FROM pensionado " +
+						"WHERE extract(month from fechanacimiento)='"+ mes + "'and idestado='1' " +
+						"ORDER by extract(day from fechanacimiento);";				
 		return cadena; 
 		
 	}

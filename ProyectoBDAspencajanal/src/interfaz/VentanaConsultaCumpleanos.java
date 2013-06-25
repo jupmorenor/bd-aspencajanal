@@ -34,18 +34,18 @@ public class VentanaConsultaCumpleanos extends JDialog implements ActionListener
 		setLayout(null);
 		setTitle("CONSULTA CUMPLEANOS");
 		getContentPane().setBackground(Color.white);
-		setSize(400,500);
+		setSize(520,600);
 		setResizable(false);
 		setLocationRelativeTo(null);
         setModalityType(DEFAULT_MODALITY_TYPE);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		
+
 		cumpleanosJL = new JLabel("Cumpleaños de "+ mes);			
 		modelo = new DefaultTableModel();
 		modelo.addColumn("Nombre");
 		modelo.addColumn("Apellido");
 		modelo.addColumn("Dia");
-		
+
 		 while (tabla.next()) {
 			  Object[] fila = new Object[3];
 			  for (int i = 0; i < 3; i++) {
@@ -64,9 +64,9 @@ public class VentanaConsultaCumpleanos extends JDialog implements ActionListener
 		add(cumpleanosJL);
 		cumpleanosJL.setBounds(30, 30, 200, 30);
 		add(tablero);
-		tablero.setBounds(22, 70, 346, 350);
+		tablero.setBounds(22, 70, 466, 450);
 		add(cerrarJB);
-		cerrarJB.setBounds(280, 430,100,30);
+		cerrarJB.setBounds(400, 530,100,30);
 		
 		
 		DefaultTableModel modelo = new DefaultTableModel();

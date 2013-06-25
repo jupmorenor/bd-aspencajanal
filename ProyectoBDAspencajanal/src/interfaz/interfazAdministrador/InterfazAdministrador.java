@@ -181,7 +181,9 @@ public class InterfazAdministrador extends JDialog implements ActionListener {
 							mesSelecionado =Integer.toString(i+1);
 
 					Pensionado pensionado1 = new Pensionado();
+
 					conector.SetCadena(pensionado1.consultaCumplanos(mesSelecionado));
+
 					tabla = conector.Consultar();
 
 					if (seleccionMes != null) {
