@@ -1,10 +1,9 @@
 package nucleo;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Pensionado implements AccesoaDatos {
+public class Pensionado {
 	
 	private String idPensionado;
 	private String idEstado;
@@ -61,7 +60,7 @@ public class Pensionado implements AccesoaDatos {
 	}
 
 	public void setNombres(String nombres) {
-		this.nombres = nombres;
+		this.nombres = nombres.toUpperCase();
 	}
 
 	public String getApellidos() {
@@ -69,7 +68,7 @@ public class Pensionado implements AccesoaDatos {
 	}
 
 	public void setApellidos(String apellidos) {
-		this.apellidos = apellidos;
+		this.apellidos = apellidos.toUpperCase();
 	}
 
 	public String getCedula() {
@@ -93,7 +92,7 @@ public class Pensionado implements AccesoaDatos {
 	}
 
 	public void setDireccion(String direccion) {
-		this.direccion = direccion;
+		this.direccion = direccion.toUpperCase();
 	}
 
 	public String getBarrio() {
@@ -101,7 +100,7 @@ public class Pensionado implements AccesoaDatos {
 	}
 
 	public void setBarrio(String barrio) {
-		this.barrio = barrio;
+		this.barrio = barrio.toUpperCase();
 	}
 
 	public String getCiudad() {
@@ -109,7 +108,7 @@ public class Pensionado implements AccesoaDatos {
 	}
 
 	public void setCiudad(String ciudad) {
-		this.ciudad = ciudad;
+		this.ciudad = ciudad.toUpperCase();
 	}
 
 	public String getZonaPostal() {
@@ -181,7 +180,7 @@ public class Pensionado implements AccesoaDatos {
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+		this.email = email.toUpperCase();
 	}
 
 	public String getSeccional() {
@@ -189,7 +188,7 @@ public class Pensionado implements AccesoaDatos {
 	}
 
 	public void setSeccional(String seccional) {
-		this.seccional = seccional;
+		this.seccional = seccional.toUpperCase();
 	}
 
 	public String getFechaIngreso() {
@@ -224,7 +223,10 @@ public class Pensionado implements AccesoaDatos {
 		}
 	}
 
-	@Override
+	/**
+	 * Inserta un nuevo pensionado  a la base de datos
+	 * @return String
+	 */
 	public String guardarRegistro() {
 		String cadena = "INSERT INTO Pensionado VALUES(" +
 				"'"+getIdPensionado()+"', " +
@@ -251,25 +253,37 @@ public class Pensionado implements AccesoaDatos {
 		return cadena;
 	}
 
-	@Override
+	/**
+	 * elimina un pensionado de la base de datos (no se usa)
+	 * @return String
+	 */
 	public String eliminarRegistro() {
 		String cadena = "DELETE FROM Pensionado WHERE cedula='" + this.getCedula() + "';";
 		return cadena;
 	}
 
-	@Override
+	/**
+	 * actualiza los datos modificados de un registro seleccionado previamente en la base de datos
+	 * @return
+	 */
 	public String modificarRegistro() {
 		String cadena = "";//TODO sentencia SQL
 		return cadena;
 	}
 	
+	/**
+	 * selecciona todos los datos de un pensionado de la base de datos
+	 * @return String
+	 */
 	public String modificarConsulta(){
-			String cadena ="SELECT  * FROM pensionado WHERE cedula='"+ this.getCedula() + "';";
+			String cadena ="SELECT * FROM pensionado WHERE cedula='"+ this.getCedula() + "';";
 			return cadena;
-		
 	}
 	
-	@Override
+	/**
+	 * selecciona todos los datos de un pensionado de la base de datos identificando las relaciones con otras tablas
+	 * @return String
+	 */
 	public String consultarRegistro() {
 		String cadena ="SELECT p.idpensionado, d.descdepartamento, e.descestado, p.nombres," +
 					   " p.apellidos, p.cedula, p.codigo, p.direccion, p,barrio, p.zonapostal," +
@@ -281,18 +295,16 @@ public class Pensionado implements AccesoaDatos {
 		return cadena;
 	}
 	
-	public String consultaCumplanos(String mes){
+	/**
+	 * selecciona los registros de pensionados activos cuya fecha de nacimiento/cumpleanos fue en el mes dado
+	 * @param mes de nacimiento/cumpleanos
+	 * @return String
+	 */
+	public String consultaCumpleanos(String mes){
 		
 		String cadena = "SELECT nombres, apellidos,  to_char(fechanacimiento, 'dd') FROM pensionado " +
 						"WHERE extract(month from fechanacimiento)='"+ mes + "'and idestado='1' " +
 						"ORDER by extract(day from fechanacimiento);";				
-		return cadena; 
-		
-	}
-	
-	public String actualizarPensionado(Pensionado pensionado){
-		String cadena="";		
-		return cadena; 
-	}
+		return cadena; 	
+	}	
 }
-
