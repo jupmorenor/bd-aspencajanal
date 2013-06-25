@@ -130,8 +130,8 @@ public class InterfazAdministrador extends JDialog implements ActionListener {
 							
 					if (tabla.next()) {
 						pensionado.setIdPensionado(tabla.getString("idpensionado"));
-						pensionado.setIdEstado(tabla.getString("idestado"));
-						pensionado.setIdDepartamento(tabla.getString("iddepartamento"));
+						pensionado.setIdEstado(tabla.getString("descestado"));
+						pensionado.setIdDepartamento(tabla.getString("descdepartamento"));
 						pensionado.setNombres(tabla.getString("nombres"));
 						pensionado.setApellidos(tabla.getString("apellidos"));
 						pensionado.setCedula(tabla.getString("cedula"));
