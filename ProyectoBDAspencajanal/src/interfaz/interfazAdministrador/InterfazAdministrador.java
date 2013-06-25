@@ -20,7 +20,6 @@ import conexion.Conector;
 
 import nucleo.Pensionado;
 
-
 public class InterfazAdministrador extends JDialog implements ActionListener {
 
 	private JButton consultaJB;
@@ -29,16 +28,20 @@ public class InterfazAdministrador extends JDialog implements ActionListener {
 	private JButton modificarPJB;
 	private JButton agregarPJB;
 	private JButton cerrarJB;
-	
+
 	private static final String CONSULTAR = "CONSULTA POR C.C.";
 	private static final String CONSULTARPER = "CONSULTA PERSONALIZADA";
 	private static final String CUMPLEANOS = "CUMPLEANOS";
 	private static final String MODIFICAR = "MODIFICAR PENSIONADO";
-	private static final String SALIR = "CERRAR SESION";	
-	private static final String	AGREGAR = "AGREGAR PENSIONADO";
+	private static final String SALIR = "CERRAR SESION";
+	private static final String AGREGAR = "AGREGAR PENSIONADO";
+	private static final String MESES[] = { "Enero", "Febrero", "Marzo",
+			"Abrir", "Mayo", "Junio", "Julio", "Agosto", "Septiembre",
+			"Octubre", "Nobiembre", "Diciembre" };
+	private int mesSelecionado;
 
 	private ImageIcon icono;
-	
+
 	public InterfazAdministrador() {
 		setLayout(null);
 		setTitle("ADMINISTRADOR");
@@ -53,23 +56,23 @@ public class InterfazAdministrador extends JDialog implements ActionListener {
 		consultaJB = new JButton(CONSULTAR);
 		consultaJB.addActionListener(this);
 		consultaJB.setActionCommand(CONSULTAR);
-		
+
 		consultaPerJB = new JButton(CONSULTARPER);
 		consultaPerJB.addActionListener(this);
 		consultaPerJB.setActionCommand(CONSULTARPER);
-		
+
 		birthdayJB = new JButton(CUMPLEANOS);
 		birthdayJB.addActionListener(this);
 		birthdayJB.setActionCommand(CUMPLEANOS);
-		
+
 		modificarPJB = new JButton(MODIFICAR);
 		modificarPJB.addActionListener(this);
 		modificarPJB.setActionCommand(MODIFICAR);
-		
+
 		agregarPJB = new JButton(AGREGAR);
 		agregarPJB.addActionListener(this);
 		agregarPJB.setActionCommand(AGREGAR);
-		
+
 		cerrarJB = new JButton(SALIR);
 		cerrarJB.addActionListener(this);
 		cerrarJB.setActionCommand(SALIR);
@@ -91,7 +94,7 @@ public class InterfazAdministrador extends JDialog implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+
 		/*
 		 * Preparacion previa a realizar la accion solicitada
 		 */
@@ -101,33 +104,34 @@ public class InterfazAdministrador extends JDialog implements ActionListener {
 		ResultSet tabla;
 		try {
 			acceso = new BufferedReader(new FileReader("./data/datos.jaa"));
-		}catch (Exception ex) {
+		} catch (Exception ex) {
 			acceso = null;
 		}
-		if (acceso!=null) {
+		if (acceso != null) {
 			try {
 				String linea;
 				datos = new ArrayList<String>();
-				
-				while((linea = acceso.readLine())!=null) {
+
+				while ((linea = acceso.readLine()) != null) {
 					datos.add(linea);
 				}
 				acceso.close();
-				conector = new Conector(datos.get(0), datos.get(1), datos.get(2), datos.get(3));
-				
+				conector = new Conector(datos.get(0), datos.get(1),
+						datos.get(2), datos.get(3));
+
 				switch (e.getActionCommand()) {
-				
+
 				case CONSULTAR:
 					String buscar = JOptionPane.showInputDialog(this,
 							"Ingrese la cedula del pensionado",
 							"Buscar Pensionado por C.C",
 							JOptionPane.INFORMATION_MESSAGE);
-							
+
 					Pensionado pensionado = new Pensionado();
 					pensionado.setCedula(buscar);
 					conector.SetCadena(pensionado.consultarRegistro());
 					tabla = conector.Consultar();
-							
+
 					if (tabla.next()) {
 						pensionado.setIdPensionado(tabla.getString("idpensionado"));
 						pensionado.setIdEstado(tabla.getString("descestado"));
@@ -150,51 +154,62 @@ public class InterfazAdministrador extends JDialog implements ActionListener {
 						pensionado.setFechaRetiro(tabla.getString("fecharetiro"));
 						pensionado.setCiudad(tabla.getString("ciudad"));
 						pensionado.setSeccional(tabla.getString("seccional"));
-						
-						VentanaConsultaAdmi vCA = new VentanaConsultaAdmi(pensionado);
+
+						VentanaConsultaAdmi vCA = new VentanaConsultaAdmi(
+								pensionado);
 						vCA.setVisible(true);
 					} else
-						JOptionPane.showMessageDialog(this, "El cliente que ingresó no existe !!");
-								
+						JOptionPane.showMessageDialog(this,
+								"El cliente que ingresó no existe !!");
+
 					break;
-					
+
 				case CONSULTARPER:
 					VentanaConsultaPersonalizada vCP = new VentanaConsultaPersonalizada();
 					vCP.setVisible(true);
 					break;
-					
+
 				case CUMPLEANOS:
-					String seleccionMes = (String) JOptionPane.showInputDialog(null,
-							"SELECIONE EL MES", "Consulta Cumpleaños por mes",
-							JOptionPane.QUESTION_MESSAGE, icono, new Object[] { "Enero",
-									"Febrero", "Marzo", "Abrir", "Mayo", "Junio",
-									"Julio", "Agosto", "Septiembre", "Octubre",
-									"Nobiembre", "Diciembre" }, "Seleccione mes");
-					if(seleccionMes != null){
+					String seleccionMes = (String) JOptionPane.showInputDialog(
+							null, "SELECIONE EL MES",
+							"Consulta Cumpleaños por mes",
+							JOptionPane.QUESTION_MESSAGE, icono, MESES,
+							"Seleccione mes");
+
+					for (int i = 0; i < MESES.length; i++)
+						if (MESES[i].equals(seleccionMes))
+							mesSelecionado = i+1;
+
+					Pensionado pensionado1 = new Pensionado();
+					conector.SetCadena(pensionado1.consultaCumplanos(seleccionMes));
+					tabla = conector.Consultar();
+
+					if (seleccionMes != null) {
 						VentanaConsultaCumpleanos vCC = new VentanaConsultaCumpleanos(
-								seleccionMes);
+								tabla, seleccionMes);
 						vCC.setVisible(true);
-						}
+					}
 					break;
-					
+
 				case MODIFICAR:
 					String buscar1 = JOptionPane.showInputDialog(this,
 							"Ingrese la cedula del pensionado",
 							"Modificar Pensionado ",
 							JOptionPane.INFORMATION_MESSAGE);
 					if (Integer.parseInt(buscar1) == 1) {
-						VentanaModificarPen vMP= new VentanaModificarPen();
+						VentanaModificarPen vMP = new VentanaModificarPen();
 						vMP.setVisible(true);
 					} else
-						JOptionPane.showMessageDialog(this,"El cliente que ingresó no existe !!");
-					
+						JOptionPane.showMessageDialog(this,
+								"El cliente que ingresó no existe !!");
+
 					break;
-					
+
 				case AGREGAR:
-					VentanaAgregarPen vAP= new VentanaAgregarPen();
+					VentanaAgregarPen vAP = new VentanaAgregarPen();
 					vAP.setVisible(true);
 					break;
-					
+
 				case SALIR:
 					// Cierra Sesión de la secretaria
 					setVisible(false);
@@ -202,18 +217,21 @@ public class InterfazAdministrador extends JDialog implements ActionListener {
 					break;
 
 				}
-				
+
 				conector.CerrarBase();
-				
-			}catch(Exception ioex) {
-				JOptionPane.showMessageDialog(this, "No se encuentran los datos de conexion", "Error de conexion", JOptionPane.ERROR_MESSAGE);
+
+			} catch (Exception ioex) {
+				JOptionPane.showMessageDialog(this,
+						"No se encuentran los datos de conexion",
+						"Error de conexion", JOptionPane.ERROR_MESSAGE);
 				ioex.printStackTrace();
 			}
 		} else {
-			JOptionPane.showMessageDialog(this, "No se encuentran los datos de conexion", "Error de conexion", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(this,
+					"No se encuentran los datos de conexion",
+					"Error de conexion", JOptionPane.ERROR_MESSAGE);
 		}
-		
-		
+
 	}
 
 }

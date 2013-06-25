@@ -274,5 +274,12 @@ public class Pensionado implements AccesoaDatos {
 					   + this.getCedula() + "';";
 		return cadena;
 	}
-
+	
+	public String consultaCumplanos(String mes){
+		
+		String cadena = "SELECT nombres, apellidos, extract(day from fechanacimiento) FROM pensionado " +
+				"WHERE extract(month from fechanacimiento)='"+ mes + "';";				
+		return cadena; 
+		
+	}
 }

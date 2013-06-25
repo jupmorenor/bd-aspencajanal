@@ -3,12 +3,16 @@ package interfaz;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 
+import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
 
 public class VentanaConsultaCumpleanos extends JDialog implements ActionListener{
 
@@ -17,10 +21,11 @@ public class VentanaConsultaCumpleanos extends JDialog implements ActionListener
 	private JTable listadoCumJA;
 	
 	private JButton cerrarJB;
-	
+
 	private static final String SALIR = "SALIR";
 	
-	public VentanaConsultaCumpleanos(String mes){
+	
+	public VentanaConsultaCumpleanos(ResultSet tabla,String mes){
 		
 		setLayout(null);
 		setTitle("CONSULTA CUMPLEANOS");
@@ -32,7 +37,9 @@ public class VentanaConsultaCumpleanos extends JDialog implements ActionListener
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
 		cumpleanosJL = new JLabel("Cumpleaños de "+ mes);
+		listadoCumJA.addColumn(aColumn)
 		listadoCumJA = new JTable();
+		
 		listadoCumJA.setBorder(new LineBorder( Color.BLACK ));
 		cerrarJB = new JButton(SALIR);
 		cerrarJB.addActionListener(this);
@@ -44,6 +51,11 @@ public class VentanaConsultaCumpleanos extends JDialog implements ActionListener
 		listadoCumJA.setBounds(22, 70, 346, 350);
 		add(cerrarJB);
 		cerrarJB.setBounds(280, 430,100,30);
+		
+		
+		DefaultTableModel modelo = new DefaultTableModel();
+		
+		
 	}
 	
 	@Override
