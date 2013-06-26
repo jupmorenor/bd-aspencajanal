@@ -76,7 +76,7 @@ public class VentanaModificarPen extends JDialog implements ActionListener{
 	switch (e.getActionCommand()) {
 		
 		case CERRAR:
-			pensionado = this.panelDatosMod.modificarPensionado();
+			pensionado = this.panelDatosMod.modificarPensionado();			
 			pensionado.setObservaciones(observacionesJA.getText());
 			BufferedReader acceso;
 			ArrayList<String> datos;
@@ -98,8 +98,10 @@ public class VentanaModificarPen extends JDialog implements ActionListener{
 					acceso.close();
 					conector = new Conector(datos.get(0), datos.get(1),
 							datos.get(2), datos.get(3));
-					conector.SetCadena(pensionado.actualizarPensionado());
+					conector.SetCadena(pensionado.modificarRegistro());
 					conector.EjecutarSql();
+					setVisible( false );
+			        dispose( );
 					
 				} catch (Exception ioex) {
 					JOptionPane.showMessageDialog(this,
