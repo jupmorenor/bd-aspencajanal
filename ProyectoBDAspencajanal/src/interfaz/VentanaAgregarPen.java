@@ -97,6 +97,10 @@ public class VentanaAgregarPen extends JDialog implements ActionListener {
 					acceso.close();
 					conector = new Conector(datos.get(0), datos.get(1),
 							datos.get(2), datos.get(3));
+					
+					conector.SetCadena("SELECT count(*) FROM pensionado;");
+					tabla = conector.Consultar();
+					pensionado.setIdPensionado(""+(tabla.getInt("count")+1));
 					conector.SetCadena(pensionado.guardarRegistro());
 					conector.EjecutarSql();
 					conector.CerrarBase();
@@ -105,7 +109,6 @@ public class VentanaAgregarPen extends JDialog implements ActionListener {
 					JOptionPane.showMessageDialog(this,
 							"No se encuentran los datos de conexion",
 							"Error de conexion", JOptionPane.ERROR_MESSAGE);
-					ioex.printStackTrace();
 				}
 			} else {
 				JOptionPane.showMessageDialog(this,
