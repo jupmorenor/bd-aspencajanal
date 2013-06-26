@@ -286,7 +286,7 @@ public class Pensionado {
 	 */
 	public String consultarRegistro() {
 		String cadena ="SELECT p.idpensionado, d.descdepartamento, e.descestado, p.nombres," +
-					   " p.apellidos, p.cedula, p.codigo, p.direccion, p,barrio, p.zonapostal," +
+					   " p.apellidos, p.cedula, p.codigo, p.direccion, p.barrio, p.zonapostal," +
 					   " p.fechanacimiento, p.telefono, p.telefonoalternativo, p.observaciones," +
 					   " p.produzcamos, p.ayudemos, p.e_mail, p.fechaingreso, p.fecharetiro," +
 					   " p.ciudad, p.seccional FROM pensionado p, departamento d, estado e WHERE" +
@@ -305,6 +305,20 @@ public class Pensionado {
 		String cadena = "SELECT nombres, apellidos,  to_char(fechanacimiento, 'dd') FROM pensionado " +
 						"WHERE extract(month from fechanacimiento)='"+ mes + "'and idestado='1' " +
 						"ORDER by extract(day from fechanacimiento);";				
-		return cadena; 	
-	}	
+
+		return cadena; 
+		
+	}
+	
+	public String actualizarPensionado(){
+		String cadena="UPDATE pensionado SET nombres='"+ getNombres() + "', apellidos='"+ getApellidos() + "', cedula='"+getCedula() +"'," +
+					  "codigo='"+ getCodigo()+"', direccion='"+getDireccion()+"',barrio='"+ getBarrio() +"',zonapostal='"+getZonaPostal() +"'," +
+					  " fechanacimiento='"+getFechaNacimiento()+"', telefono='"+getTelefono() +"', telefonoalternativo='"+getTelefonoAlternativo()+"'," +
+					  " fechaingreso='"+ getFechaIngreso() +"', fecharetiro='"+getFechaRetiro() +"', ciudad='"+getCiudad()+"',"+
+					  "seccional='"+ getSeccional()+"', iddepartamento='"+getIdDepartamento()+"', idestado='"+getIdEstado()+"', " +
+					  "email='"+getEmail()+"', produzcamos='"+ isProduzcamos()+"', ayudemonos='"+isAyudemonos()+"'" +
+					  " WHERE idpensionado='" + getCedula() + "';";
+		return cadena; 
+	}
 }
+

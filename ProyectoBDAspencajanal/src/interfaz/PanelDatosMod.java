@@ -36,7 +36,6 @@ public class PanelDatosMod extends JPanel implements ActionListener{
 	private JLabel fechaRetiroJL = new JLabel("Fecha Retiro:  ");
 	private JLabel perteneceJL = new JLabel("Pertenece A:  ");
 	private JLabel blancoJL = new JLabel(); 
-	private JLabel idDatosJL;
 	
 	private JTextField idJLT;
 	private JTextField direccionJT;
@@ -159,8 +158,9 @@ public class PanelDatosMod extends JPanel implements ActionListener{
 		setLayout(new GridLayout(10, 4,15,5));
 		setBackground( Color.white);
 		
-		idDatosJL = new JLabel(pensionado.getIdPensionado());
-		
+		idJLT = new JTextField(pensionado.getIdPensionado());
+		idJLT.setEditable(false);
+		idJLT.setBackground(Color.white);
 		direccionJT = new JTextField(pensionado.getDireccion());
 		nombreJT = new JTextField(pensionado.getNombres());
 		apellidoJT = new JTextField(pensionado.getApellidos());
@@ -181,19 +181,21 @@ public class PanelDatosMod extends JPanel implements ActionListener{
 		estadoJT.setSelectedItem(estado[Integer.parseInt(pensionado.getIdEstado())-1]);
 		departamentoJT = new JComboBox(departamentos);
 		departamentoJT.setSelectedItem(departamentos[Integer.parseInt(pensionado.getIdDepartamento())-1]);
+		
 		produzcamosJCh = new JRadioButton(PRODUZCAMOS);
 		produzcamosJCh.setBackground(Color.white);
 		produzcamosJCh.addActionListener(this);
 		produzcamosJCh.setActionCommand(PRODUZCAMOS);
-		
+		produzcamosJCh.setSelected(pensionado.isProduzcamos());
 		ayudemonosJCh = new JRadioButton(AYUDEMONOS);
 		ayudemonosJCh.setBackground(Color.white);
 		ayudemonosJCh.addActionListener(this);
 		ayudemonosJCh.setActionCommand(AYUDEMONOS);
+		ayudemonosJCh.setSelected(pensionado.isAyudemonos());
 		
 		
 		add(idJL);
-		add(idDatosJL);
+		add(idJLT);
 		add(estadoJL);
 		add(estadoJT);
 		add(nombreJL);
@@ -232,6 +234,7 @@ public class PanelDatosMod extends JPanel implements ActionListener{
 		add(zonaPostalJT);
 		add(blancoJL);	
 		add(ayudemonosJCh);
+		
 	}
 	
 
@@ -248,7 +251,7 @@ public class PanelDatosMod extends JPanel implements ActionListener{
 		}	
 	}	
 	
-	public  Pensionado modificarPensionado(){
+	public  void modificarPensionado(){
 		pensionado.setNombres(nombreJT.getText());
 		pensionado.setApellidos(apellidoJT.getText());
 		pensionado.setCedula(cedulaJT.getText());
@@ -256,9 +259,9 @@ public class PanelDatosMod extends JPanel implements ActionListener{
 		pensionado.setDireccion(direccionJT.getText());
 		pensionado.setBarrio(barrioJT.getText());
 		pensionado.setCiudad(ciudadJT.getText());
-		//pensionado.setIdDepartamento(departamentoJT.getText());
+		pensionado.setIdDepartamento(Integer.toString(departamentoJT.getSelectedIndex()+1));
 		pensionado.setZonaPostal(zonaPostalJT.getText());
-		//pensionado.setIdEstado(estadoJT.getText());
+		pensionado.setIdEstado(Integer.toString(estadoJT.getSelectedIndex()+1));
 		pensionado.setFechaNacimiento(fechaNacJT.getText());
 		pensionado.setTelefono(telefonoJT.getText());
 		pensionado.setTelefonoAlternativo(telefonoAltJT.getText());
@@ -266,7 +269,7 @@ public class PanelDatosMod extends JPanel implements ActionListener{
 		pensionado.setSeccional(seleccionalJT.getText());
 		pensionado.setFechaIngreso(fechaIngresoJT.getText());
 		pensionado.setFechaRetiro(fechaRetiroJT.getText());
-	
-		return pensionado;
+		pensionado.setProduzcamos(produzcamosJCh.isSelected());
+		pensionado.setAyudemonos(ayudemonosJCh.isSelected());
 	}
 }

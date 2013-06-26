@@ -66,7 +66,11 @@ public class VentanaModificarPen extends JDialog implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals(CERRAR)) {
-			Pensionado pensionado = panelDatosMod.modificarPensionado();
+
+			Pensionado pensionado = new Pensionado();
+			
+			pensionado.actualizarPensionado();
+			//Pensionado pensionado = panelDatosMod.modificarPensionado();
 			pensionado.setObservaciones(observacionesJA.getText());
 			//TODO todo lo de conectar y eso
 			pensionado.modificarRegistro();
