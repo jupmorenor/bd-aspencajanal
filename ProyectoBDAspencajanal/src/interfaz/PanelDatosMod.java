@@ -254,10 +254,11 @@ public class PanelDatosMod extends JPanel implements ActionListener{
 	
 	public  Pensionado modificarPensionado(){
 		pensionado = new Pensionado();
+		pensionado.setIdPensionado(idJLT.getText());
 		pensionado.setNombres(nombreJT.getText());
 		pensionado.setApellidos(apellidoJT.getText());
 		pensionado.setCedula(cedulaJT.getText());
-		pensionado.setCodigo(codigoJT.getText());
+		pensionado.setCodigo(codigoJT.getText());		
 		pensionado.setDireccion(direccionJT.getText());
 		pensionado.setBarrio(barrioJT.getText());
 		pensionado.setCiudad(ciudadJT.getText());
