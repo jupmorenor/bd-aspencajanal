@@ -96,7 +96,7 @@ public class PanelDatosMod extends JPanel implements ActionListener{
 		seleccionalJT = new JTextField();
 		fechaRetiroJT = new JTextField();
 		fechaIngresoJT = new JTextField();
-
+		
 		produzcamosJCh = new JRadioButton(PRODUZCAMOS);
 		produzcamosJCh.setBackground(Color.white);
 		produzcamosJCh.addActionListener(this);
@@ -151,8 +151,7 @@ public class PanelDatosMod extends JPanel implements ActionListener{
 	}
 	
 	
-	public PanelDatosMod(Pensionado pensionado) {
-		pensionado= pensionado;
+	public PanelDatosMod(Pensionado pensionado) {		
 		
 		setBorder(BorderFactory.createTitledBorder("Datos Personales"));
 		setLayout(new GridLayout(10, 4,15,5));
@@ -235,6 +234,8 @@ public class PanelDatosMod extends JPanel implements ActionListener{
 		add(blancoJL);	
 		add(ayudemonosJCh);
 		
+	
+		
 	}
 	
 
@@ -251,7 +252,8 @@ public class PanelDatosMod extends JPanel implements ActionListener{
 		}	
 	}	
 	
-	public  void modificarPensionado(){
+	public  Pensionado modificarPensionado(){
+		pensionado = new Pensionado();
 		pensionado.setNombres(nombreJT.getText());
 		pensionado.setApellidos(apellidoJT.getText());
 		pensionado.setCedula(cedulaJT.getText());
@@ -271,5 +273,7 @@ public class PanelDatosMod extends JPanel implements ActionListener{
 		pensionado.setFechaRetiro(fechaRetiroJT.getText());
 		pensionado.setProduzcamos(produzcamosJCh.isSelected());
 		pensionado.setAyudemonos(ayudemonosJCh.isSelected());
+		
+		return pensionado;
 	}
 }
