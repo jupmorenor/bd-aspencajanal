@@ -35,8 +35,8 @@ public class InterfazAdministrador extends JDialog implements ActionListener {
 	private static final String SALIR = "CERRAR SESION";
 	private static final String AGREGAR = "AGREGAR PENSIONADO";
 	private static final String MESES[] = { "Enero", "Febrero", "Marzo",
-			"Abrir", "Mayo", "Junio", "Julio", "Agosto", "Septiembre",
-			"Octubre", "Nobiembre", "Diciembre" };
+			"Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre",
+			"Octubre", "Noviembre", "Diciembre" };
 	private String mesSelecionado;
 
 	private ImageIcon icono;

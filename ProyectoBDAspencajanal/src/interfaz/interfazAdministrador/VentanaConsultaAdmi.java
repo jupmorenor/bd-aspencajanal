@@ -3,12 +3,17 @@ package interfaz.interfazAdministrador;
 import interfaz.PanelDatos;
 
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 
@@ -17,6 +22,8 @@ import nucleo.Pensionado;
 public class VentanaConsultaAdmi extends JDialog implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
+	private static final String CERRAR = "CERRAR";
+	private static final String HOJA_VIDA = "HOJA DE VIDA";
 
 	private JLabel observacionesJL;
 
@@ -27,11 +34,12 @@ public class VentanaConsultaAdmi extends JDialog implements ActionListener{
 	
 	private PanelDatos panelDatos;
 	
-	private static final String CERRAR = "CERRAR";
-	private static final String HOJA_VIDA = "HOJA DE VIDA";
+	private Pensionado pensionado;
 	
 	
 	public VentanaConsultaAdmi(Pensionado pensionado){
+		
+		this.pensionado = pensionado;
 		
 		setLayout(null);
 		setTitle("CONSULTA DEL EMPLEADO");
@@ -73,6 +81,24 @@ public class VentanaConsultaAdmi extends JDialog implements ActionListener{
 		salirJB.setBounds(350,520,150,30);
 	
 	}
+	
+	/**
+	 * Metodo que abre un archivo con el programa asociado a la extension
+	 * el resto es relleno XD
+	 * @param ubicacion
+	 */
+	private void abrirCarpeta(String ubicacion) {
+		if (Desktop.isDesktopSupported()) {
+			Desktop escritorio = Desktop.getDesktop();
+			File archivo;
+			try {
+				archivo = new File(ubicacion);
+				escritorio.open(archivo);
+			}catch(Exception io) {
+				JOptionPane.showMessageDialog(null, "No se encuentra la ruta");
+			}
+		}
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -86,7 +112,28 @@ public class VentanaConsultaAdmi extends JDialog implements ActionListener{
 	        break;
 	        
 		case HOJA_VIDA:
-			//TODO abrir la imagen desde la ubicacion dada
+			BufferedReader acceso;
+			String ubicacion = "";
+			try {
+				acceso = new BufferedReader(new FileReader("./data/archivos.jaa"));
+			} catch (Exception ex) {
+				acceso = null;
+			}
+			if (acceso!=null) {
+				try {
+					ubicacion = acceso.readLine()+pensionado.getIdPensionado();
+					abrirCarpeta(ubicacion);
+					acceso.close();
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(this, 
+							"No hay imagenes asociadas a este registro",
+							"Error", JOptionPane.ERROR_MESSAGE);
+				}
+			} else {
+				JOptionPane.showMessageDialog(this,
+						"No se encuentran los archivos",
+						"Error", JOptionPane.ERROR_MESSAGE);
+			}
 			break;
 		}
 	}

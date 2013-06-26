@@ -31,7 +31,7 @@ public class PanelDatosMod extends JPanel{
 	private JLabel telefonoJL = new JLabel("Telefono:  ");
 	private JLabel telefonoAltJL = new JLabel("Telefono Alternativo:  ");
 	private JLabel emailJL = new JLabel("Email:  ");
-	private JLabel seleccionalJL = new JLabel("Selecional:  ");
+	private JLabel seccionalJL = new JLabel("Selecional:  ");
 	private JLabel fechaIngresoJL = new JLabel("Fecha Ingreso:  ");
 	private JLabel fechaRetiroJL = new JLabel("Fecha Retiro:  ");
 	private JLabel perteneceJL = new JLabel("Pertenece A:  ");
@@ -51,7 +51,7 @@ public class PanelDatosMod extends JPanel{
 	private JTextField telefonoJT;
 	private JTextField telefonoAltJT;
 	private JTextField emailJT;
-	private JTextField seleccionalJT;
+	private JTextField seccionalJT;
 	private JTextField fechaRetiroJT;
 	private JTextField fechaIngresoJT;
 	
@@ -90,7 +90,7 @@ public class PanelDatosMod extends JPanel{
 		telefonoJT = new JTextField();
 		telefonoAltJT = new JTextField();
 		emailJT = new JTextField();
-		seleccionalJT = new JTextField();
+		seccionalJT = new JTextField();
 		fechaRetiroJT = new JTextField("yyyy-mm-dd");
 		fechaIngresoJT = new JTextField("yyyy-mm-dd");
 		pensionado = new Pensionado();
@@ -122,7 +122,7 @@ public class PanelDatosMod extends JPanel{
 		telefonoJT = new JTextField(pensionado.getTelefono());
 		telefonoAltJT = new JTextField(pensionado.getTelefonoAlternativo());
 		emailJT = new JTextField(pensionado.getEmail());
-		seleccionalJT = new JTextField(pensionado.getSeccional());
+		seccionalJT = new JTextField(pensionado.getSeccional());
 		
 		if (pensionado.getFechaRetiro()==null) {
 			fechaRetiroJT = new JTextField("yyyy-mm-dd");
@@ -181,8 +181,8 @@ public class PanelDatosMod extends JPanel{
 		add(emailJT);
 		add(direccionJL);
 		add(direccionJT);
-		add(seleccionalJL);
-		add(seleccionalJT);
+		add(seccionalJL);
+		add(seccionalJT);
 		add(barrioJL);
 		add(barrioJT);
 		add(fechaIngresoJL);
@@ -223,7 +223,7 @@ public class PanelDatosMod extends JPanel{
 		pensionado.setTelefono(telefonoJT.getText());
 		pensionado.setTelefonoAlternativo(telefonoAltJT.getText());
 		pensionado.setEmail(emailJT.getText());
-		pensionado.setSeccional(seleccionalJT.getText());
+		pensionado.setSeccional(seccionalJT.getText());
 		
 		if (fechaIngresoJT.getText().equals("yyyy-mm-dd")) {
 			pensionado.setFechaIngreso("0001-01-01");

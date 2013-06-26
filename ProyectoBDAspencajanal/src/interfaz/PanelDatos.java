@@ -28,7 +28,7 @@ public class PanelDatos extends JPanel {
 	private JLabel telefonoJL;
 	private JLabel telefonoAltJL;
 	private JLabel emailJL;
-	private JLabel seleccionalJL;
+	private JLabel seccionalJL;
 	private JLabel fechaIngresoJL;
 	private JLabel fechaRetiroJL;
 	private JLabel perteneceJL;
@@ -52,7 +52,7 @@ public class PanelDatos extends JPanel {
 		telefonoJL = new JLabel("Telefono: " + pensionado.getTelefono());
 		telefonoAltJL = new JLabel("Telefono Alternativo: " + pensionado.getTelefonoAlternativo());
 		emailJL = new JLabel("Email: " + pensionado.getEmail());
-		seleccionalJL = new JLabel("Selecional: " + pensionado.getSeccional());
+		seccionalJL = new JLabel("Selecional: " + pensionado.getSeccional());
 		fechaIngresoJL = new JLabel("Fecha Ingreso: " + pensionado.getFechaIngreso());
 		fechaRetiroJL = new JLabel("Fecha Retiro: " + pensionado.getFechaRetiro());
 		perteneceJL = new JLabel("Pertenece A: " + ((pensionado.isProduzcamos())?"Produzcamos\n ":"")
@@ -69,7 +69,7 @@ public class PanelDatos extends JPanel {
 		add(codigoJL);
 		add(emailJL);
 		add(direccionJL);
-		add(seleccionalJL);
+		add(seccionalJL);
 		add(barrioJL);
 		add(fechaIngresoJL);
 		add(ciudadJL);

@@ -1,9 +1,11 @@
 package interfaz;
 
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 
@@ -28,10 +30,13 @@ public class VentanaAgregarPen extends JDialog implements ActionListener {
 	private JButton salirJB;
 	private JButton AgregarHVJB;
 	private PanelDatosMod panelDatosAgregar;
+	private String nuevoID;
 	private static final String GUARDAR = "GUARDAR Y CERRAR";
 	private static final String HOJA_VIDA = "HOJA DE VIDA";
 	
 	public VentanaAgregarPen(String nuevoID){
+		
+		this.nuevoID = nuevoID;
 		
 		setLayout(null);
 		setTitle("AGREGAR PENSIONADO");
@@ -70,15 +75,33 @@ public class VentanaAgregarPen extends JDialog implements ActionListener {
 		salirJB.setBounds(450,510,150,30);	
 	}
 	
+	/**
+	 * Metodo que abre un archivo con el programa asociado a la extension
+	 * el resto es relleno XD
+	 * @param ubicacion
+	 */
+	private void abrirCarpeta(String ubicacion) {
+		if (Desktop.isDesktopSupported()) {
+			Desktop escritorio = Desktop.getDesktop();
+			File archivo;
+			try {
+				archivo = new File(ubicacion);
+				escritorio.open(archivo);
+			}catch(Exception io) {
+				JOptionPane.showMessageDialog(null, "No se encuentra la ruta");
+			}
+		}
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		BufferedReader acceso;
 		switch (e.getActionCommand()) {
 		
 		case GUARDAR:
 			Pensionado pensionado = this.panelDatosAgregar.modificarPensionado();
 			pensionado.setObservaciones(observacionesJA.getText());
-			BufferedReader acceso;
+			
 			ArrayList<String> datos;
 			Conector conector;
 			try {
@@ -128,8 +151,30 @@ public class VentanaAgregarPen extends JDialog implements ActionListener {
             break;
             
 		case HOJA_VIDA:
-			//TODO agregar la imagen a la carpeta de imagenes
-			//XXX validad la necesidad de ingresar las imagenes por aca
+
+			String ubicacion = "";
+			try {
+				acceso = new BufferedReader(new FileReader("./data/archivos.jaa"));
+			} catch (Exception ex) {
+				acceso = null;
+			}
+			if (acceso!=null) {
+				try {
+					ubicacion = acceso.readLine()+nuevoID;
+					File nuevo = new File(ubicacion);
+					nuevo.mkdir();
+					abrirCarpeta(ubicacion);
+					acceso.close();
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(this, 
+							"No hay imagenes asociadas a este registro",
+							"Error", JOptionPane.ERROR_MESSAGE);
+				}
+			} else {
+				JOptionPane.showMessageDialog(this,
+						"No se encuentran los archivos",
+						"Error", JOptionPane.ERROR_MESSAGE);
+			}
 			break;
 			
 		}	
