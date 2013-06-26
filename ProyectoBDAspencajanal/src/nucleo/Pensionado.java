@@ -294,6 +294,16 @@ public class Pensionado {
 	}
 	
 	/**
+	 * actualiza las observaciones en una consulta por cedula dada
+	 * @return String
+	 */
+	public String modificarObservacion() {
+		String cadena = "UPDATE pensionado SET observaciones='" + getObservaciones() + "' WHERE idpensionado='"
+				+ getIdPensionado() + "';";
+		return cadena;
+	}
+	
+	/**
 	 * selecciona todos los datos de un pensionado de la base de datos
 	 * @return String
 	 */
