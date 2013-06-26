@@ -92,7 +92,7 @@ public class Pensionado {
 	}
 
 	public void setDireccion(String direccion) {
-		this.direccion = direccion.toUpperCase();
+		this.direccion = direccion;
 	}
 
 	public String getBarrio() {
@@ -100,7 +100,7 @@ public class Pensionado {
 	}
 
 	public void setBarrio(String barrio) {
-		this.barrio = barrio.toUpperCase();
+		this.barrio = barrio;
 	}
 
 	public String getCiudad() {
@@ -188,7 +188,7 @@ public class Pensionado {
 	}
 
 	public void setSeccional(String seccional) {
-		this.seccional = seccional;
+		this.seccional = seccional.toUpperCase();
 	}
 
 	public String getFechaIngreso() {
@@ -267,15 +267,14 @@ public class Pensionado {
 	 * @return
 	 */
 	public String modificarRegistro() {
-		System.out.println(getIdPensionado());
-		String cadena="UPDATE pensionado SET nombres='"+ getNombres() + "', apellidos='"+ getApellidos() + "', cedula='"+getCedula() +"'," +
+		String cadena = "UPDATE pensionado SET nombres='"+ getNombres() + "', apellidos='"+ getApellidos() + "', cedula='"+getCedula() +"'," +
 				  " codigo='"+ getCodigo()+"', direccion='"+getDireccion()+"', barrio='"+ getBarrio() +"', zonapostal='"+getZonaPostal() +"'," +
 				  " fechanacimiento='"+getFechaNacimiento()+"', telefono='"+getTelefono() +"', telefonoalternativo='"+getTelefonoAlternativo()+"'," +
 				  " fechaingreso='"+ getFechaIngreso() +"', fecharetiro='"+getFechaRetiro() +"', ciudad='"+getCiudad()+"',"+
 				  " seccional='"+ getSeccional()+"', iddepartamento='"+getIdDepartamento()+"', idestado='"+getIdEstado()+"'," +
 				  " e_mail='"+getEmail()+"', produzcamos='"+ isProduzcamos()+"', ayudemos='"+isAyudemonos()+"'" +
 				  " WHERE idpensionado='" + getIdPensionado() + "';";
-	return cadena; 		
+		return cadena;
 	}
 	
 	/**
@@ -312,11 +311,6 @@ public class Pensionado {
 		String cadena = "SELECT nombres, apellidos,  to_char(fechanacimiento, 'dd') FROM pensionado " +
 						"WHERE extract(month from fechanacimiento)='"+ mes + "'and idestado='1' " +
 						"ORDER by extract(day from fechanacimiento);";				
-
-		return cadena; 
-		
-	}
-	
-	
+		return cadena; 	
+	}	
 }
-
