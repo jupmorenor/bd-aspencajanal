@@ -54,7 +54,6 @@ public class VentanaAgregarPen extends JDialog implements ActionListener {
 		
 		panelDatosAgregar = new PanelDatosMod();
 		
-
 		add(panelDatosAgregar);
 		panelDatosAgregar.setBounds(20,20,600,350);		
 		add(observacionesJL);
@@ -67,9 +66,7 @@ public class VentanaAgregarPen extends JDialog implements ActionListener {
 		add(AgregarHVJB);
 		AgregarHVJB.setBounds(450,460,150,30);	
 		add(salirJB);
-		salirJB.setBounds(450,510,150,30);
-		
-		
+		salirJB.setBounds(450,510,150,30);	
 	}
 	
 	@Override
@@ -102,6 +99,7 @@ public class VentanaAgregarPen extends JDialog implements ActionListener {
 							datos.get(2), datos.get(3));
 					conector.SetCadena(pensionado.guardarRegistro());
 					conector.EjecutarSql();
+					conector.CerrarBase();
 					
 				} catch (Exception ioex) {
 					JOptionPane.showMessageDialog(this,
@@ -114,9 +112,7 @@ public class VentanaAgregarPen extends JDialog implements ActionListener {
 						"No se encuentran los datos de conexion",
 						"Error de conexion", JOptionPane.ERROR_MESSAGE);
 			}
-					
-					
-					
+		
 			setVisible(false);
             dispose();
             break;
