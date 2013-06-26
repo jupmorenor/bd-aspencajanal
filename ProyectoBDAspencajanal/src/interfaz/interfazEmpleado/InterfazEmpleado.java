@@ -173,7 +173,10 @@ public class InterfazEmpleado extends JDialog implements ActionListener {
 					break;
 
 				case AGREGAR:
-					VentanaAgregarPen vAP = new VentanaAgregarPen();
+					conector.SetCadena("SELECT count(*) FROM pensionado;");
+					tabla = conector.Consultar();
+					tabla.next();
+					VentanaAgregarPen vAP = new VentanaAgregarPen(""+(tabla.getInt("count")+1));
 					vAP.setVisible(true);
 					break;
 

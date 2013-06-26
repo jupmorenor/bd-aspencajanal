@@ -84,9 +84,6 @@ public class InterfazInicio extends JFrame implements ActionListener {
 		v.setVisible(true);
 	}
 
-	/**
-	 * 
-	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals(INGRESAR)) {
@@ -119,13 +116,11 @@ public class InterfazInicio extends JFrame implements ActionListener {
 						
 							switch (tipoUsuario) {
 							case "1":
-								// Ventana para el Administrador
 								InterfazAdministrador iA = new InterfazAdministrador();
 								iA.setVisible(true);
 								break;
 								
-							case "2":
-								// Ventana para el trabajador					
+							case "2":				
 								InterfazEmpleado iE = new InterfazEmpleado();
 								iE.setVisible(true);
 								break;

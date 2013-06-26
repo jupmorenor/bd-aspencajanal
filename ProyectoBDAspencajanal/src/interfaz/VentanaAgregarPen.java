@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -32,7 +31,7 @@ public class VentanaAgregarPen extends JDialog implements ActionListener {
 	private static final String GUARDAR = "GUARDAR Y CERRAR";
 	private static final String HOJA_VIDA = "HOJA DE VIDA";
 	
-	public VentanaAgregarPen(){
+	public VentanaAgregarPen(String nuevoID){
 		
 		setLayout(null);
 		setTitle("AGREGAR PENSIONADO");
@@ -54,7 +53,7 @@ public class VentanaAgregarPen extends JDialog implements ActionListener {
 		AgregarHVJB.addActionListener(this);
 		AgregarHVJB.setActionCommand(HOJA_VIDA);
 		
-		panelDatosAgregar = new PanelDatosMod();
+		panelDatosAgregar = new PanelDatosMod(nuevoID);
 		
 		add(panelDatosAgregar);
 		panelDatosAgregar.setBounds(20,20,600,350);		
@@ -82,7 +81,6 @@ public class VentanaAgregarPen extends JDialog implements ActionListener {
 			BufferedReader acceso;
 			ArrayList<String> datos;
 			Conector conector;
-			ResultSet tabla;
 			try {
 				acceso = new BufferedReader(new FileReader("./data/datos.jaa"));
 			} catch (Exception ex) {
@@ -100,10 +98,6 @@ public class VentanaAgregarPen extends JDialog implements ActionListener {
 					conector = new Conector(datos.get(0), datos.get(1),
 							datos.get(2), datos.get(3));
 					
-					conector.SetCadena("SELECT count(*) FROM pensionado;");
-					tabla = conector.Consultar();
-					tabla.next();
-					pensionado.setIdPensionado(""+(tabla.getInt("count")+1));
 					conector.SetCadena(pensionado.guardarRegistro());
 					conector.EjecutarSql();
 					String cadenaAuxiliar = "UPDATE pensionado SET fechanacimiento=NULL WHERE " +

@@ -73,9 +73,9 @@ public class PanelDatosMod extends JPanel{
 	
 	private Pensionado pensionado;
 	
-	public PanelDatosMod() {
+	public PanelDatosMod(String id) {
 		
-		idJLT = new JTextField();
+		idJLT = new JTextField(id);
 		direccionJT = new JTextField();
 		nombreJT = new JTextField();
 		apellidoJT = new JTextField();
@@ -147,7 +147,7 @@ public class PanelDatosMod extends JPanel{
 		produzcamosJCh.setSelected(pensionado.isProduzcamos());
 		ayudemonosJCh.setSelected(pensionado.isAyudemonos());
 	}
-	
+
 	private void inicializar() {
 		
 		setBorder(BorderFactory.createTitledBorder("Datos Personales"));
