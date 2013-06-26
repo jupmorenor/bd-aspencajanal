@@ -2,7 +2,6 @@ package interfaz.interfazEmpleado;
 
 import interfaz.VentanaAgregarPen;
 import interfaz.VentanaConsultaCumpleanos;
-import interfaz.interfazAdministrador.VentanaConsultaAdmi;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -140,8 +139,8 @@ public class InterfazEmpleado extends JDialog implements ActionListener {
 							pensionado.setCiudad(tabla.getString("ciudad"));
 							pensionado.setSeccional(tabla.getString("seccional"));
 	
-							VentanaConsultaAdmi vCA = new VentanaConsultaAdmi(pensionado);
-							vCA.setVisible(true);
+							VentanaConsultaEmp vCE = new VentanaConsultaEmp(pensionado);
+							vCE.setVisible(true);
 						} else {
 							JOptionPane.showMessageDialog(this, "El cliente que ingresó no existe !!");
 						}
