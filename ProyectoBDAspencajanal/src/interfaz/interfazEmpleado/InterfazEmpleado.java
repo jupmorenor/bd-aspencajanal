@@ -162,8 +162,7 @@ public class InterfazEmpleado extends JDialog implements ActionListener {
 							mesSelecionado = Integer.toString(i + 1);
 
 					Pensionado pensionado1 = new Pensionado();
-					conector.SetCadena(pensionado1
-							.consultaCumplanos(mesSelecionado));
+					conector.SetCadena(pensionado1.consultaCumpleanos(mesSelecionado));
 					tabla = conector.Consultar();
 
 					if (seleccionMes != null) {
