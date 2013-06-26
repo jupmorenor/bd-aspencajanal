@@ -180,7 +180,7 @@ public class Pensionado {
 	}
 
 	public void setEmail(String email) {
-		this.email = email.toUpperCase();
+		this.email = email;
 	}
 
 	public String getSeccional() {
@@ -188,7 +188,7 @@ public class Pensionado {
 	}
 
 	public void setSeccional(String seccional) {
-		this.seccional = seccional.toUpperCase();
+		this.seccional = seccional;
 	}
 
 	public String getFechaIngreso() {
@@ -316,8 +316,8 @@ public class Pensionado {
 					  " fechanacimiento='"+getFechaNacimiento()+"', telefono='"+getTelefono() +"', telefonoalternativo='"+getTelefonoAlternativo()+"'," +
 					  " fechaingreso='"+ getFechaIngreso() +"', fecharetiro='"+getFechaRetiro() +"', ciudad='"+getCiudad()+"',"+
 					  "seccional='"+ getSeccional()+"', iddepartamento='"+getIdDepartamento()+"', idestado='"+getIdEstado()+"', " +
-					  "email='"+getEmail()+"', produzcamos='"+ isProduzcamos()+"', ayudemonos='"+isAyudemonos()+"'" +
-					  " WHERE idpensionado='" + getCedula() + "';";
+					  "e_mail='"+getEmail()+"', produzcamos='"+ isProduzcamos()+"', ayudemos='"+isAyudemonos()+"'" +
+					  " WHERE idpensionado='" + getIdPensionado() + "';";
 		return cadena; 
 	}
 }
