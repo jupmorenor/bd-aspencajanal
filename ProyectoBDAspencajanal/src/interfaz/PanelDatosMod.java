@@ -2,8 +2,6 @@ package interfaz;
 
 import java.awt.Color;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
@@ -14,7 +12,7 @@ import javax.swing.JTextField;
 
 import nucleo.Pensionado;
 
-public class PanelDatosMod extends JPanel implements ActionListener{
+public class PanelDatosMod extends JPanel{
 
 	private JLabel idJL = new JLabel("IDD:  ");
 	private JLabel direccionJL= new JLabel("Direccion:  ");	
@@ -55,8 +53,8 @@ public class PanelDatosMod extends JPanel implements ActionListener{
 	private JTextField fechaRetiroJT;
 	private JTextField fechaIngresoJT;
 	
-	private JComboBox estadoJT;
-	private JComboBox departamentoJT;
+	private JComboBox<String> estadoJT;
+	private JComboBox<String> departamentoJT;
 	
 	private JRadioButton produzcamosJCh;
 	private JRadioButton ayudemonosJCh;
@@ -74,9 +72,6 @@ public class PanelDatosMod extends JPanel implements ActionListener{
 	private Pensionado pensionado;
 	
 	public PanelDatosMod() {
-		setBorder(BorderFactory.createTitledBorder("Datos Personales"));
-		setLayout(new GridLayout(10, 4,15,5));
-		setBackground( Color.white);
 		
 		idJLT = new JTextField();
 		direccionJT = new JTextField();
@@ -86,9 +81,9 @@ public class PanelDatosMod extends JPanel implements ActionListener{
 		cedulaJT = new JTextField();
 		barrioJT = new JTextField();
 		ciudadJT = new JTextField();
-		departamentoJT = new JComboBox(departamentos);
+		departamentoJT = new JComboBox<String>(departamentos);
 		zonaPostalJT = new JTextField();
-		estadoJT = new JComboBox(estado);
+		estadoJT = new JComboBox<String>(estado);
 		fechaNacJT = new JTextField();
 		telefonoJT = new JTextField();
 		telefonoAltJT = new JTextField();
@@ -96,70 +91,18 @@ public class PanelDatosMod extends JPanel implements ActionListener{
 		seleccionalJT = new JTextField();
 		fechaRetiroJT = new JTextField();
 		fechaIngresoJT = new JTextField();
-		
-		produzcamosJCh = new JRadioButton(PRODUZCAMOS);
-		produzcamosJCh.setBackground(Color.white);
-		produzcamosJCh.addActionListener(this);
-		produzcamosJCh.setActionCommand(PRODUZCAMOS);
-		
-		ayudemonosJCh = new JRadioButton(AYUDEMONOS);
-		ayudemonosJCh.setBackground(Color.white);
-		ayudemonosJCh.addActionListener(this);
-		ayudemonosJCh.setActionCommand(AYUDEMONOS);
-		
-		
-		add(idJL);
-		add(idJLT);
-		add(estadoJL);
-		add(estadoJT);
-		add(nombreJL);
-		add(nombreJT);
-		add(fechaNacJL);
-		add(fechaNacJT);
-		add(apellidoJL);
-		add(apellidoJT);
-		add(telefonoJL);
-		add(telefonoJT);
-		add(cedulaJL);
-		add(cedulaJT);
-		add(telefonoAltJL);
-		add(telefonoAltJT);
-		add(codigoJL);
-		add(codigoJT);
-		add(emailJL);
-		add(emailJT);
-		add(direccionJL);
-		add(direccionJT);
-		add(seleccionalJL);
-		add(seleccionalJT);
-		add(barrioJL);
-		add(barrioJT);
-		add(fechaIngresoJL);
-		add(fechaIngresoJT);
-		add(ciudadJL);
-		add(ciudadJT);
-		add(fechaRetiroJL);
-		add(fechaRetiroJT);
-		add(departamentoJL);
-		add(departamentoJT);
-		add(perteneceJL);
-		add(produzcamosJCh);
-		add(zonaPostalJL);	
-		add(zonaPostalJT);
-		add(blancoJL);	
-		add(ayudemonosJCh);
+		pensionado = new Pensionado();
+
+		inicializar();
 	}
 	
 	
-	public PanelDatosMod(Pensionado pensionado) {		
+	public PanelDatosMod(Pensionado pensionado) {
 		
-		setBorder(BorderFactory.createTitledBorder("Datos Personales"));
-		setLayout(new GridLayout(10, 4,15,5));
-		setBackground( Color.white);
-		
+		this.pensionado = pensionado;
+				
 		idJLT = new JTextField(pensionado.getIdPensionado());
 		idJLT.setEditable(false);
-		idJLT.setBackground(Color.white);
 		direccionJT = new JTextField(pensionado.getDireccion());
 		nombreJT = new JTextField(pensionado.getNombres());
 		apellidoJT = new JTextField(pensionado.getApellidos());
@@ -176,22 +119,27 @@ public class PanelDatosMod extends JPanel implements ActionListener{
 		fechaRetiroJT = new JTextField(pensionado.getFechaRetiro());
 		fechaIngresoJT = new JTextField(pensionado.getFechaIngreso());
 		
-		estadoJT = new JComboBox(estado);
+		estadoJT = new JComboBox<String>(estado);
 		estadoJT.setSelectedItem(estado[Integer.parseInt(pensionado.getIdEstado())-1]);
-		departamentoJT = new JComboBox(departamentos);
+		departamentoJT = new JComboBox<String>(departamentos);
 		departamentoJT.setSelectedItem(departamentos[Integer.parseInt(pensionado.getIdDepartamento())-1]);
+		
+		inicializar();
+		
+		produzcamosJCh.setSelected(pensionado.isProduzcamos());
+		ayudemonosJCh.setSelected(pensionado.isAyudemonos());
+	}
+	
+	private void inicializar() {
+		
+		setBorder(BorderFactory.createTitledBorder("Datos Personales"));
+		setLayout(new GridLayout(10, 4,15,5));
+		setBackground( Color.white);
 		
 		produzcamosJCh = new JRadioButton(PRODUZCAMOS);
 		produzcamosJCh.setBackground(Color.white);
-		produzcamosJCh.addActionListener(this);
-		produzcamosJCh.setActionCommand(PRODUZCAMOS);
-		produzcamosJCh.setSelected(pensionado.isProduzcamos());
 		ayudemonosJCh = new JRadioButton(AYUDEMONOS);
 		ayudemonosJCh.setBackground(Color.white);
-		ayudemonosJCh.addActionListener(this);
-		ayudemonosJCh.setActionCommand(AYUDEMONOS);
-		ayudemonosJCh.setSelected(pensionado.isAyudemonos());
-		
 		
 		add(idJL);
 		add(idJLT);
@@ -233,32 +181,14 @@ public class PanelDatosMod extends JPanel implements ActionListener{
 		add(zonaPostalJT);
 		add(blancoJL);	
 		add(ayudemonosJCh);
-		
-	
-		
 	}
 	
-
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		switch (e.getActionCommand()) {
-		case PRODUZCAMOS:
-			
-			break;
-			
-		case AYUDEMONOS:
-			
-		}	
-	}	
-	
 	public  Pensionado modificarPensionado(){
-		pensionado = new Pensionado();
 		pensionado.setIdPensionado(idJLT.getText());
 		pensionado.setNombres(nombreJT.getText());
 		pensionado.setApellidos(apellidoJT.getText());
 		pensionado.setCedula(cedulaJT.getText());
-		pensionado.setCodigo(codigoJT.getText());		
+		pensionado.setCodigo(codigoJT.getText());
 		pensionado.setDireccion(direccionJT.getText());
 		pensionado.setBarrio(barrioJT.getText());
 		pensionado.setCiudad(ciudadJT.getText());
@@ -274,7 +204,7 @@ public class PanelDatosMod extends JPanel implements ActionListener{
 		pensionado.setFechaRetiro(fechaRetiroJT.getText());
 		pensionado.setProduzcamos(produzcamosJCh.isSelected());
 		pensionado.setAyudemonos(ayudemonosJCh.isSelected());
-		
+	
 		return pensionado;
 	}
 }
