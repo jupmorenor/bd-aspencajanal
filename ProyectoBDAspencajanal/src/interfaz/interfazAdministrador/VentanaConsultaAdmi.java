@@ -16,6 +16,8 @@ import nucleo.Pensionado;
 
 public class VentanaConsultaAdmi extends JDialog implements ActionListener{
 
+	private static final long serialVersionUID = 1L;
+
 	private JLabel observacionesJL;
 
 	private JTextArea observacionesJA;
@@ -36,7 +38,7 @@ public class VentanaConsultaAdmi extends JDialog implements ActionListener{
 		getContentPane().setBackground(Color.white);
 		setSize(545, 600);
 		setResizable(false);
-		this.setLocationRelativeTo(null);
+		setLocationRelativeTo(null);
 		setModalityType(DEFAULT_MODALITY_TYPE);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
@@ -51,8 +53,7 @@ public class VentanaConsultaAdmi extends JDialog implements ActionListener{
 		hojaVidaJB.addActionListener(this);
 		hojaVidaJB.setActionCommand(HOJA_VIDA);
 		
-		panelDatos= new PanelDatos(pensionado);
-		
+		panelDatos = new PanelDatos(pensionado);
 		add(panelDatos);
 		panelDatos.setBounds(20,20,500,400);
 		

@@ -13,7 +13,9 @@ import javax.swing.JPanel;
 import conexion.Conector;
 
 public class VentanaConsultaPersonalizada extends JDialog {
-	
+
+	private static final long serialVersionUID = 1L;
+
 	public JPanel panelConsultaPersonalizada;
 	
 	public VentanaConsultaPersonalizada() {

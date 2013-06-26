@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
@@ -26,6 +25,7 @@ import conexion.Conector;
 
 public class InterfazInicio extends JFrame implements ActionListener {
 
+	private static final long serialVersionUID = 1L;
 	private JLabel imagen;
 	private JLabel usuarioJL;
 	private JLabel passwordJL;

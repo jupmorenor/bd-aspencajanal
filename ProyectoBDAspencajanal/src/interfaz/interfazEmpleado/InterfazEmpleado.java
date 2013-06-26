@@ -3,8 +3,6 @@ package interfaz.interfazEmpleado;
 import interfaz.VentanaAgregarPen;
 import interfaz.VentanaConsultaCumpleanos;
 import interfaz.interfazAdministrador.VentanaConsultaAdmi;
-import interfaz.interfazAdministrador.VentanaConsultaPersonalizada;
-import interfaz.interfazAdministrador.VentanaModificarPen;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -25,6 +23,8 @@ import nucleo.Pensionado;
 
 public class InterfazEmpleado extends JDialog implements ActionListener {
 
+	private static final long serialVersionUID = 1L;
+	
 	private JButton consultaJB;
 	private JButton birthdayJB;
 	private JButton cerrarJB;
@@ -46,7 +46,7 @@ public class InterfazEmpleado extends JDialog implements ActionListener {
 		getContentPane().setBackground(Color.white);
 		setSize(270, 235);
 		setResizable(false);
-		this.setLocationRelativeTo(null);
+		setLocationRelativeTo(null);
 		setModalityType(DEFAULT_MODALITY_TYPE);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
@@ -81,9 +81,7 @@ public class InterfazEmpleado extends JDialog implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		/*
-		 * Preparacion previa a realizar la accion solicitada
-		 */
+
 		BufferedReader acceso;
 		ArrayList<String> datos;
 		Conector conector;
@@ -113,40 +111,41 @@ public class InterfazEmpleado extends JDialog implements ActionListener {
 							"Buscar Pensionado por C.C",
 							JOptionPane.INFORMATION_MESSAGE);
 
-					Pensionado pensionado = new Pensionado();
-					pensionado.setCedula(buscar);
-					conector.SetCadena(pensionado.consultarRegistro());
-					tabla = conector.Consultar();
-
-					if (tabla.next()) {
-						pensionado.setIdPensionado(tabla.getString("idpensionado"));
-						pensionado.setIdEstado(tabla.getString("descestado"));
-						pensionado.setIdDepartamento(tabla.getString("descdepartamento"));
-						pensionado.setNombres(tabla.getString("nombres"));
-						pensionado.setApellidos(tabla.getString("apellidos"));
-						pensionado.setCedula(tabla.getString("cedula"));
-						pensionado.setCodigo(tabla.getString("codigo"));
-						pensionado.setDireccion(tabla.getString("direccion"));
-						pensionado.setBarrio(tabla.getString("barrio"));
-						pensionado.setZonaPostal(tabla.getString("zonapostal"));
-						pensionado.setFechaNacimiento(tabla.getString("fechanacimiento"));
-						pensionado.setTelefono(tabla.getString("telefono"));
-						pensionado.setTelefonoAlternativo(tabla.getString("telefonoalternativo"));
-						pensionado.setObservaciones(tabla.getString("observaciones"));
-						pensionado.setProduzcamos(tabla.getBoolean("produzcamos"));
-						pensionado.setAyudemonos(tabla.getBoolean("ayudemos"));
-						pensionado.setEmail(tabla.getString("e_mail"));
-						pensionado.setFechaIngreso(tabla.getString("fechaingreso"));
-						pensionado.setFechaRetiro(tabla.getString("fecharetiro"));
-						pensionado.setCiudad(tabla.getString("ciudad"));
-						pensionado.setSeccional(tabla.getString("seccional"));
-
-						VentanaConsultaAdmi vCA = new VentanaConsultaAdmi(
-								pensionado);
-						vCA.setVisible(true);
-					} else
-						JOptionPane.showMessageDialog(this,
-								"El cliente que ingresó no existe !!");
+					if (buscar != null) {
+						Pensionado pensionado = new Pensionado();
+						pensionado.setCedula(buscar);
+						conector.SetCadena(pensionado.consultarRegistro());
+						tabla = conector.Consultar();
+	
+						if (tabla.next()) {
+							pensionado.setIdPensionado(tabla.getString("idpensionado"));
+							pensionado.setIdEstado(tabla.getString("descestado"));
+							pensionado.setIdDepartamento(tabla.getString("descdepartamento"));
+							pensionado.setNombres(tabla.getString("nombres"));
+							pensionado.setApellidos(tabla.getString("apellidos"));
+							pensionado.setCedula(tabla.getString("cedula"));
+							pensionado.setCodigo(tabla.getString("codigo"));
+							pensionado.setDireccion(tabla.getString("direccion"));
+							pensionado.setBarrio(tabla.getString("barrio"));
+							pensionado.setZonaPostal(tabla.getString("zonapostal"));
+							pensionado.setFechaNacimiento(tabla.getString("fechanacimiento"));
+							pensionado.setTelefono(tabla.getString("telefono"));
+							pensionado.setTelefonoAlternativo(tabla.getString("telefonoalternativo"));
+							pensionado.setObservaciones(tabla.getString("observaciones"));
+							pensionado.setProduzcamos(tabla.getBoolean("produzcamos"));
+							pensionado.setAyudemonos(tabla.getBoolean("ayudemos"));
+							pensionado.setEmail(tabla.getString("e_mail"));
+							pensionado.setFechaIngreso(tabla.getString("fechaingreso"));
+							pensionado.setFechaRetiro(tabla.getString("fecharetiro"));
+							pensionado.setCiudad(tabla.getString("ciudad"));
+							pensionado.setSeccional(tabla.getString("seccional"));
+	
+							VentanaConsultaAdmi vCA = new VentanaConsultaAdmi(pensionado);
+							vCA.setVisible(true);
+						} else {
+							JOptionPane.showMessageDialog(this, "El cliente que ingresó no existe !!");
+						}
+					}
 
 					break;
 
@@ -156,20 +155,21 @@ public class InterfazEmpleado extends JDialog implements ActionListener {
 							"Consulta Cumpleaños por mes",
 							JOptionPane.QUESTION_MESSAGE, icono, MESES,
 							"Seleccione mes");
-
-					for (int i = 0; i < MESES.length; i++)
-						if (MESES[i].equals(seleccionMes))
-							mesSelecionado = Integer.toString(i + 1);
-
-					Pensionado pensionado1 = new Pensionado();
-					conector.SetCadena(pensionado1.consultaCumpleanos(mesSelecionado));
-					tabla = conector.Consultar();
-
 					if (seleccionMes != null) {
+						
+						for (int i = 0; i < MESES.length; i++)
+							if (MESES[i].equals(seleccionMes))
+								mesSelecionado = Integer.toString(i + 1);
+	
+						Pensionado pensionado1 = new Pensionado();
+						conector.SetCadena(pensionado1.consultaCumpleanos(mesSelecionado));
+						tabla = conector.Consultar();
+
 						VentanaConsultaCumpleanos vCC = new VentanaConsultaCumpleanos(
 								tabla, seleccionMes);
 						vCC.setVisible(true);
 					}
+					
 					break;
 
 				case AGREGAR:
@@ -178,7 +178,6 @@ public class InterfazEmpleado extends JDialog implements ActionListener {
 					break;
 
 				case SALIR:
-					// Cierra Sesión de la secretaria
 					setVisible(false);
 					dispose();
 					break;
@@ -191,7 +190,6 @@ public class InterfazEmpleado extends JDialog implements ActionListener {
 				JOptionPane.showMessageDialog(this,
 						"No se encuentran los datos de conexion",
 						"Error de conexion", JOptionPane.ERROR_MESSAGE);
-				ioex.printStackTrace();
 			}
 		} else {
 			JOptionPane.showMessageDialog(this,

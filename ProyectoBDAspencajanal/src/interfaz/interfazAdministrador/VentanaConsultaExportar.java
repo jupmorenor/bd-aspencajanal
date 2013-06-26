@@ -22,6 +22,8 @@ import exportador.ExportarAExcel;
 
 public class VentanaConsultaExportar extends JDialog implements ActionListener{
 	
+	private static final long serialVersionUID = 1L;
+	
 	public DefaultTableModel modelo;
 	public JTable tabla;
 	public JButton boton;
@@ -54,6 +56,7 @@ public class VentanaConsultaExportar extends JDialog implements ActionListener{
 		
 		llenarTabla();
 	}
+	
 	 /**
 	  * Metodo que pasa los datos del ResultSet obtenido de la consulta SQL
 	  * a la tabla de datos que se muestra en la ventana

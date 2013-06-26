@@ -9,12 +9,11 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
 
-public class PanelConsultaPersonalizada extends JPanel implements
-		ActionListener {
+public class PanelConsultaPersonalizada extends JPanel implements ActionListener {
 	
-	//private ArrayList<JLabel> nombreJL;
+	private static final long serialVersionUID = 1L;
+	
 	private ArrayList<JCheckBox> seleccionJCh;
 	private VentanaConsultaPersonalizada ventana;
 	private JCheckBox cajaJCh;
@@ -42,7 +41,6 @@ public class PanelConsultaPersonalizada extends JPanel implements
 				cajaJCh.setBackground(Color.white);
 			}
 			seleccionJCh.add(cajaJCh);
-			
 		}
 		
 		for (int j=0; j<seleccionJCh.size(); j++) {
@@ -113,14 +111,16 @@ public class PanelConsultaPersonalizada extends JPanel implements
 					cadena += " AND p.produzcamos='TRUE'";
 				}
 			}
-			if (ayud && prod) {
-				cadena += " WHERE p.ayudemos='TRUE' AND p.produzcamos='TRUE'";
-			}
-			if (ayud && !prod) {
-				cadena += " WHERE p.produzcamos='TRUE'";
-			}
-			if (!ayud && prod) {
-				cadena += " WHERE p.ayudemos='TRUE'";
+			if (!depto && !estado) {
+				if (ayud && prod) {
+					cadena += " WHERE p.ayudemos='TRUE' AND p.produzcamos='TRUE'";
+				}
+				if (ayud && !prod) {
+					cadena += " WHERE p.produzcamos='TRUE'";
+				}
+				if (!ayud && prod) {
+					cadena += " WHERE p.ayudemos='TRUE'";
+				}
 			}
 			cadena += ";";
 			System.out.println(cadena);

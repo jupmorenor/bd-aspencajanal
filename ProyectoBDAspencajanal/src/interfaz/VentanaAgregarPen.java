@@ -22,6 +22,8 @@ import nucleo.Pensionado;
 
 public class VentanaAgregarPen extends JDialog implements ActionListener {
 
+	private static final long serialVersionUID = 1L;
+
 	private JLabel observacionesJL;
 	private JTextArea observacionesJA;
 	private JButton salirJB;
@@ -100,15 +102,28 @@ public class VentanaAgregarPen extends JDialog implements ActionListener {
 					
 					conector.SetCadena("SELECT count(*) FROM pensionado;");
 					tabla = conector.Consultar();
+					tabla.next();
 					pensionado.setIdPensionado(""+(tabla.getInt("count")+1));
 					conector.SetCadena(pensionado.guardarRegistro());
 					conector.EjecutarSql();
-					conector.CerrarBase();
+					String cadenaAuxiliar = "UPDATE pensionado SET fechanacimiento=NULL WHERE " +
+							"fechanacimiento='0001/01/01' AND cedula='"+ pensionado.getCedula() +"'; " +
+							"UPDATE pensionado set fechaingreso=NULL WHERE fechaingreso='0001/01/01' AND " +
+							"cedula='"+ pensionado.getCedula() +"'; UPDATE pensionado SET fecharetiro=NULL " +
+							"WHERE fecharetiro='0001/01/01' AND cedula='"+ pensionado.getCedula() +"';";
+					
+					conector = new Conector(datos.get(0), datos.get(1),
+							datos.get(2), datos.get(3));
+					conector.SetCadena(cadenaAuxiliar);
+					conector.EjecutarSql();
+					setVisible(false);
+		            dispose();
 					
 				} catch (Exception ioex) {
 					JOptionPane.showMessageDialog(this,
 							"No se encuentran los datos de conexion",
 							"Error de conexion", JOptionPane.ERROR_MESSAGE);
+					ioex.printStackTrace();
 				}
 			} else {
 				JOptionPane.showMessageDialog(this,
@@ -116,8 +131,6 @@ public class VentanaAgregarPen extends JDialog implements ActionListener {
 						"Error de conexion", JOptionPane.ERROR_MESSAGE);
 			}
 		
-			setVisible(false);
-            dispose();
             break;
             
 		case HOJA_VIDA:

@@ -1,7 +1,6 @@
 package interfaz.interfazEmpleado;
 
 import interfaz.PanelDatos;
-import interfaz.interfazAdministrador.InterfazAdministrador;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -17,6 +16,8 @@ import nucleo.Pensionado;
 
 
 public class VentanaConsultaEmp extends JDialog implements ActionListener{
+
+	private static final long serialVersionUID = 1L;
 
 	private JLabel observacionesJL;
 	
@@ -44,20 +45,22 @@ public class VentanaConsultaEmp extends JDialog implements ActionListener{
 		salirJB = new JButton(CERRAR);
 		salirJB.addActionListener(this);
 		salirJB.setActionCommand(CERRAR);
-		panelDatos= new PanelDatos(pensionado);
 		
+		panelDatos= new PanelDatos(pensionado);
 		add(panelDatos);
 		panelDatos.setBounds(20,20,500,400);
+		
 		add(observacionesJL);
 		observacionesJL.setBounds(50,420,200,30);
+		
 		add(observacionesJA);
 		observacionesJA.setBorder(new LineBorder( Color.BLACK ));
 		observacionesJA.setWrapStyleWord(true);
 		observacionesJA.setLineWrap(true); 
 		observacionesJA.setBounds(20,460,300,100);
+		
 		add(salirJB);
 		salirJB.setBounds(350,530,150,30);
-		
 	}
 	
 	@Override

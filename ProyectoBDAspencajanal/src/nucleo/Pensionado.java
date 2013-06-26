@@ -60,7 +60,11 @@ public class Pensionado {
 	}
 
 	public void setNombres(String nombres) {
-		this.nombres = nombres.toUpperCase();
+		if(nombres==null) {
+			this.nombres = nombres;
+		} else {
+			this.nombres = nombres.toUpperCase();
+		}
 	}
 
 	public String getApellidos() {
@@ -68,7 +72,11 @@ public class Pensionado {
 	}
 
 	public void setApellidos(String apellidos) {
-		this.apellidos = apellidos.toUpperCase();
+		if(apellidos==null) {
+			this.apellidos = apellidos;
+		} else {
+			this.apellidos = apellidos.toUpperCase();
+		}
 	}
 
 	public String getCedula() {
@@ -108,7 +116,11 @@ public class Pensionado {
 	}
 
 	public void setCiudad(String ciudad) {
-		this.ciudad = ciudad.toUpperCase();
+		if (ciudad==null) {
+			this.ciudad = ciudad;
+		} else {
+			this.ciudad = ciudad.toUpperCase();
+		}
 	}
 
 	public String getZonaPostal() {
@@ -120,7 +132,7 @@ public class Pensionado {
 	}
 
 	public String getFechaNacimiento() {
-		String fecha = "";
+		String fecha = null;
 		if (fechaNacimiento!=null) {
 			fecha = this.formato.format(fechaNacimiento);
 		}
@@ -188,11 +200,15 @@ public class Pensionado {
 	}
 
 	public void setSeccional(String seccional) {
-		this.seccional = seccional.toUpperCase();
+		if(seccional==null) {
+			this.seccional = seccional;
+		} else {
+			this.seccional = seccional.toUpperCase();
+		}
 	}
 
 	public String getFechaIngreso() {
-		String fecha="";
+		String fecha = null;
 		if (fechaIngreso!=null) {
 			fecha = this.formato.format(fechaIngreso);
 		}
@@ -208,7 +224,7 @@ public class Pensionado {
 	}
 
 	public String getFechaRetiro() {
-		String fecha="";
+		String fecha = null;
 		if (fechaRetiro!=null) {
 			fecha = this.formato.format(fechaRetiro);
 		}

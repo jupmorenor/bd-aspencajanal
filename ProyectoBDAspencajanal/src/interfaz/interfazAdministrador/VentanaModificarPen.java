@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import interfaz.PanelDatosMod;
@@ -22,6 +21,8 @@ import conexion.Conector;
 import nucleo.Pensionado;
 
 public class VentanaModificarPen extends JDialog implements ActionListener{
+
+	private static final long serialVersionUID = 1L;
 
 	private JLabel observacionesJL;
 	
@@ -81,7 +82,6 @@ public class VentanaModificarPen extends JDialog implements ActionListener{
 			BufferedReader acceso;
 			ArrayList<String> datos;
 			Conector conector;
-			ResultSet tabla;
 			try {
 				acceso = new BufferedReader(new FileReader("./data/datos.jaa"));
 			} catch (Exception ex) {
@@ -100,22 +100,29 @@ public class VentanaModificarPen extends JDialog implements ActionListener{
 							datos.get(2), datos.get(3));
 					conector.SetCadena(pensionado.modificarRegistro());
 					conector.EjecutarSql();
+					String cadenaAuxiliar = "UPDATE pensionado SET fechanacimiento=NULL WHERE " +
+							"fechanacimiento='0001/01/01' AND cedula='"+ pensionado.getCedula() +"'; " +
+							"UPDATE pensionado set fechaingreso=NULL WHERE fechaingreso='0001/01/01' AND " +
+							"cedula='"+ pensionado.getCedula() +"'; UPDATE pensionado SET fecharetiro=NULL " +
+							"WHERE fecharetiro='0001/01/01' AND cedula='"+ pensionado.getCedula() +"';";
+					
+					conector = new Conector(datos.get(0), datos.get(1),
+							datos.get(2), datos.get(3));
+					conector.SetCadena(cadenaAuxiliar);
+					conector.EjecutarSql();
 					setVisible( false );
-			        dispose( );
+					dispose( );
 					
 				} catch (Exception ioex) {
 					JOptionPane.showMessageDialog(this,
 							"No se encuentran los datos de conexion",
 							"Error de conexion", JOptionPane.ERROR_MESSAGE);
-					ioex.printStackTrace();
 				}
 			} else {
 				JOptionPane.showMessageDialog(this,
 						"No se encuentran los datos de conexion",
 						"Error de conexion", JOptionPane.ERROR_MESSAGE);
 			}
-		
+		}
 	}
-
-}
 }

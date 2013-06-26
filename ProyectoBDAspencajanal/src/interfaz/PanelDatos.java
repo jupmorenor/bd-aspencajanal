@@ -11,6 +11,8 @@ import nucleo.Pensionado;
 
 public class PanelDatos extends JPanel {
 
+	private static final long serialVersionUID = 1L;
+	
 	private JLabel idJL;
 	private JLabel nombreJL;
 	private JLabel apellidoJL;
@@ -53,7 +55,7 @@ public class PanelDatos extends JPanel {
 		seleccionalJL = new JLabel("Selecional: " + pensionado.getSeccional());
 		fechaIngresoJL = new JLabel("Fecha Ingreso: " + pensionado.getFechaIngreso());
 		fechaRetiroJL = new JLabel("Fecha Retiro: " + pensionado.getFechaRetiro());
-		perteneceJL = new JLabel("Pertenece A: " + ((pensionado.isProduzcamos())?"Produzcamos\n":"")
+		perteneceJL = new JLabel("Pertenece A: " + ((pensionado.isProduzcamos())?"Produzcamos\n ":"")
 				+ ((pensionado.isAyudemonos())?"Ayudemonos":""));
 
 		add(idJL);

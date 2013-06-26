@@ -14,6 +14,8 @@ import nucleo.Pensionado;
 
 public class PanelDatosMod extends JPanel{
 
+	private static final long serialVersionUID = 1L;
+
 	private JLabel idJL = new JLabel("IDD:  ");
 	private JLabel direccionJL= new JLabel("Direccion:  ");	
 	private JLabel nombreJL= new JLabel("Nombre(s):  ");
@@ -84,13 +86,13 @@ public class PanelDatosMod extends JPanel{
 		departamentoJT = new JComboBox<String>(departamentos);
 		zonaPostalJT = new JTextField();
 		estadoJT = new JComboBox<String>(estado);
-		fechaNacJT = new JTextField();
+		fechaNacJT = new JTextField("yyyy-mm-dd");
 		telefonoJT = new JTextField();
 		telefonoAltJT = new JTextField();
 		emailJT = new JTextField();
 		seleccionalJT = new JTextField();
-		fechaRetiroJT = new JTextField();
-		fechaIngresoJT = new JTextField();
+		fechaRetiroJT = new JTextField("yyyy-mm-dd");
+		fechaIngresoJT = new JTextField("yyyy-mm-dd");
 		pensionado = new Pensionado();
 
 		inicializar();
@@ -111,13 +113,29 @@ public class PanelDatosMod extends JPanel{
 		barrioJT = new JTextField(pensionado.getBarrio());
 		ciudadJT = new JTextField(pensionado.getCiudad());
 		zonaPostalJT = new JTextField(pensionado.getZonaPostal());
-		fechaNacJT = new JTextField(pensionado.getFechaNacimiento());
+		if (pensionado.getFechaNacimiento()==null) {
+			fechaNacJT = new JTextField("yyyy-mm-dd");
+		} else {
+			fechaNacJT = new JTextField(pensionado.getFechaNacimiento());
+		}
+		
 		telefonoJT = new JTextField(pensionado.getTelefono());
 		telefonoAltJT = new JTextField(pensionado.getTelefonoAlternativo());
 		emailJT = new JTextField(pensionado.getEmail());
 		seleccionalJT = new JTextField(pensionado.getSeccional());
-		fechaRetiroJT = new JTextField(pensionado.getFechaRetiro());
-		fechaIngresoJT = new JTextField(pensionado.getFechaIngreso());
+		
+		if (pensionado.getFechaRetiro()==null) {
+			fechaRetiroJT = new JTextField("yyyy-mm-dd");
+		} else {
+			fechaRetiroJT = new JTextField(pensionado.getFechaRetiro());
+		}
+		
+		if (pensionado.getFechaIngreso()==null) {
+			fechaIngresoJT = new JTextField("yyyy-mm-dd");
+		} else {
+			fechaIngresoJT = new JTextField(pensionado.getFechaIngreso());
+		}
+		
 		
 		estadoJT = new JComboBox<String>(estado);
 		estadoJT.setSelectedItem(estado[Integer.parseInt(pensionado.getIdEstado())-1]);
@@ -183,7 +201,7 @@ public class PanelDatosMod extends JPanel{
 		add(ayudemonosJCh);
 	}
 	
-	public  Pensionado modificarPensionado(){
+	public Pensionado modificarPensionado(){
 		pensionado.setIdPensionado(idJLT.getText());
 		pensionado.setNombres(nombreJT.getText());
 		pensionado.setApellidos(apellidoJT.getText());
@@ -195,13 +213,30 @@ public class PanelDatosMod extends JPanel{
 		pensionado.setIdDepartamento(Integer.toString(departamentoJT.getSelectedIndex()+1));
 		pensionado.setZonaPostal(zonaPostalJT.getText());
 		pensionado.setIdEstado(Integer.toString(estadoJT.getSelectedIndex()+1));
-		pensionado.setFechaNacimiento(fechaNacJT.getText());
+		
+		if (fechaNacJT.getText().equals("yyyy-mm-dd")) {
+			pensionado.setFechaNacimiento("0001-01-01");
+		} else {
+			pensionado.setFechaNacimiento(fechaNacJT.getText());
+		}
+		
 		pensionado.setTelefono(telefonoJT.getText());
 		pensionado.setTelefonoAlternativo(telefonoAltJT.getText());
 		pensionado.setEmail(emailJT.getText());
 		pensionado.setSeccional(seleccionalJT.getText());
-		pensionado.setFechaIngreso(fechaIngresoJT.getText());
-		pensionado.setFechaRetiro(fechaRetiroJT.getText());
+		
+		if (fechaIngresoJT.getText().equals("yyyy-mm-dd")) {
+			pensionado.setFechaIngreso("0001-01-01");
+		} else {
+			pensionado.setFechaIngreso(fechaIngresoJT.getText());
+		}
+		
+		if (fechaRetiroJT.getText().equals("yyyy-mm-dd")) {
+			pensionado.setFechaRetiro("0001-01-01");
+		} else {
+			pensionado.setFechaRetiro(fechaRetiroJT.getText());
+		}
+		
 		pensionado.setProduzcamos(produzcamosJCh.isSelected());
 		pensionado.setAyudemonos(ayudemonosJCh.isSelected());
 	

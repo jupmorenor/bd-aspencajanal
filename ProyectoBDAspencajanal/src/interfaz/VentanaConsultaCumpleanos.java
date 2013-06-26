@@ -6,17 +6,17 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 public class VentanaConsultaCumpleanos extends JDialog implements ActionListener{
+
+	private static final long serialVersionUID = 1L;
 
 	private JLabel cumpleanosJL;
 	
@@ -46,13 +46,14 @@ public class VentanaConsultaCumpleanos extends JDialog implements ActionListener
 		modelo.addColumn("Apellido");
 		modelo.addColumn("Dia");
 
-		 while (tabla.next()) {
-			  Object[] fila = new Object[3];
-			  for (int i = 0; i < 3; i++) {
-			    fila[i]=tabla.getObject(i+1);
-			  }
-			  modelo.addRow(fila);
-			 }
+		while (tabla.next()){
+			Object[] fila = new Object[3];
+			for (int i = 0; i < 3; i++){
+				fila[i]=tabla.getObject(i+1);
+			}
+			modelo.addRow(fila);
+		}
+	 
 		listadoCumJA = new JTable(modelo);
 		tablero = new JScrollPane();
 		tablero.setViewportView(listadoCumJA);
@@ -67,11 +68,6 @@ public class VentanaConsultaCumpleanos extends JDialog implements ActionListener
 		tablero.setBounds(22, 70, 466, 450);
 		add(cerrarJB);
 		cerrarJB.setBounds(400, 530,100,30);
-		
-		
-		DefaultTableModel modelo = new DefaultTableModel();
-		
-		
 	}
 	
 	@Override

@@ -4,14 +4,11 @@ import interfaz.VentanaAgregarPen;
 import interfaz.VentanaConsultaCumpleanos;
 
 import java.awt.Color;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -22,6 +19,8 @@ import nucleo.Pensionado;
 
 public class InterfazAdministrador extends JDialog implements ActionListener {
 
+	private static final long serialVersionUID = 1L;
+	
 	private JButton consultaJB;
 	private JButton consultaPerJB;
 	private JButton birthdayJB;
@@ -48,7 +47,7 @@ public class InterfazAdministrador extends JDialog implements ActionListener {
 		getContentPane().setBackground(Color.white);
 		setSize(270, 315);
 		setResizable(false);
-		this.setLocationRelativeTo(null);
+		setLocationRelativeTo(null);
 		setModalityType(DEFAULT_MODALITY_TYPE);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
@@ -94,9 +93,6 @@ public class InterfazAdministrador extends JDialog implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		/*
-		 * Preparacion previa a realizar la accion solicitada
-		 */
 		BufferedReader acceso;
 		ArrayList<String> datos;
 		Conector conector;
@@ -125,42 +121,43 @@ public class InterfazAdministrador extends JDialog implements ActionListener {
 							"Ingrese la cedula del pensionado",
 							"Buscar Pensionado por C.C",
 							JOptionPane.INFORMATION_MESSAGE);
+					
+					if (buscar != null) {
 
-					Pensionado pensionado = new Pensionado();
-					pensionado.setCedula(buscar);
-					conector.SetCadena(pensionado.consultarRegistro());
-					tabla = conector.Consultar();
-
-					if (tabla.next()) {
-						pensionado.setIdPensionado(tabla.getString("idpensionado"));
-						pensionado.setIdEstado(tabla.getString("descestado"));
-						pensionado.setIdDepartamento(tabla.getString("descdepartamento"));
-						pensionado.setNombres(tabla.getString("nombres"));
-						pensionado.setApellidos(tabla.getString("apellidos"));
-						pensionado.setCedula(tabla.getString("cedula"));
-						pensionado.setCodigo(tabla.getString("codigo"));
-						pensionado.setDireccion(tabla.getString("direccion"));
-						pensionado.setBarrio(tabla.getString("barrio"));
-						pensionado.setZonaPostal(tabla.getString("zonapostal"));
-						pensionado.setFechaNacimiento(tabla.getString("fechanacimiento"));
-						pensionado.setTelefono(tabla.getString("telefono"));
-						pensionado.setTelefonoAlternativo(tabla.getString("telefonoalternativo"));
-						pensionado.setObservaciones(tabla.getString("observaciones"));
-						pensionado.setProduzcamos(tabla.getBoolean("produzcamos"));
-						pensionado.setAyudemonos(tabla.getBoolean("ayudemos"));
-						pensionado.setEmail(tabla.getString("e_mail"));
-						pensionado.setFechaIngreso(tabla.getString("fechaingreso"));
-						pensionado.setFechaRetiro(tabla.getString("fecharetiro"));
-						pensionado.setCiudad(tabla.getString("ciudad"));
-						pensionado.setSeccional(tabla.getString("seccional"));
-
-						VentanaConsultaAdmi vCA = new VentanaConsultaAdmi(
-								pensionado);
-						vCA.setVisible(true);
-					} else
-						JOptionPane.showMessageDialog(this,
-								"El cliente que ingresó no existe !!");
-
+						Pensionado pensionado = new Pensionado();
+						pensionado.setCedula(buscar);
+						conector.SetCadena(pensionado.consultarRegistro());
+						tabla = conector.Consultar();
+	
+						if (tabla.next()) {
+							pensionado.setIdPensionado(tabla.getString("idpensionado"));
+							pensionado.setIdEstado(tabla.getString("descestado"));
+							pensionado.setIdDepartamento(tabla.getString("descdepartamento"));
+							pensionado.setNombres(tabla.getString("nombres"));
+							pensionado.setApellidos(tabla.getString("apellidos"));
+							pensionado.setCedula(tabla.getString("cedula"));
+							pensionado.setCodigo(tabla.getString("codigo"));
+							pensionado.setDireccion(tabla.getString("direccion"));
+							pensionado.setBarrio(tabla.getString("barrio"));
+							pensionado.setZonaPostal(tabla.getString("zonapostal"));
+							pensionado.setFechaNacimiento(tabla.getString("fechanacimiento"));
+							pensionado.setTelefono(tabla.getString("telefono"));
+							pensionado.setTelefonoAlternativo(tabla.getString("telefonoalternativo"));
+							pensionado.setObservaciones(tabla.getString("observaciones"));
+							pensionado.setProduzcamos(tabla.getBoolean("produzcamos"));
+							pensionado.setAyudemonos(tabla.getBoolean("ayudemos"));
+							pensionado.setEmail(tabla.getString("e_mail"));
+							pensionado.setFechaIngreso(tabla.getString("fechaingreso"));
+							pensionado.setFechaRetiro(tabla.getString("fecharetiro"));
+							pensionado.setCiudad(tabla.getString("ciudad"));
+							pensionado.setSeccional(tabla.getString("seccional"));
+	
+							VentanaConsultaAdmi vCA = new VentanaConsultaAdmi(pensionado);
+							vCA.setVisible(true);
+						} else {
+							JOptionPane.showMessageDialog(this, "El cliente que ingresó no existe !!");
+						}
+					}
 					break;
 
 				case CONSULTARPER:
@@ -174,18 +171,18 @@ public class InterfazAdministrador extends JDialog implements ActionListener {
 							"Consulta Cumpleaños por mes",
 							JOptionPane.QUESTION_MESSAGE, icono, MESES,
 							"Seleccione mes");
+					
+					if(seleccionMes != null) {
 
-					for (int i = 0; i < MESES.length; i++)
-						if (MESES[i].equals(seleccionMes))
-							mesSelecionado =Integer.toString(i+1);
+						for (int i = 0; i < MESES.length; i++)
+							if (MESES[i].equals(seleccionMes))
+								mesSelecionado =Integer.toString(i+1);
 
-					Pensionado pensionado1 = new Pensionado();
-					conector.SetCadena(pensionado1.consultaCumpleanos(mesSelecionado));
-					tabla = conector.Consultar();
+						Pensionado pensionado1 = new Pensionado();
+						conector.SetCadena(pensionado1.consultaCumpleanos(mesSelecionado));
+						tabla = conector.Consultar();
 
-					if (seleccionMes != null) {
-						VentanaConsultaCumpleanos vCC = new VentanaConsultaCumpleanos(
-								tabla, seleccionMes);
+						VentanaConsultaCumpleanos vCC = new VentanaConsultaCumpleanos(tabla, seleccionMes);
 						vCC.setVisible(true);
 					}
 					break;
@@ -195,40 +192,42 @@ public class InterfazAdministrador extends JDialog implements ActionListener {
 							"Ingrese la cedula del pensionado",
 							"Modificar Pensionado ",
 							JOptionPane.INFORMATION_MESSAGE);
-					Pensionado pensionado2 = new Pensionado();
-					pensionado2.setCedula(buscar1);
-					conector.SetCadena(pensionado2.modificarConsulta());
-					tabla = conector.Consultar();
-
-					if (tabla.next()) {
-						pensionado2.setIdPensionado(tabla.getString("idpensionado"));
-						pensionado2.setIdEstado(tabla.getString("idestado"));
-						pensionado2.setIdDepartamento(tabla.getString("iddepartamento"));
-						pensionado2.setNombres(tabla.getString("nombres"));
-						pensionado2.setApellidos(tabla.getString("apellidos"));
-						pensionado2.setCedula(tabla.getString("cedula"));
-						pensionado2.setCodigo(tabla.getString("codigo"));
-						pensionado2.setDireccion(tabla.getString("direccion"));
-						pensionado2.setBarrio(tabla.getString("barrio"));
-						pensionado2.setZonaPostal(tabla.getString("zonapostal"));
-						pensionado2.setFechaNacimiento(tabla.getString("fechanacimiento"));
-						pensionado2.setTelefono(tabla.getString("telefono"));
-						pensionado2.setTelefonoAlternativo(tabla.getString("telefonoalternativo"));
-						pensionado2.setObservaciones(tabla.getString("observaciones"));
-						pensionado2.setProduzcamos(tabla.getBoolean("produzcamos"));
-						pensionado2.setAyudemonos(tabla.getBoolean("ayudemos"));
-						pensionado2.setEmail(tabla.getString("e_mail"));
-						pensionado2.setFechaIngreso(tabla.getString("fechaingreso"));
-						pensionado2.setFechaRetiro(tabla.getString("fecharetiro"));
-						pensionado2.setCiudad(tabla.getString("ciudad"));
-						pensionado2.setSeccional(tabla.getString("seccional"));
-
-						VentanaModificarPen vMP = new VentanaModificarPen(
-								pensionado2);
-						vMP.setVisible(true);
-					} else
-						JOptionPane.showMessageDialog(this,
-								"El cliente que ingresó no existe !!");
+					if (buscar1 != null) {
+						
+						Pensionado pensionado2 = new Pensionado();
+						pensionado2.setCedula(buscar1);
+						conector.SetCadena(pensionado2.modificarConsulta());
+						tabla = conector.Consultar();
+	
+						if (tabla.next()) {
+							pensionado2.setIdPensionado(tabla.getString("idpensionado"));
+							pensionado2.setIdEstado(tabla.getString("idestado"));
+							pensionado2.setIdDepartamento(tabla.getString("iddepartamento"));
+							pensionado2.setNombres(tabla.getString("nombres"));
+							pensionado2.setApellidos(tabla.getString("apellidos"));
+							pensionado2.setCedula(tabla.getString("cedula"));
+							pensionado2.setCodigo(tabla.getString("codigo"));
+							pensionado2.setDireccion(tabla.getString("direccion"));
+							pensionado2.setBarrio(tabla.getString("barrio"));
+							pensionado2.setZonaPostal(tabla.getString("zonapostal"));
+							pensionado2.setFechaNacimiento(tabla.getString("fechanacimiento"));
+							pensionado2.setTelefono(tabla.getString("telefono"));
+							pensionado2.setTelefonoAlternativo(tabla.getString("telefonoalternativo"));
+							pensionado2.setObservaciones(tabla.getString("observaciones"));
+							pensionado2.setProduzcamos(tabla.getBoolean("produzcamos"));
+							pensionado2.setAyudemonos(tabla.getBoolean("ayudemos"));
+							pensionado2.setEmail(tabla.getString("e_mail"));
+							pensionado2.setFechaIngreso(tabla.getString("fechaingreso"));
+							pensionado2.setFechaRetiro(tabla.getString("fecharetiro"));
+							pensionado2.setCiudad(tabla.getString("ciudad"));
+							pensionado2.setSeccional(tabla.getString("seccional"));
+	
+							VentanaModificarPen vMP = new VentanaModificarPen(pensionado2);
+							vMP.setVisible(true);
+						} else {
+							JOptionPane.showMessageDialog(this, "El cliente que ingresó no existe !!");
+						}
+					}
 					break;
 
 				case AGREGAR:
@@ -237,7 +236,6 @@ public class InterfazAdministrador extends JDialog implements ActionListener {
 					break;
 
 				case SALIR:
-					// Cierra Sesión de la secretaria
 					setVisible(false);
 					dispose();
 					break;
@@ -250,7 +248,6 @@ public class InterfazAdministrador extends JDialog implements ActionListener {
 				JOptionPane.showMessageDialog(this,
 						"No se encuentran los datos de conexion",
 						"Error de conexion", JOptionPane.ERROR_MESSAGE);
-				ioex.printStackTrace();
 			}
 		} else {
 			JOptionPane.showMessageDialog(this,
