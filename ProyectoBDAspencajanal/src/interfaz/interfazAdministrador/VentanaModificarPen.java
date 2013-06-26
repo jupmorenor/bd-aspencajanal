@@ -3,14 +3,21 @@ package interfaz.interfazAdministrador;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import interfaz.PanelDatosMod;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
+
+import conexion.Conector;
 
 import nucleo.Pensionado;
 
@@ -26,9 +33,10 @@ public class VentanaModificarPen extends JDialog implements ActionListener{
 	
 	private static final String CERRAR = "GUARDAR Y CERRAR";
 	
+	private Pensionado pensionado;
 	
-	public VentanaModificarPen(Pensionado pensionado){
-		
+	
+	public VentanaModificarPen(Pensionado pensionado){		
 		setLayout(null);
 		setTitle("MODIFICAR PENSIONADO");
 		getContentPane().setBackground(Color.white);
@@ -65,19 +73,47 @@ public class VentanaModificarPen extends JDialog implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand().equals(CERRAR)) {
-
-			Pensionado pensionado = new Pensionado();
-			
-			pensionado.actualizarPensionado();
-			//Pensionado pensionado = panelDatosMod.modificarPensionado();
+	switch (e.getActionCommand()) {
+		
+		case CERRAR:
+			pensionado = this.panelDatosMod.modificarPensionado();
 			pensionado.setObservaciones(observacionesJA.getText());
-			//TODO todo lo de conectar y eso
-			pensionado.modificarRegistro();
-			setVisible(false);
-            dispose( );			
-		}
+			BufferedReader acceso;
+			ArrayList<String> datos;
+			Conector conector;
+			ResultSet tabla;
+			try {
+				acceso = new BufferedReader(new FileReader("./data/datos.jaa"));
+			} catch (Exception ex) {
+				acceso = null;
+			}
+			if (acceso != null) {
+				try {
+					String linea;
+					datos = new ArrayList<String>();
+
+					while ((linea = acceso.readLine()) != null) {
+						datos.add(linea);
+					}
+					acceso.close();
+					conector = new Conector(datos.get(0), datos.get(1),
+							datos.get(2), datos.get(3));
+					conector.SetCadena(pensionado.actualizarPensionado());
+					conector.EjecutarSql();
+					
+				} catch (Exception ioex) {
+					JOptionPane.showMessageDialog(this,
+							"No se encuentran los datos de conexion",
+							"Error de conexion", JOptionPane.ERROR_MESSAGE);
+					ioex.printStackTrace();
+				}
+			} else {
+				JOptionPane.showMessageDialog(this,
+						"No se encuentran los datos de conexion",
+						"Error de conexion", JOptionPane.ERROR_MESSAGE);
+			}
 		
 	}
 
+}
 }
