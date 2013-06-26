@@ -267,8 +267,15 @@ public class Pensionado {
 	 * @return
 	 */
 	public String modificarRegistro() {
-		String cadena = "";//TODO sentencia SQL
-		return cadena;
+		System.out.println(getIdPensionado());
+		String cadena="UPDATE pensionado SET nombres='"+ getNombres() + "', apellidos='"+ getApellidos() + "', cedula='"+getCedula() +"'," +
+				  " codigo='"+ getCodigo()+"', direccion='"+getDireccion()+"', barrio='"+ getBarrio() +"', zonapostal='"+getZonaPostal() +"'," +
+				  " fechanacimiento='"+getFechaNacimiento()+"', telefono='"+getTelefono() +"', telefonoalternativo='"+getTelefonoAlternativo()+"'," +
+				  " fechaingreso='"+ getFechaIngreso() +"', fecharetiro='"+getFechaRetiro() +"', ciudad='"+getCiudad()+"',"+
+				  " seccional='"+ getSeccional()+"', iddepartamento='"+getIdDepartamento()+"', idestado='"+getIdEstado()+"'," +
+				  " e_mail='"+getEmail()+"', produzcamos='"+ isProduzcamos()+"', ayudemos='"+isAyudemonos()+"'" +
+				  " WHERE idpensionado='" + getIdPensionado() + "';";
+	return cadena; 		
 	}
 	
 	/**
@@ -310,15 +317,6 @@ public class Pensionado {
 		
 	}
 	
-	public String actualizarPensionado(){
-		String cadena="UPDATE pensionado SET nombres='"+ getNombres() + "', apellidos='"+ getApellidos() + "', cedula='"+getCedula() +"'," +
-					  "codigo='"+ getCodigo()+"', direccion='"+getDireccion()+"',barrio='"+ getBarrio() +"',zonapostal='"+getZonaPostal() +"'," +
-					  " fechanacimiento='"+getFechaNacimiento()+"', telefono='"+getTelefono() +"', telefonoalternativo='"+getTelefonoAlternativo()+"'," +
-					  " fechaingreso='"+ getFechaIngreso() +"', fecharetiro='"+getFechaRetiro() +"', ciudad='"+getCiudad()+"',"+
-					  "seccional='"+ getSeccional()+"', iddepartamento='"+getIdDepartamento()+"', idestado='"+getIdEstado()+"', " +
-					  "e_mail='"+getEmail()+"', produzcamos='"+ isProduzcamos()+"', ayudemos='"+isAyudemonos()+"'" +
-					  " WHERE idpensionado='" + getIdPensionado() + "';";
-		return cadena; 
-	}
+	
 }
 
