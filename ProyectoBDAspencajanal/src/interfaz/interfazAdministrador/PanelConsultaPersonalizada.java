@@ -122,7 +122,7 @@ public class PanelConsultaPersonalizada extends JPanel implements ActionListener
 					cadena += " WHERE p.ayudemos='TRUE'";
 				}
 			}
-			cadena += ";";
+			cadena += " ORDER BY apellidos;";
 			ventana.consultarBaseDatos(cadena);
 		}
 	}
