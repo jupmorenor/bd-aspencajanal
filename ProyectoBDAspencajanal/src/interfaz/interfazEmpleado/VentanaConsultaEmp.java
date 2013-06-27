@@ -52,7 +52,7 @@ public class VentanaConsultaEmp extends JDialog implements ActionListener{
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
 		observacionesJL= new JLabel("OBSERVACIONES: ");
-		observacionesJA= new JTextArea();
+		observacionesJA= new JTextArea(pensionado.getObservaciones());
 		salirJB = new JButton(CERRAR);
 		salirJB.addActionListener(this);
 		salirJB.setActionCommand(CERRAR);
