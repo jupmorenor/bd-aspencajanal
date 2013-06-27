@@ -282,7 +282,6 @@ public class Pensionado {
 	 * actualiza los datos modificados de un registro seleccionado previamente en la base de datos
 	 * @return
 	 */
-
 	public String modificarRegistro() {
 		String cadena = "UPDATE pensionado SET nombres='"+ getNombres() + "', apellidos='"+ getApellidos() + "', cedula='"+getCedula() +"'," +
 				  " codigo='"+ getCodigo()+"', direccion='"+getDireccion()+"', barrio='"+ getBarrio() +"', zonapostal='"+getZonaPostal() +"'," +

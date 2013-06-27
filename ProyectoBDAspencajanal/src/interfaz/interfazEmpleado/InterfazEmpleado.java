@@ -34,8 +34,8 @@ public class InterfazEmpleado extends JDialog implements ActionListener {
 	private static final String SALIR = "CERRAR SESION";
 	private static final String AGREGAR = "AGREGAR PENSIONADO";
 	private static final String MESES[] = { "Enero", "Febrero", "Marzo",
-			"Abrir", "Mayo", "Junio", "Julio", "Agosto", "Septiembre",
-			"Octubre", "Nobiembre", "Diciembre" };
+			"Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre",
+			"Octubre", "Noviembre", "Diciembre" };
 	private String mesSelecionado;
 	private ImageIcon icono;
 
@@ -163,6 +163,7 @@ public class InterfazEmpleado extends JDialog implements ActionListener {
 						Pensionado pensionado1 = new Pensionado();
 						conector.SetCadena(pensionado1.consultaCumpleanos(mesSelecionado));
 						tabla = conector.Consultar();
+
 
 						VentanaConsultaCumpleanos vCC = new VentanaConsultaCumpleanos(
 								tabla, seleccionMes);

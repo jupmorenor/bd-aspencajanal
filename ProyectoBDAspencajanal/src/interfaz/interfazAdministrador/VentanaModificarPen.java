@@ -78,8 +78,7 @@ public class VentanaModificarPen extends JDialog implements ActionListener{
 		
 		case CERRAR:
 			pensionado = this.panelDatosMod.modificarPensionado();			
-			pensionado.setObservaciones(observacionesJA.getText());
-			System.out.println(pensionado.getFechaIngreso());
+			pensionado.setObservaciones(observacionesJA.getText());			
 			BufferedReader acceso;
 			ArrayList<String> datos;
 			Conector conector;
