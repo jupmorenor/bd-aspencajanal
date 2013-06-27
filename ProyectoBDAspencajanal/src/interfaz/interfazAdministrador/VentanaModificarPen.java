@@ -48,7 +48,8 @@ public class VentanaModificarPen extends JDialog implements ActionListener{
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
 		observacionesJL= new JLabel ("OBSERVACIONES: ");
-		observacionesJA= new JTextArea();
+		observacionesJA= new JTextArea(pensionado.getObservaciones());
+		
 		
 		salirJB = new JButton(CERRAR);
 		salirJB.addActionListener(this);
@@ -63,8 +64,7 @@ public class VentanaModificarPen extends JDialog implements ActionListener{
 		observacionesJL.setBounds(50,400,200,30);
 		
 		add(observacionesJA);
-		observacionesJA.setBorder(new LineBorder( Color.BLACK ));
-		observacionesJA.setEditable(false);
+		observacionesJA.setBorder(new LineBorder( Color.BLACK ));		
 		observacionesJA.setBounds(20,440,400,120);
 		
 		add(salirJB);
@@ -79,6 +79,7 @@ public class VentanaModificarPen extends JDialog implements ActionListener{
 		case CERRAR:
 			pensionado = this.panelDatosMod.modificarPensionado();			
 			pensionado.setObservaciones(observacionesJA.getText());
+			System.out.println(pensionado.getFechaIngreso());
 			BufferedReader acceso;
 			ArrayList<String> datos;
 			Conector conector;

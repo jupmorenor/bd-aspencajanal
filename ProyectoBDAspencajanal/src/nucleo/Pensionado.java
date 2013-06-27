@@ -282,13 +282,14 @@ public class Pensionado {
 	 * actualiza los datos modificados de un registro seleccionado previamente en la base de datos
 	 * @return
 	 */
+
 	public String modificarRegistro() {
 		String cadena = "UPDATE pensionado SET nombres='"+ getNombres() + "', apellidos='"+ getApellidos() + "', cedula='"+getCedula() +"'," +
 				  " codigo='"+ getCodigo()+"', direccion='"+getDireccion()+"', barrio='"+ getBarrio() +"', zonapostal='"+getZonaPostal() +"'," +
 				  " fechanacimiento='"+getFechaNacimiento()+"', telefono='"+getTelefono() +"', telefonoalternativo='"+getTelefonoAlternativo()+"'," +
 				  " fechaingreso='"+ getFechaIngreso() +"', fecharetiro='"+getFechaRetiro() +"', ciudad='"+getCiudad()+"',"+
 				  " seccional='"+ getSeccional()+"', iddepartamento='"+getIdDepartamento()+"', idestado='"+getIdEstado()+"'," +
-				  " e_mail='"+getEmail()+"', produzcamos='"+ isProduzcamos()+"', ayudemos='"+isAyudemonos()+"'" +
+				  " e_mail='"+getEmail()+"', produzcamos='"+ isProduzcamos()+"', ayudemos='"+isAyudemonos()+"', observaciones='"+getObservaciones()+"'" +
 				  " WHERE idpensionado='" + getIdPensionado() + "';";
 		return cadena;
 	}
