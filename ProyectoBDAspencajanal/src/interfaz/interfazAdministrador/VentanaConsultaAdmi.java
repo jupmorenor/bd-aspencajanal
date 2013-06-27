@@ -44,7 +44,7 @@ public class VentanaConsultaAdmi extends JDialog implements ActionListener{
 		setLayout(null);
 		setTitle("CONSULTA DEL EMPLEADO");
 		getContentPane().setBackground(Color.white);
-		setSize(545, 600);
+		setSize(695, 600);
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setModalityType(DEFAULT_MODALITY_TYPE);
@@ -63,7 +63,7 @@ public class VentanaConsultaAdmi extends JDialog implements ActionListener{
 		
 		panelDatos = new PanelDatos(pensionado);
 		add(panelDatos);
-		panelDatos.setBounds(20,20,500,400);
+		panelDatos.setBounds(20,20,650,400);
 		
 		add(observacionesJL);
 		observacionesJL.setBounds(50,420,200,30);
@@ -72,13 +72,13 @@ public class VentanaConsultaAdmi extends JDialog implements ActionListener{
 		observacionesJA.setBorder(new LineBorder( Color.BLACK ));
 		observacionesJA.setText(pensionado.getObservaciones());
 		observacionesJA.setEditable(false);
-		observacionesJA.setBounds(20,460,300,100);
+		observacionesJA.setBounds(20,460,450,100);
 		
 		add(hojaVidaJB);
-		hojaVidaJB.setBounds(350,470,150,30);
+		hojaVidaJB.setBounds(500,470,150,30);
 		
 		add(salirJB);
-		salirJB.setBounds(350,520,150,30);
+		salirJB.setBounds(500,520,150,30);
 	
 	}
 	

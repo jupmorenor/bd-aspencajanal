@@ -41,7 +41,7 @@ public class VentanaModificarPen extends JDialog implements ActionListener{
 		setLayout(null);
 		setTitle("MODIFICAR PENSIONADO");
 		getContentPane().setBackground(Color.white);
-		setSize(645, 600);
+		setSize(695, 600);
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setModalityType(DEFAULT_MODALITY_TYPE);
@@ -58,17 +58,17 @@ public class VentanaModificarPen extends JDialog implements ActionListener{
 		panelDatosMod = new PanelDatosMod(pensionado);
 		
 		add(panelDatosMod);
-		panelDatosMod.setBounds(20,20,600,350);
+		panelDatosMod.setBounds(20,20,650,350);
 		
 		add(observacionesJL);
 		observacionesJL.setBounds(50,400,200,30);
 		
 		add(observacionesJA);
 		observacionesJA.setBorder(new LineBorder( Color.BLACK ));		
-		observacionesJA.setBounds(20,440,400,120);
+		observacionesJA.setBounds(20,440,450,120);
 		
 		add(salirJB);
-		salirJB.setBounds(450,530,150,30);
+		salirJB.setBounds(500,530,150,30);
 		
 	}
 	

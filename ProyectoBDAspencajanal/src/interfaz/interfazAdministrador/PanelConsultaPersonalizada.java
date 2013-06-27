@@ -123,7 +123,6 @@ public class PanelConsultaPersonalizada extends JPanel implements ActionListener
 				}
 			}
 			cadena += ";";
-			System.out.println(cadena);
 			ventana.consultarBaseDatos(cadena);
 		}
 	}

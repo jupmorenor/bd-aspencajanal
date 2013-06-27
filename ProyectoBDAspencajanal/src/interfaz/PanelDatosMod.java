@@ -46,7 +46,6 @@ public class PanelDatosMod extends JPanel{
 	private JTextField barrioJT;
 	private JTextField ciudadJT;
 	private JTextField zonaPostalJT;
-
 	private JTextField fechaNacJT;
 	private JTextField telefonoJT;
 	private JTextField telefonoAltJT;
