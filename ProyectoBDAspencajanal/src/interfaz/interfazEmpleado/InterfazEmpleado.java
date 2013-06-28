@@ -1,7 +1,6 @@
 package interfaz.interfazEmpleado;
 
 import interfaz.VentanaAgregarPen;
-import interfaz.interfazAdministrador.VentanaConsultaCumpleanosAdm;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
