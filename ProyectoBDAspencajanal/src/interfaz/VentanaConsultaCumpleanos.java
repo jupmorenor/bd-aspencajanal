@@ -3,16 +3,22 @@ package interfaz;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
+
+import exportador.ExportarAExcel;
 
 public class VentanaConsultaCumpleanos extends JDialog implements ActionListener{
 
@@ -26,7 +32,7 @@ public class VentanaConsultaCumpleanos extends JDialog implements ActionListener
 
 	private DefaultTableModel modelo;
 	
-	private static final String SALIR = "SALIR";
+	private static final String EXPORTAR = "Exportar";
 	
 	
 	public VentanaConsultaCumpleanos(ResultSet tabla,String mes) throws SQLException{
@@ -58,9 +64,9 @@ public class VentanaConsultaCumpleanos extends JDialog implements ActionListener
 		tablero = new JScrollPane();
 		tablero.setViewportView(listadoCumJA);
 		listadoCumJA.setBorder(new LineBorder( Color.BLACK ));
-		cerrarJB = new JButton(SALIR);
+		cerrarJB = new JButton(EXPORTAR);
 		cerrarJB.addActionListener(this);
-		cerrarJB.setActionCommand(SALIR);
+		cerrarJB.setActionCommand(EXPORTAR);
 		
 		add(cumpleanosJL);
 		cumpleanosJL.setBounds(30, 30, 200, 30);
@@ -70,11 +76,28 @@ public class VentanaConsultaCumpleanos extends JDialog implements ActionListener
 		cerrarJB.setBounds(400, 530,100,30);
 	}
 	
+	/**
+	 * Genera un archivo de excel con los datos que se estan visualizando en la ventana
+	 * usando la API jxl
+	 */
+	private void exportarExcel() {
+		List<JTable> lista = new ArrayList<JTable>();
+		ExportarAExcel exportar = null;
+		lista.add(listadoCumJA);
+		try {
+			exportar = new ExportarAExcel(lista, new File("C:\\Users\\" + System.getProperty("user.name") + "\\desktop\\cumpleaños.xls"));
+			if (exportar.export()) {
+				JOptionPane.showMessageDialog(this, "Datos exportados con exito", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+			}
+		}catch(Exception e) {
+			JOptionPane.showMessageDialog(this, e.getMessage(), "Error de exportacion", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand().equals(SALIR)) {
-			setVisible( false );
-            dispose( );
+		if (e.getActionCommand().equals(EXPORTAR)) {
+			exportarExcel();
 		}		
 	}
 }
