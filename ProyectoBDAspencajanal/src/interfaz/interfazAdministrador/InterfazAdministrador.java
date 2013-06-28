@@ -1,7 +1,6 @@
 package interfaz.interfazAdministrador;
 
 import interfaz.VentanaAgregarPen;
-import interfaz.VentanaConsultaCumpleanos;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -182,7 +181,7 @@ public class InterfazAdministrador extends JDialog implements ActionListener {
 						conector.SetCadena(pensionado1.consultaCumpleanos(mesSelecionado));
 						tabla = conector.Consultar();
 
-						VentanaConsultaCumpleanos vCC = new VentanaConsultaCumpleanos(tabla, seleccionMes);
+						VentanaConsultaCumpleanosAdm vCC = new VentanaConsultaCumpleanosAdm(tabla, seleccionMes);
 						vCC.setVisible(true);
 					}
 					break;

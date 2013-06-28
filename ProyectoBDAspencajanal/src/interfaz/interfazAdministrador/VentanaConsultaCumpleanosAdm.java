@@ -1,4 +1,4 @@
-package interfaz;
+package interfaz.interfazAdministrador;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
 
 import exportador.ExportarAExcel;
 
-public class VentanaConsultaCumpleanos extends JDialog implements ActionListener{
+public class VentanaConsultaCumpleanosAdm extends JDialog implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
 
@@ -35,7 +35,7 @@ public class VentanaConsultaCumpleanos extends JDialog implements ActionListener
 	private static final String EXPORTAR = "Exportar";
 	
 	
-	public VentanaConsultaCumpleanos(ResultSet tabla,String mes) throws SQLException{
+	public VentanaConsultaCumpleanosAdm(ResultSet tabla,String mes) throws SQLException{
 		
 		setLayout(null);
 		setTitle("CONSULTA CUMPLEANOS");
