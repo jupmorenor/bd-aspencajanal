@@ -160,11 +160,18 @@ public class VentanaAgregarPen extends JDialog implements ActionListener {
 			}
 			if (acceso!=null) {
 				try {
-					ubicacion = acceso.readLine()+panelDatosAgregar.getCedula();
-					File nuevo = new File(ubicacion);
-					nuevo.mkdir();
-					abrirCarpeta(ubicacion);
-					acceso.close();
+					String cedula = panelDatosAgregar.getCedula();
+					if (cedula.isEmpty()) {
+						JOptionPane.showMessageDialog(this, "No ha ingresado la cedula", 
+								"Error", JOptionPane.ERROR_MESSAGE);
+					} else {
+						ubicacion = acceso.readLine() + cedula;
+						File nuevo = new File(ubicacion);
+						nuevo.mkdir();
+						abrirCarpeta(ubicacion);
+						acceso.close();
+					}
+					
 				} catch (Exception ex) {
 					JOptionPane.showMessageDialog(this, 
 							"No hay imagenes asociadas a este registro",
