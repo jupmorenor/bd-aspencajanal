@@ -121,7 +121,7 @@ public class VentanaConsultaAdmi extends JDialog implements ActionListener{
 			}
 			if (acceso!=null) {
 				try {
-					ubicacion = acceso.readLine()+pensionado.getIdPensionado();
+					ubicacion = acceso.readLine()+pensionado.getCedula();
 					abrirCarpeta(ubicacion);
 					acceso.close();
 				} catch (Exception ex) {
