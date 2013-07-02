@@ -2,6 +2,7 @@ package interfaz;
 
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
@@ -31,7 +32,7 @@ public class PanelDatosMod extends JPanel{
 	private JLabel telefonoJL = new JLabel("Telefono:  ");
 	private JLabel telefonoAltJL = new JLabel("Telefono Alternativo:  ");
 	private JLabel emailJL = new JLabel("Email:  ");
-	private JLabel seccionalJL = new JLabel("Selecional:  ");
+	private JLabel seccionalJL = new JLabel("Seccional:  ");
 	private JLabel fechaIngresoJL = new JLabel("Fecha Ingreso:  ");
 	private JLabel fechaRetiroJL = new JLabel("Fecha Retiro:  ");
 	private JLabel perteneceJL = new JLabel("Pertenece A:  ");
@@ -104,6 +105,9 @@ public class PanelDatosMod extends JPanel{
 				
 		idJLT = new JTextField(pensionado.getIdPensionado());
 		idJLT.setEditable(false);
+		fechaNacJT = new JTextField("null");
+		fechaRetiroJT = new JTextField("null");
+		fechaIngresoJT = new JTextField("null");		
 		direccionJT = new JTextField(pensionado.getDireccion());
 		nombreJT = new JTextField(pensionado.getNombres());
 		apellidoJT = new JTextField(pensionado.getApellidos());
@@ -111,7 +115,8 @@ public class PanelDatosMod extends JPanel{
 		cedulaJT = new JTextField(pensionado.getCedula());
 		barrioJT = new JTextField(pensionado.getBarrio());
 		ciudadJT = new JTextField(pensionado.getCiudad());
-		zonaPostalJT = new JTextField(pensionado.getZonaPostal());
+		zonaPostalJT = new JTextField(pensionado.getZonaPostal());		
+		if(pensionado.getFechaNacimiento()!="")
 		if (pensionado.getFechaNacimiento()==null) {
 			fechaNacJT = new JTextField("yyyy-mm-dd");
 		} else {
@@ -122,7 +127,7 @@ public class PanelDatosMod extends JPanel{
 		telefonoAltJT = new JTextField(pensionado.getTelefonoAlternativo());
 		emailJT = new JTextField(pensionado.getEmail());
 		seccionalJT = new JTextField(pensionado.getSeccional());
-		
+
 		if (pensionado.getFechaRetiro()==null) {
 			fechaRetiroJT = new JTextField("yyyy-mm-dd");
 		} else {
@@ -200,6 +205,21 @@ public class PanelDatosMod extends JPanel{
 		add(ayudemonosJCh);
 	}
 	
+
+
+
+	public void actionPerformed(ActionEvent e) {
+		switch (e.getActionCommand()) {
+		case PRODUZCAMOS:
+			
+			break;
+			
+		case AYUDEMONOS:
+			
+		}	
+	}	
+	
+
 	public Pensionado modificarPensionado(){
 		pensionado.setIdPensionado(idJLT.getText());
 		pensionado.setNombres(nombreJT.getText());
@@ -211,8 +231,7 @@ public class PanelDatosMod extends JPanel{
 		pensionado.setCiudad(ciudadJT.getText());
 		pensionado.setIdDepartamento(Integer.toString(departamentoJT.getSelectedIndex()+1));
 		pensionado.setZonaPostal(zonaPostalJT.getText());
-		pensionado.setIdEstado(Integer.toString(estadoJT.getSelectedIndex()+1));
-		
+		pensionado.setIdEstado(Integer.toString(estadoJT.getSelectedIndex()+1));		
 		if (fechaNacJT.getText().equals("yyyy-mm-dd")) {
 			pensionado.setFechaNacimiento("0001-01-01");
 		} else {
@@ -236,9 +255,14 @@ public class PanelDatosMod extends JPanel{
 			pensionado.setFechaRetiro(fechaRetiroJT.getText());
 		}
 		
+
 		pensionado.setProduzcamos(produzcamosJCh.isSelected());
 		pensionado.setAyudemonos(ayudemonosJCh.isSelected());
 	
 		return pensionado;
+	}
+	
+	public String getCedula(){
+		return cedulaJT.getText();
 	}
 }
