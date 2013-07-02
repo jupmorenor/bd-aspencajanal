@@ -30,13 +30,10 @@ public class VentanaAgregarPen extends JDialog implements ActionListener {
 	private JButton salirJB;
 	private JButton AgregarHVJB;
 	private PanelDatosMod panelDatosAgregar;
-	private String nuevoID;
 	private static final String GUARDAR = "GUARDAR Y CERRAR";
 	private static final String HOJA_VIDA = "HOJA DE VIDA";
 	
 	public VentanaAgregarPen(String nuevoID){
-		
-		this.nuevoID = nuevoID;
 		
 		setLayout(null);
 		setTitle("AGREGAR PENSIONADO");

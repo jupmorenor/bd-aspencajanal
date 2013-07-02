@@ -31,7 +31,7 @@ public class PanelDatosMod extends JPanel{
 	private JLabel telefonoJL = new JLabel("Telefono:  ");
 	private JLabel telefonoAltJL = new JLabel("Telefono Alternativo:  ");
 	private JLabel emailJL = new JLabel("Email:  ");
-	private JLabel seccionalJL = new JLabel("Selecional:  ");
+	private JLabel seccionalJL = new JLabel("Seccional:  ");
 	private JLabel fechaIngresoJL = new JLabel("Fecha Ingreso:  ");
 	private JLabel fechaRetiroJL = new JLabel("Fecha Retiro:  ");
 	private JLabel perteneceJL = new JLabel("Pertenece A:  ");
