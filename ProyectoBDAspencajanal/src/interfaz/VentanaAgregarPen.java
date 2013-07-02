@@ -119,9 +119,9 @@ public class VentanaAgregarPen extends JDialog implements ActionListener {
 					}
 					acceso.close();
 					conector = new Conector(datos.get(0), datos.get(1),
-							datos.get(2), datos.get(3));
-					
+							datos.get(2), datos.get(3));					
 					conector.SetCadena(pensionado.guardarRegistro());
+
 					conector.EjecutarSql();
 					String cadenaAuxiliar = "UPDATE pensionado SET fechanacimiento=NULL WHERE " +
 							"fechanacimiento='0001/01/01' AND cedula='"+ pensionado.getCedula() +"'; " +
@@ -160,7 +160,7 @@ public class VentanaAgregarPen extends JDialog implements ActionListener {
 			}
 			if (acceso!=null) {
 				try {
-					ubicacion = acceso.readLine()+nuevoID;
+					ubicacion = acceso.readLine()+panelDatosAgregar.getCedula();
 					File nuevo = new File(ubicacion);
 					nuevo.mkdir();
 					abrirCarpeta(ubicacion);
