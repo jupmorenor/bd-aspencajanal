@@ -65,6 +65,7 @@ public class VentanaConsultaExportar extends JDialog implements ActionListener{
 		try {
 			ResultSetMetaData metaData = consulta.getMetaData();
 			int cantidad = metaData.getColumnCount();
+			modelo.addRow(new Object[cantidad]);
 			for(int i=1; i<=cantidad; i++ ) {
 				modelo.addColumn(metaData.getColumnName(i));
 			}

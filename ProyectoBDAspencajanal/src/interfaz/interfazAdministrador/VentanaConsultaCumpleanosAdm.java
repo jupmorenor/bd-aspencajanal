@@ -51,6 +51,7 @@ public class VentanaConsultaCumpleanosAdm extends JDialog implements ActionListe
 		modelo.addColumn("Nombre");
 		modelo.addColumn("Apellido");
 		modelo.addColumn("Dia");
+		modelo.addRow(new Object[3]);
 
 		while (tabla.next()){
 			Object[] fila = new Object[3];
