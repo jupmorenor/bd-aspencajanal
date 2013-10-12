@@ -6,6 +6,8 @@ import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import nucleo.Pensionado;
@@ -36,7 +38,7 @@ public class PanelDatos extends JPanel {
 	private JLabel blancoJL;
 	
 	private JTextField idJLT;
-	private JTextField direccionJT;
+	private JTextArea direccionJA;
 	private JTextField nombreJT;
 	private JTextField apellidoJT;
 	private JTextField codigoJT;
@@ -55,6 +57,8 @@ public class PanelDatos extends JPanel {
 	private JTextField estadoJT;
 	private JTextField ayudemonosJT;
 	private JTextField produzcamosJT;
+	
+	private JScrollPane direccionJS;
 	
 	
 	public PanelDatos(Pensionado pensionado) {
@@ -83,7 +87,7 @@ public class PanelDatos extends JPanel {
 		blancoJL = new JLabel("");
 		
 		idJLT = new JTextField(pensionado.getIdPensionado());
-		direccionJT = new JTextField(pensionado.getDireccion());
+		direccionJA = new JTextArea(pensionado.getDireccion());
 		nombreJT = new JTextField(pensionado.getNombres());
 		apellidoJT = new JTextField(pensionado.getApellidos());
 		codigoJT = new JTextField(pensionado.getCodigo());
@@ -103,8 +107,10 @@ public class PanelDatos extends JPanel {
 		ayudemonosJT = new JTextField(((pensionado.isAyudemonos())?"Ayudemonos":""));
 		produzcamosJT = new JTextField(((pensionado.isProduzcamos())?"Produzcamos\n ":""));
 		
+		direccionJS = new JScrollPane();
+		
 		idJLT.setEditable(false);
-		direccionJT.setEditable(false);
+		direccionJA.setEditable(false);
 		nombreJT.setEditable(false);
 		apellidoJT.setEditable(false);
 		codigoJT.setEditable(false);
@@ -125,7 +131,10 @@ public class PanelDatos extends JPanel {
 		produzcamosJT.setEditable(false);
 		
 		idJLT.setBackground(Color.white);
-		direccionJT.setBackground(Color.white);
+		direccionJA.setBackground(Color.white);
+		direccionJA.setWrapStyleWord(true);
+		direccionJA.setLineWrap(true);
+		direccionJA.setBorder(idJLT.getBorder());
 		nombreJT.setBackground(Color.white);
 		apellidoJT.setBackground(Color.white);
 		codigoJT.setBackground(Color.white);
@@ -144,6 +153,8 @@ public class PanelDatos extends JPanel {
 		fechaIngresoJT.setBackground(Color.white);
 		ayudemonosJT.setBackground(Color.white);
 		produzcamosJT.setBackground(Color.white);
+		
+		direccionJS.setViewportView(direccionJA);
 		
 		add(idJL);
 		add(idJLT);
@@ -166,7 +177,7 @@ public class PanelDatos extends JPanel {
 		add(emailJL);
 		add(emailJT);
 		add(direccionJL);
-		add(direccionJT);
+		add(direccionJS);
 		add(seccionalJL);
 		add(seccionalJT);
 		add(barrioJL);

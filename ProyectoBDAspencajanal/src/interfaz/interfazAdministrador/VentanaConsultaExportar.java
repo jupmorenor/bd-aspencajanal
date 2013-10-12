@@ -55,6 +55,7 @@ public class VentanaConsultaExportar extends JDialog implements ActionListener{
 		add(boton, BorderLayout.SOUTH);
 		
 		llenarTabla();
+		tabla.setEnabled(false);
 	}
 	
 	 /**

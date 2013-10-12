@@ -8,7 +8,10 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 
 import nucleo.Pensionado;
 
@@ -38,7 +41,7 @@ public class PanelDatosMod extends JPanel{
 	private JLabel blancoJL = new JLabel(); 
 	
 	private JTextField idJLT;
-	private JTextField direccionJT;
+	private JTextArea direccionJA;
 	private JTextField nombreJT;
 	private JTextField apellidoJT;
 	private JTextField codigoJT;
@@ -53,6 +56,8 @@ public class PanelDatosMod extends JPanel{
 	private JTextField seccionalJT;
 	private JTextField fechaRetiroJT;
 	private JTextField fechaIngresoJT;
+	
+	private JScrollPane direccionJS;
 	
 	private JComboBox<String> estadoJT;
 	private JComboBox<String> departamentoJT;
@@ -75,7 +80,7 @@ public class PanelDatosMod extends JPanel{
 	public PanelDatosMod(String id) {
 		
 		idJLT = new JTextField(id);
-		direccionJT = new JTextField();
+		direccionJA = new JTextArea();
 		nombreJT = new JTextField();
 		apellidoJT = new JTextField();
 		codigoJT = new JTextField();
@@ -104,7 +109,7 @@ public class PanelDatosMod extends JPanel{
 				
 		idJLT = new JTextField(pensionado.getIdPensionado());
 		idJLT.setEditable(false);
-		direccionJT = new JTextField(pensionado.getDireccion());
+		direccionJA = new JTextArea(pensionado.getDireccion());
 		nombreJT = new JTextField(pensionado.getNombres());
 		apellidoJT = new JTextField(pensionado.getApellidos());
 		codigoJT = new JTextField(pensionado.getCodigo());
@@ -153,6 +158,11 @@ public class PanelDatosMod extends JPanel{
 		setLayout(new GridLayout(10, 4,15,5));
 		setBackground( Color.white);
 		
+		direccionJS = new JScrollPane();
+		direccionJS.setViewportView(direccionJA);
+		direccionJS.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		direccionJS.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		
 		produzcamosJCh = new JRadioButton(PRODUZCAMOS);
 		produzcamosJCh.setBackground(Color.white);
 		ayudemonosJCh = new JRadioButton(AYUDEMONOS);
@@ -179,7 +189,7 @@ public class PanelDatosMod extends JPanel{
 		add(emailJL);
 		add(emailJT);
 		add(direccionJL);
-		add(direccionJT);
+		add(direccionJS);
 		add(seccionalJL);
 		add(seccionalJT);
 		add(barrioJL);
@@ -206,7 +216,7 @@ public class PanelDatosMod extends JPanel{
 		pensionado.setApellidos(apellidoJT.getText());
 		pensionado.setCedula(cedulaJT.getText());
 		pensionado.setCodigo(codigoJT.getText());
-		pensionado.setDireccion(direccionJT.getText());
+		pensionado.setDireccion(direccionJA.getText());
 		pensionado.setBarrio(barrioJT.getText());
 		pensionado.setCiudad(ciudadJT.getText());
 		pensionado.setIdDepartamento(Integer.toString(departamentoJT.getSelectedIndex()+1));

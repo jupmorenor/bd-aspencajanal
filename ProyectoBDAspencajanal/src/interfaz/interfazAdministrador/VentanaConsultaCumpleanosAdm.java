@@ -65,6 +65,7 @@ public class VentanaConsultaCumpleanosAdm extends JDialog implements ActionListe
 		tablero = new JScrollPane();
 		tablero.setViewportView(listadoCumJA);
 		listadoCumJA.setBorder(new LineBorder( Color.BLACK ));
+		listadoCumJA.setEnabled(false);
 		cerrarJB = new JButton(EXPORTAR);
 		cerrarJB.addActionListener(this);
 		cerrarJB.setActionCommand(EXPORTAR);
