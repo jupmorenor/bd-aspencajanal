@@ -102,8 +102,8 @@ public class PanelDatos extends JPanel {
 		telefonoAltJT = new JTextField(pensionado.getTelefonoAlternativo());
 		emailJT = new JTextField(pensionado.getEmail());
 		seccionalJT = new JTextField(pensionado.getSeccional());
-		fechaRetiroJT = new JTextField(pensionado.getFechaIngreso());
-		fechaIngresoJT = new JTextField(pensionado.getFechaRetiro());
+		fechaIngresoJT = new JTextField(pensionado.getFechaIngreso());
+		fechaRetiroJT = new JTextField(pensionado.getFechaRetiro());
 		ayudemonosJT = new JTextField(((pensionado.isAyudemonos())?"Ayudemonos":""));
 		produzcamosJT = new JTextField(((pensionado.isProduzcamos())?"Produzcamos\n ":""));
 		
